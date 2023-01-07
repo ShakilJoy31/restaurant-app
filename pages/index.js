@@ -2,11 +2,29 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from '@next/font/google'
 import styles from '../styles/Home.module.css'
-import Navbar from '../components/Navbar'
+import StartingPage from '../components/StartingPage'; 
+import { useEffect, useState } from 'react';
+import FoodProduct from '../components/FoodProduct';
+import { UserStore } from '../userStore';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const {user, setUser} = UserStore.useContainer(); 
+//   useEffect(() => {
+//     console.log(user); 
+//     const localStorageUser = JSON.parse(localStorage.getItem('user')); 
+//     console.log(localStorageUser);
+    
+//     if (!localStorageUser) {
+//         console.log('in the if statement')
+//     }
+//     else {
+//       setLoggedInUser(true); 
+//         console.log('in the else statement')
+//     }
+// }, [user])
+
   return (
     <>
       <Head>
@@ -16,6 +34,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className=''>
+        {
+          user ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
+        }
       </main>
     </>
   )

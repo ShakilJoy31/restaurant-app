@@ -1,18 +1,33 @@
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import { UserStore } from "../userStore";
 
 const SignUp = ({ setSignUpModal }) => {
+    // All states
     const [name, setName] = useState('');
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [confirmPassword, setConfirmPassword] = useState('');
     const [photo, setPhoto] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true); 
+    const {user, setUser} = UserStore.useContainer(); 
+
+// Required Function
     const handleSignInButton = () => {
+        const formData = {'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': photo}
+        setUser(formData)
+        //Authentication
+        const checkLocalStorage = localStorage.getItem('user');
+        if(!checkLocalStorage){
+            localStorage.setItem('user', JSON.stringify(formData));
+        }
+        else{
+            console.log('You are already logged in');
+        }
         setSignUpModal(false);
-        console.log(name, phone, email, password, confirmPassword, photo);
+        // Post this user to the database.
+        
     }
     return (
         <div>
