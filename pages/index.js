@@ -11,19 +11,13 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const {user, setUser} = UserStore.useContainer(); 
-//   useEffect(() => {
-//     console.log(user); 
-//     const localStorageUser = JSON.parse(localStorage.getItem('user')); 
-//     console.log(localStorageUser);
-    
-//     if (!localStorageUser) {
-//         console.log('in the if statement')
-//     }
-//     else {
-//       setLoggedInUser(true); 
-//         console.log('in the else statement')
-//     }
-// }, [user])
+  const [localStorageContent, setLocalStorageContent] = useState(false); 
+  useEffect(() => {
+    console.log(user); 
+    const localStorageUser = JSON.parse(localStorage.getItem('user')); 
+    localStorageUser ? setLocalStorageContent(true) : setLocalStorageContent(false); 
+    console.log(localStorageUser);
+}, [user])
 
   return (
     <>
@@ -35,7 +29,7 @@ export default function Home() {
       </Head>
       <main className=''>
         {
-          user ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
+          localStorageContent ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
         }
       </main>
     </>

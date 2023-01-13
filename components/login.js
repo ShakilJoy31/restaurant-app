@@ -1,13 +1,15 @@
 import { useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
+import { getUser } from "../lib/healper";
 
 const Login = ({setLogin}) => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true); 
     const handleLoginButton = () =>{
-        setLogin(false); 
+        // getUser().then(res => console.log(res)); 
+        setLogin(false);
         console.log(email, password); 
     }
     return (

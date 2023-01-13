@@ -5,4 +5,10 @@ function useUserStore () {
     const [user, setUser] = useState(null); 
     return {user, setUser}; 
 }
-export const UserStore = createContainer(useUserStore)
+export const UserStore = createContainer(useUserStore);
+
+function userCart () {
+    const [cart, setCart] = useState(null); 
+    return {cart, setCart}; 
+}
+export const UserCart = createContainer(userCart); 

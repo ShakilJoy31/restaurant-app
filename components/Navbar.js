@@ -11,7 +11,7 @@ const Navbar = () => {
     const { user, setUser } = UserStore.useContainer();
     const [signUpModal, setSignUpModal] = useState(false);
     const [logIn, setLogin] = useState(false);
-    // const [userPhoto, setUserPhoto] = useState(user? user?.photo : '');
+    const [userPhoto, setUserPhoto] = useState('');
     const signUp = () => {
         console.log('Sign up button is called');
     }
@@ -30,10 +30,9 @@ const Navbar = () => {
 
     useEffect(() => {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        setUserPhoto(localStorageUser?.photo); 
         console.log(localStorageUser);
-    }, [])
-
-    console.log(user);
+    }, [user])
 
     return (
         <div>
@@ -44,7 +43,11 @@ const Navbar = () => {
 
                 <div className="flex-none md:gap-4 lg:gap-6">
                     {
-                        !user ? <div onClick={() => setLogin(true)}>
+                        userPhoto && <Link className="hidden text-xl lg:block md:block" href='/cart'>My Cart</Link>
+                    }
+
+                    {
+                        !userPhoto ? <div onClick={() => setLogin(true)}>
                             <label htmlFor="my-modal-3" className="hidden text-xl lg:block md:block">Login</label>
                         </div> : <div>
                             <label htmlFor="my-modal-3" className="hidden text-xl lg:block md:block">logged</label>
@@ -52,7 +55,7 @@ const Navbar = () => {
                     }
 
                     {
-                        !user ? <div onClick={() => setSignUpModal(true)}>
+                        !userPhoto ? <div onClick={() => setSignUpModal(true)}>
                             <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block">Sign up</label>
                         </div> : <div>
                             <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block">Signed</label>
@@ -66,9 +69,13 @@ const Navbar = () => {
 
                     <div className="dropdown dropdown-end mr-[10px] lg:mr-[0px] md:mr-[0px]">
                         <label tabIndex={0} className="btn btn-circle avatar">
-                            <div className="w-10 rounded-full">
+                            {
+                                userPhoto ? <div className="w-10 rounded-full">
+                                <img src={userPhoto} />
+                            </div> : <div className="w-10 rounded-full">
                                 <img src={user ? user?.photo : 'https://placeimg.com/80/80/people'} />
                             </div>
+                            }
                         </label>
                         <ul tabIndex={0} className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
                             <li>

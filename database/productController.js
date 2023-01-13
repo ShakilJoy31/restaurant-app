@@ -1,9 +1,9 @@
-import Users from "../model/user";
+import Products from "../model/product";
 
 // Getting all the users from DB.
-export async function getUser (req, res) {
+export async function getProduct (req, res) {
     try{
-        const users = await Users.find({}); 
+        const users = await Products.find({}); 
         if(!users){
             return res.status(404).json({error: 'Data is not found'})
         }
@@ -15,13 +15,13 @@ export async function getUser (req, res) {
 }
 
 // Posting a user to the database
-export async function postUsers(req, res){
+export async function postProduct(req, res){
     try{
         const formData = req.body; 
         if(!formData){
             return res.status(404).json({error: 'Form data is not provided!'})
         }
-        Users.create(formData, (error, data)=>{
+        Products.create(formData, (error, data)=>{
             return res.status(200).json(data); 
         })
     }catch(errors){
