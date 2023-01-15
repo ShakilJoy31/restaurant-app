@@ -69,15 +69,13 @@ const FoodProduct = () => {
                 setThankYou(null)
             }, 2500);
         }
-
+        
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         const databaseUser = signedInUser.find(getUser => getUser.email === localStorageUser.email);
 
-        
         if(localStorageUser && databaseUser){
             const userWithFeedback = {name: databaseUser.name, phone: databaseUser.phone, email: databaseUser.email, password: databaseUser.password, photo: databaseUser.photo, feedback: feedBack, foodReviewedName: getFood.name, foodReviewedPhoto: getFood.photo}
             updateUserWithFeedBack(databaseUser._id, userWithFeedback).then(res => console.log(res));
-            console.log(userWithFeedback); 
         }
     }
     return (
@@ -100,7 +98,11 @@ const FoodProduct = () => {
                     <div className='flex justify-center'>
                         <div className='grid grid-cols-1 gap-6 mx-4 lg:grid-cols-3 md:grid-cols-2'>
                             {
-                                foodProducts.map(food => <div className="border shadow-2xl card w-96 border-accent">
+                                foodProducts.map(food => <div style={{
+                                    backgroundImage: "linear-gradient(45deg, black, white)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat"
+                                }} className="border shadow-2xl card w-96 border-accent">
                                     <figure><img className='h-[300px] w-full' src={food.photo} alt="Foods" /></figure>
                                     <div className="card-body">
                                         <h2 className="flex justify-center text-2xl">{food.name}</h2>

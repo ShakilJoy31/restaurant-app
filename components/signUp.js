@@ -18,6 +18,7 @@ const SignUp = ({ setSignUpModal }) => {
     const [signedInUser, setSignedInUser] = useState([]);
     const { user, setUser } = UserStore.useContainer();
     // const [isPostedUser, setIsPostedUser] = useState(''); 
+    const ImageStorageKey = '1f2e07ae412954d520f52351b07dee66';
     const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': photo };
 
     useEffect(() => {
@@ -26,6 +27,17 @@ const SignUp = ({ setSignUpModal }) => {
 
     const handleSignInButton = () => {
         const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
+        // const formDataImage = new FormData(); 
+        // formDataImage.append('photo', photo);
+        // const url = `https://api.imgbb.com/1/upload?key=${ImageStorageKey}`;
+        // console.log(photo); 
+        // fetch(url, {
+        //     method: 'POST',
+        //     body: formDataImage
+        // })
+        // .then(res => res.json())
+        // .then(result => console.log())
+
         if (!foundDatabaseUser) {
             addUser(formData).then(res => {
                 const checkLocalStorage = localStorage.getItem('user');
@@ -34,12 +46,12 @@ const SignUp = ({ setSignUpModal }) => {
                     setUser(formData)
                     setSignUpModal(false)
                     toast.success('Welcome to Our Restaurant!')
+                    console.log(foundDatabaseUser, formData); 
                 }
             })
         }
         else{
             toast.error('UPPS! '+foundDatabaseUser?.email+' is exists. Try another else.')
-            console.log('User exists on the database.');
         }
     }
     return (
@@ -62,7 +74,7 @@ const SignUp = ({ setSignUpModal }) => {
                                 }
                             </div>
 
-                            {/* <input onChange={(e)=>setConfirmPassword(e.target.value)} type="password" placeholder='Type your password' className="max-w-xs my-6 border w-80 input focus:outline-none border-accent" /> */}
+                            {/* <input onChange={(e) => setPhoto(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" /> */}
 
                             <input onChange={(e) => setPhoto(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" />
                         </div>

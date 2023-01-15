@@ -35,7 +35,6 @@ const Navbar = () => {
     useEffect(() => {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         setUserPhoto(localStorageUser?.photo);
-        console.log(localStorageUser);
     }, [user])
 
     return (
@@ -55,9 +54,7 @@ const Navbar = () => {
                         userPhoto && <Link className="hidden text-xl lg:block md:block" href='/cart'>My Cart</Link>
                     }
 
-                    {
-                        userPhoto && <Link className="hidden text-xl lg:block md:block" href='/feedback'>Feedback</Link>
-                    }
+                        <Link className="hidden text-xl lg:block md:block" href='/feedback'>Feedback</Link>
 
                     {
                         !userPhoto && <div onClick={() => setLogin(true)}>
@@ -93,7 +90,10 @@ const Navbar = () => {
                             <li><a>Settings</a></li>
 
 
-                            <label onClick={() => { setLogoutModal(true) }} htmlFor="my-modal-6" className="">
+                            <label onClick={() => { 
+                                
+                                setLogoutModal(true)
+                                }} htmlFor="my-modal-6" className="">
                                 <li><a className="flex items-end justify-between">
                                     <span>Logout</span>
                                     <RiLogoutCircleRLine size={20} color={'red'}></RiLogoutCircleRLine>
