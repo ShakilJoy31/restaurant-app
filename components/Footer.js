@@ -48,7 +48,7 @@ const Footer = () => {
                         lineHeight: "41px",
                         color: "Black"
                     }} class="footer-heading mb-[20px]">Follow Us</span>
-                    <div className=''>
+                    <div className='lg:ml-20 md:ml-20'>
                         <div className='flex gap-x-8'>
                             <Link href='https://www.facebook.com/shakil.ahammedjoy.39/' class="link link-hover flex justify-center items-center text-black">
                                 <BsFacebook color={'#2D4A9D'} size={28}></BsFacebook>

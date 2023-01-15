@@ -1,20 +1,39 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { getUser } from "../lib/healper";
+import { UserStore } from "../userStore";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({setLogin}) => {
     const [email, setEmail] = useState(''); 
     const [password, setPassword] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true); 
+    const [loggedInUser, setLoggedInUser] = useState([]);
+    const { user, setUser } = UserStore.useContainer();
+
+    useEffect(()=>{
+        getUser().then(res => setLoggedInUser(res));
+    },[])
     const handleLoginButton = () =>{
-        // getUser().then(res => console.log(res)); 
-        setLogin(false);
-        console.log(email, password); 
+        const foundDatabaseUser = loggedInUser.find(matchedGmail => matchedGmail?.email === email && matchedGmail?.password === password);
+        if(foundDatabaseUser){
+            const checkLocalStorage = localStorage.getItem('user');
+                if (!checkLocalStorage) {
+                    localStorage.setItem('user', JSON.stringify(foundDatabaseUser));
+                    setUser(foundDatabaseUser)
+                    setLogin(false);
+                    toast.success('Welcome back to Our Restaurant!')
+                }
+        }
+        else{
+            toast.error('UPPS! Invalid Gmail or Password')
+        }
     }
     return (
         <div>
-            <h1 className="flex justify-center text-4xl">Login here</h1>
+            <h1 className="flex justify-center text-4xl text-accent">Login here</h1>
             <div className="flex justify-center mt-12">
                 <div>
                     <div className='gap-8 mb-8'>

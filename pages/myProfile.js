@@ -1,7 +1,7 @@
 const myProfile = () => {
     return (
         <div>
-            <h1 className="flex justify-center text-4xl">Update Your Profile here</h1>
+            <h1 className="flex justify-center text-4xl text-accent">Update Your Profile here</h1>
             <div className="flex justify-center mt-12">
                 <div>
                     <div className='flex mb-6 gap-x-8'>

@@ -6,6 +6,9 @@ const userSchema = new Schema({
     email: String,
     password: String,
     photo: String,
+    feedback: String,
+    foodReviewedName: String,
+    foodReviewedPhoto: String
 })
 
 const Users = models.user || model('user', userSchema)

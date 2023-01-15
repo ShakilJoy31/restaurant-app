@@ -28,3 +28,19 @@ export async function postUsers(req, res){
         return res.status(404).json({error: 'Posting the user is failed'});
     }
 }
+
+export async function updateUserWithFeedBack (req, res) {
+    try{
+        const {userId} = req.query; 
+        const formData = req.body; 
+        console.log(userId, formData);
+        if(userId && formData){
+            const user = await Users.findByIdAndUpdate(userId, formData)
+            res.status(200).json(user); 
+            console.log(user); 
+        }
+        res.status(404).json({error: 'User is not selected...!'}); 
+    }catch(errors){
+        return res.status(404).json({error: 'Operation failed to update the data....!'}); 
+    }
+}

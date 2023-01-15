@@ -44,7 +44,6 @@ const CalculationCart = ({ product }) => {
                                 </div>
                                 <div className=''>
                                     <button onClick={handleReadyToPay} className='text-xl normal-case btn btn-primary'>Pay {totalFoodPrice + (totalFoodPrice * (7 / 100))} Now</button>
-                                    <p className={movingPara.movingPara}>Click me, if you want to pay or cancel.</p>
                                 </div>
                             </div>
                             <div>

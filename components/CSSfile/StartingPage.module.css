@@ -1,3 +1,12 @@
 .home{
     height: 100vh;
 }
+
+.bannerHome{
+    height: 60vh;
+}
+
+.bannerHomeForMobile{
+    height: 30vh;
+    width: 100vh;
+}

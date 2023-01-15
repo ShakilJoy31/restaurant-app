@@ -2,7 +2,10 @@ import { useEffect, useState } from "react";
 import { AiFillEye } from "react-icons/ai";
 import { AiFillEyeInvisible } from "react-icons/ai";
 import { UserStore } from "../userStore";
-import { addUser, getUser } from "../lib/healper";
+import { addUser } from "../lib/healper";
+import { getUser } from './../lib/healper';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const SignUp = ({ setSignUpModal }) => {
     // All states
@@ -12,40 +15,37 @@ const SignUp = ({ setSignUpModal }) => {
     const [password, setPassword] = useState('');
     const [photo, setPhoto] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true);
+    const [signedInUser, setSignedInUser] = useState([]);
     const { user, setUser } = UserStore.useContainer();
     // const [isPostedUser, setIsPostedUser] = useState(''); 
     const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': photo };
-    
-    // Required Function
-    // const forSpecificUserEmail = () =>{
-    //     getUser().then(res => res.find(foundEmail => {
-    //         if(foundEmail.email === email){
-    //             return foundEmail.email; 
-    //         }
-    //     }))
-    // }
-    
+
+    useEffect(() => {
+        getUser().then(res => setSignedInUser(res));
+    }, [signedInUser])
+
     const handleSignInButton = () => {
-        addUser(formData).then(res => {
-            const checkLocalStorage = localStorage.getItem('user');
-            if (!checkLocalStorage) {
-                localStorage.setItem('user', JSON.stringify(formData));
-                setUser(formData)
-                setSignUpModal(false)
-            }
-        })
-        // getUser().then(res => res.find(foundEmail => {
-        //     if(foundEmail?.email !== email){
-        //         console.log('Email in Database is', foundEmail.email); 
-        //         console.log('User input email is', email); 
-        //         return;
-        //     }
-        // }));
+        const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
+        if (!foundDatabaseUser) {
+            addUser(formData).then(res => {
+                const checkLocalStorage = localStorage.getItem('user');
+                if (!checkLocalStorage) {
+                    localStorage.setItem('user', JSON.stringify(formData));
+                    setUser(formData)
+                    setSignUpModal(false)
+                    toast.success('Welcome to Our Restaurant!')
+                }
+            })
+        }
+        else{
+            toast.error('UPPS! '+foundDatabaseUser?.email+' is exists. Try another else.')
+            console.log('User exists on the database.');
+        }
     }
     return (
         <div>
             <div>
-                <h1 className="flex justify-center text-4xl">Sign up here</h1>
+                <h1 className="flex justify-center text-4xl text-accent">Sign up here</h1>
                 <div className="flex justify-center mt-6">
                     <div>
                         <div className='mb-8'>
