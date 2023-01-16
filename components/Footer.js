@@ -16,7 +16,7 @@ const Footer = () => {
                     <p class="link link-hover lg:ml-20 md:ml-20 text-black">Level-4, 34, Awal Centre, Banani, Dhaka</p>
                     <p class="link link-hover lg:ml-20 md:ml-20 text-black">Support: Web@Programming-Hero.Com</p>
                     <p class="link link-hover lg:ml-20 md:ml-20 text-black">Helpline: 01322810867, 01322810873 <br />
-                        (Available: 9:00am To 10:00pm)</p>
+                    (Available: 9:00am To 10:00pm)</p>
                 </div>
 
                 {/* Useful Links */}
@@ -50,9 +50,11 @@ const Footer = () => {
                     }} class="footer-heading mb-[20px]">Follow Us</span>
                     <div className='lg:ml-20 md:ml-20'>
                         <div className='flex gap-x-8'>
+                            
                             <Link href='https://www.facebook.com/shakil.ahammedjoy.39/' class="link link-hover flex justify-center items-center text-black">
                                 <BsFacebook color={'#2D4A9D'} size={28}></BsFacebook>
                             </Link>
+
                             <Link href='https://www.instagram.com/shakil.ahammedjoy.39/' class="link link-hover flex justify-center items-center text-black">
                                 <AiOutlineInstagram color={'#2D4A9D'} size={30}></AiOutlineInstagram>
                             </Link>

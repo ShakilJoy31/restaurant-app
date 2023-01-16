@@ -7,3 +7,15 @@
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
 }
+
+.foodCard:hover{
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 400ms;
+}
+
+
+/* style={{
+    backgroundImage: "linear-gradient(45deg, black, white)",
+    backgroundSize: "100%",
+    backgroundRepeat: "repeat"
+}} */

@@ -1,34 +1,36 @@
 import { useEffect, useState } from "react";
-import { getProduct, getUser } from "../lib/healper";
-
-import 'swiper/css';
-import { Swiper, SwiperSlide } from 'swiper/react';
-import 'swiper/css';
-import { Autoplay, Pagination, Navigation } from "swiper";
-
-
+import { VscFeedback } from "react-icons/vsc";
+import { getUser } from "../lib/healper";
+import FoodProductStyle from '../components/FoodProductStyle.module.css'; 
 
 const feedback = () => {
-    const [foodProducts, setFoodProducts] = useState([]);
     const [signedInUser, setSignedInUser] = useState([]);
+    const [review, setReview] = useState(false);
     useEffect(() => {
-        getUser().then(res => setSignedInUser(res));
+        getUser().then(res => {
+            if (!review) {
+                setSignedInUser((res.reverse().slice(0, 3)));
+            }
+            else {
+                setSignedInUser(res)
+            }
+        });
     }, [signedInUser])
 
-    console.log(signedInUser);
-
     return (
-        <div className="flex justify-center mx-6 my-12 lg:mx-28 md:mx-16">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
-                
+        <div className="mx-6 my-12 lg:mx-28 md:mx-16">
+            <h1 className='flex justify-center mb-6 text-4xl text-accent'>Food Review Corner</h1>
+            {/* Review with card */}
+            <div className="flex justify-center">
+                <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
                     {
-                        signedInUser.map(userWithFeedback => userWithFeedback?.feedback && 
+                        signedInUser.map(userWithFeedback => userWithFeedback?.feedback &&
                             <div>
                                 <div style={{
                                     backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                     backgroundSize: "100%",
                                     backgroundRepeat: "repeat"
-                                }} className="h-full shadow-2xl card">
+                                }} className={`h-full shadow-2xl card ${FoodProductStyle?.foodCard}`}>
                                     <figure><img className="w-full h-64" src={userWithFeedback?.foodReviewedPhoto} alt="Shoes" /></figure>
                                     <div>
                                         <div className="">
@@ -39,7 +41,7 @@ const feedback = () => {
                                                     right: '5px'
                                                 }} className="avatar">
                                                     <div className="w-16 border rounded-full border-accent ring-offset-base-100 ring-offset-2">
-                                                        <img src="https://placeimg.com/192/192/people" />
+                                                        <img src={userWithFeedback?.photo} />
                                                     </div>
                                                 </div>
 
@@ -63,6 +65,22 @@ const feedback = () => {
                             </div>
                         )
                     }
+                </div>
+            </div>
+            <div className="flex justify-end mt-8">
+                {
+                    !review ? <button onClick={() => setReview(true)} style={{
+                        backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                        backgroundSize: "100%",
+                        backgroundRepeat: "repeat",
+                    }} className="normal-case btn"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>More Feedback</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
+                    </button> : <button onClick={() => setReview(false)} style={{
+                        backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                        backgroundSize: "100%",
+                        backgroundRepeat: "repeat",
+                    }} className="normal-case btn"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>See Less</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
+                    </button>
+                }
             </div>
         </div>
     );
@@ -134,3 +152,15 @@ export default feedback;
         )
     }
 </Swiper> */}
+
+
+{/* <label style={{
+                // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
+                // backgroundSize: "100%",
+                // backgroundRepeat: "repeat",
+
+                backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                backgroundSize: "100%",
+                backgroundRepeat: "repeat",
+            }} htmlFor="my-modal-5" className="w-32 btn"> <span className='text-xl text-red-600'>Close</span>
+            </label> */}

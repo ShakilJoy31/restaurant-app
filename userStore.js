@@ -7,6 +7,12 @@ function useUserStore () {
 }
 export const UserStore = createContainer(useUserStore);
 
+function userOrderProduct () {
+    const [product, setProduct] = useState([]); 
+    return {product, setProduct}; 
+}
+export const OrderFoodStore = createContainer(userOrderProduct);
+
 // function userCart () {
 //     const [cart, setCart] = useState(null); 
 //     return {cart, setCart}; 

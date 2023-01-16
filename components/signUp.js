@@ -13,13 +13,14 @@ const SignUp = ({ setSignUpModal }) => {
     const [phone, setPhone] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [photo, setPhoto] = useState('');
+    const [image, setImage] = useState('');
+    const [hostedImage, setHostedImage] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true);
     const [signedInUser, setSignedInUser] = useState([]);
     const { user, setUser } = UserStore.useContainer();
-    // const [isPostedUser, setIsPostedUser] = useState(''); 
+    // const [isPostedUser, setIsPostedUser] = useState('');
     const ImageStorageKey = '1f2e07ae412954d520f52351b07dee66';
-    const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': photo };
+    const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': hostedImage };
 
     useEffect(() => {
         getUser().then(res => setSignedInUser(res));
@@ -27,31 +28,40 @@ const SignUp = ({ setSignUpModal }) => {
 
     const handleSignInButton = () => {
         const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
-        // const formDataImage = new FormData(); 
-        // formDataImage.append('photo', photo);
-        // const url = `https://api.imgbb.com/1/upload?key=${ImageStorageKey}`;
-        // console.log(photo); 
-        // fetch(url, {
-        //     method: 'POST',
-        //     body: formDataImage
-        // })
-        // .then(res => res.json())
-        // .then(result => console.log())
-
+        const formDataImage = new FormData();
+        formDataImage.append('image', image);
+        console.log(hostedImage);
         if (!foundDatabaseUser) {
-            addUser(formData).then(res => {
-                const checkLocalStorage = localStorage.getItem('user');
-                if (!checkLocalStorage) {
-                    localStorage.setItem('user', JSON.stringify(formData));
-                    setUser(formData)
-                    setSignUpModal(false)
-                    toast.success('Welcome to Our Restaurant!')
-                    console.log(foundDatabaseUser, formData); 
-                }
+            const url = `https://api.imgbb.com/1/upload?key=${ImageStorageKey}`;
+            fetch(url, {
+                method: 'POST',
+                body: formDataImage
             })
+                .then(res => res.json())
+                .then(result => {
+                    if (result) {
+                        console.log(result?.data?.display_url)
+                        setHostedImage(result?.data?.display_url)
+                    }
+                })
+
+                console.log(hostedImage); 
+
+            if(hostedImage){
+                addUser(formData).then(res => {
+                    const checkLocalStorage = localStorage.getItem('user');
+                    if (!checkLocalStorage) {
+                        localStorage.setItem('user', JSON.stringify(formData));
+                        setUser(formData)
+                        setSignUpModal(false)
+                        toast.success('Welcome to Our Restaurant!')
+                        console.log(foundDatabaseUser, formData);
+                    }
+                })
+            }
         }
-        else{
-            toast.error('UPPS! '+foundDatabaseUser?.email+' is exists. Try another else.')
+        else {
+            toast.error('UPPS! ' + foundDatabaseUser?.email + ' is exists. Try another else.')
         }
     }
     return (
@@ -74,9 +84,9 @@ const SignUp = ({ setSignUpModal }) => {
                                 }
                             </div>
 
-                            {/* <input onChange={(e) => setPhoto(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" /> */}
+                            {/* <input onChange={(e) => setImage(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" /> */}
 
-                            <input onChange={(e) => setPhoto(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" />
+                            <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" />
                         </div>
 
                         <button onClick={handleSignInButton} className="block w-48 mx-auto btn btn-outline btn-accent">Sign up</button>

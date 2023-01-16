@@ -4,13 +4,16 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillStar } from 'react-icons/ai';
 import { BsStarHalf } from 'react-icons/bs'; 
+import { TbCurrencyTaka } from 'react-icons/tb'; 
 // updateUserWithFeedBack
 import LoggedUserHome from './LoggedUserHome';
 import UpcomingNextFood from './UpcomingNextFood';
 import { getUser } from './../lib/healper';
 import { updateUserWithFeedBack } from './../lib/healper';
-// import {foodProductStyle} from './FoodProductStyle.module.css'; 
-// import { UserCart } from '../userStore';
+import FoodProductStyle from './FoodProductStyle.module.css'; 
+import { useRouter } from 'next/router';
+import { OrderFoodStore } from '../userStore';
+
 const FoodProduct = () => {
     const [foodProducts, setFoodProducts] = useState([]);
     const [cartClickedFood, setCartClickedFood] = useState([]);
@@ -18,14 +21,16 @@ const FoodProduct = () => {
     const [thankYou, setThankYou] = useState(null);
     const [feedBack, setFeedback] = useState('');
     const [signedInUser, setSignedInUser] = useState([]);
+    const { product, setProduct } = OrderFoodStore.useContainer();
     // const { cart, setCart } = UserCart.useContainer();
-
+    const router = useRouter(); 
     useEffect(() => {
         getProduct().then(res => setFoodProducts(res))
     }, [])
     const handleOrderNowButton = (id) => {
         const getFood = foodProducts.find(product => product._id === id);
-        console.log(getFood);
+        router.push('/payment')
+        setProduct(getFood); 
     }
     const handleRecipe = (id) => {
         const getFood = foodProducts.find(product => product._id === id);
@@ -102,12 +107,14 @@ const FoodProduct = () => {
                                     backgroundImage: "linear-gradient(45deg, black, white)",
                                     backgroundSize: "100%",
                                     backgroundRepeat: "repeat"
-                                }} className="border shadow-2xl card w-96 border-accent">
+                                }} className={`shadow-2xl card w-96 ${FoodProductStyle?.foodCard}`}>
                                     <figure><img className='h-[300px] w-full' src={food.photo} alt="Foods" /></figure>
                                     <div className="card-body">
-                                        <h2 className="flex justify-center text-2xl">{food.name}</h2>
-                                        <p className='flex justify-center'>{food.price}</p>
-                                        <p className='flex justify-center'>{food.description}</p>
+                                        <h2 className="text-2xl "> <span className='text-accent'>Name: </span> {food.name}</h2>
+
+                                        <p className='flex items-center text-xl'> <span className='mr-2 text-accent'>Price: </span> {food.price} <TbCurrencyTaka size={20}></TbCurrencyTaka></p>
+                                        
+                                        <p className=''> {food.description}</p>
                                         <div className="justify-end card-actions">
                                             <button onClick={() => handleOrderNowButton(food._id)} className="w-full text-xl normal-case btn btn-accent btn-outline">Order Now</button>
                                         </div>
