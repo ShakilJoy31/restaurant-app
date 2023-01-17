@@ -12,8 +12,8 @@ const inter = Inter({ subsets: ['latin'] })
 export default function Home() {
   const { user, setUser } = UserStore.useContainer();
   const [localStorageContent, setLocalStorageContent] = useState(false);
+  console.log(user); 
   useEffect(() => {
-    console.log(user);
     const localStorageUser = JSON.parse(localStorage.getItem('user'));
     localStorageUser ? setLocalStorageContent(true) : setLocalStorageContent(false);
   }, [user])
@@ -32,7 +32,7 @@ export default function Home() {
       </Head>
       <main className=''>
         {
-          localStorageContent ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
+          localStorageContent || user ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
         }
         <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
       </main>

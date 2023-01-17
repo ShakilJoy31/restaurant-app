@@ -18,7 +18,6 @@ const SignUp = ({ setSignUpModal }) => {
     const [isPasswordVasible, setIsPasswordVasible] = useState(true);
     const [signedInUser, setSignedInUser] = useState([]);
     const { user, setUser } = UserStore.useContainer();
-    // const [isPostedUser, setIsPostedUser] = useState('');
     const ImageStorageKey = '1f2e07ae412954d520f52351b07dee66';
     const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': hostedImage };
 
@@ -26,11 +25,11 @@ const SignUp = ({ setSignUpModal }) => {
         getUser().then(res => setSignedInUser(res));
     }, [signedInUser])
 
+    const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
     const handleSignInButton = () => {
-        const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
+        // const checkLocalStorage = localStorage.getItem('user');
         const formDataImage = new FormData();
         formDataImage.append('image', image);
-        console.log(hostedImage);
         if (!foundDatabaseUser) {
             const url = `https://api.imgbb.com/1/upload?key=${ImageStorageKey}`;
             fetch(url, {
@@ -39,30 +38,24 @@ const SignUp = ({ setSignUpModal }) => {
             })
                 .then(res => res.json())
                 .then(result => {
-                    if (result) {
-                        console.log(result?.data?.display_url)
-                        setHostedImage(result?.data?.display_url)
-                    }
+                    setHostedImage(result?.data?.display_url)
                 })
-
-                console.log(hostedImage); 
-
-            if(hostedImage){
-                addUser(formData).then(res => {
-                    const checkLocalStorage = localStorage.getItem('user');
-                    if (!checkLocalStorage) {
-                        localStorage.setItem('user', JSON.stringify(formData));
-                        setUser(formData)
-                        setSignUpModal(false)
-                        toast.success('Welcome to Our Restaurant!')
-                        console.log(foundDatabaseUser, formData);
-                    }
-                })
-            }
+                if(hostedImage){
+                    console.log('got hosted image'); 
+                }
         }
         else {
             toast.error('UPPS! ' + foundDatabaseUser?.email + ' is exists. Try another else.')
         }
+    }
+    
+    if (hostedImage && !foundDatabaseUser) {
+        addUser(formData).then(res => { 
+            toast.success('Welcome '+name+' to Our Restaurant!')
+        })
+        localStorage.setItem('user', JSON.stringify(formData));
+        setUser(formData);
+        setSignUpModal(false);
     }
     return (
         <div>

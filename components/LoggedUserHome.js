@@ -36,7 +36,6 @@ const LoggedUserHome = () => {
                                 'We will reach the food to you in time.',
                                 1000,
                                 () => {
-                                    console.log('Done typing!');
                                 }
                             ]}
                             wrapper="div"

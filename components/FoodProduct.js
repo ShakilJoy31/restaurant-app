@@ -47,7 +47,7 @@ const FoodProduct = () => {
         else {
             foodInTheCart = isFoodActive;
         }
-        const isFoodPresentAtLocalStorage = isFoodActive.find(foodId => foodId._id === id);
+        const isFoodPresentAtLocalStorage = isFoodActive?.find(foodId => foodId._id === id);
         if (!isFoodPresentAtLocalStorage) {
             foodInTheCart.push(getFood);
             localStorage.setItem('food', JSON.stringify(foodInTheCart));
@@ -112,7 +112,7 @@ const FoodProduct = () => {
                                     <div className="card-body">
                                         <h2 className="text-2xl "> <span className='text-accent'>Name: </span> {food.name}</h2>
 
-                                        <p className='flex items-center text-xl'> <span className='mr-2 text-accent'>Price: </span> {food.price} <TbCurrencyTaka size={20}></TbCurrencyTaka></p>
+                                        <p className='flex items-center text-xl'> <span className='mr-2 text-accent'>Price: </span> {food.price} <TbCurrencyTaka size={25}></TbCurrencyTaka></p>
                                         
                                         <p className=''> {food.description}</p>
                                         <div className="justify-end card-actions">
@@ -120,7 +120,7 @@ const FoodProduct = () => {
                                         </div>
                                         <div className='flex justify-between'>
 
-                                            <label onClick={() => handleRecipe(food._id)} htmlFor="my-modal-5" className="w-full normal-case btn btn-info btn-outline btn-sm">Show Me The Recipe</label>
+                                            <label onClick={() => handleRecipe(food._id)} htmlFor="my-modal-5" className="w-full normal-case btn btn-info btn-outline btn-sm">Recipe & Feedback</label>
 
                                             <button onClick={() => handleAddToCart(food._id)} style={{
                                                 position: 'absolute',

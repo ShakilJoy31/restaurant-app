@@ -1,21 +1,25 @@
 import { useEffect, useState } from "react";
 import { VscFeedback } from "react-icons/vsc";
 import { getUser } from "../lib/healper";
-import FoodProductStyle from '../components/FoodProductStyle.module.css'; 
+import FoodProductStyle from '../components/FoodProductStyle.module.css';
 
 const feedback = () => {
     const [signedInUser, setSignedInUser] = useState([]);
-    const [review, setReview] = useState(false);
+    const [feedbackUserNumber, setFeedbackUserNumber] = useState(false);
     useEffect(() => {
         getUser().then(res => {
-            if (!review) {
-                setSignedInUser((res.reverse().slice(0, 3)));
+            const checkUserFeedbackNumber = res.filter(s => s.feedback);
+            if (feedbackUserNumber){
+                setSignedInUser(checkUserFeedbackNumber); 
             }
             else {
-                setSignedInUser(res)
+                console.log(checkUserFeedbackNumber)
+                setSignedInUser(checkUserFeedbackNumber.slice(0,3))
             }
         });
     }, [signedInUser])
+
+    console.log(signedInUser);
 
     return (
         <div className="mx-6 my-12 lg:mx-28 md:mx-16">
@@ -67,14 +71,15 @@ const feedback = () => {
                     }
                 </div>
             </div>
-            <div className="flex justify-end mt-8">
+            
+                <div className="flex justify-end mt-8">
                 {
-                    !review ? <button onClick={() => setReview(true)} style={{
+                    !feedbackUserNumber ? <button onClick={() => setFeedbackUserNumber(true)} style={{
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
                     }} className="normal-case btn"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>More Feedback</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
-                    </button> : <button onClick={() => setReview(false)} style={{
+                    </button> : <button onClick={() => setFeedbackUserNumber(false)} style={{
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
@@ -82,6 +87,7 @@ const feedback = () => {
                     </button>
                 }
             </div>
+            
         </div>
     );
 };

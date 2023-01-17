@@ -16,9 +16,7 @@ const Navbar = () => {
     const [logIn, setLogin] = useState(false);
     const [userPhoto, setUserPhoto] = useState('');
     const [logoutModal, setLogoutModal] = useState(false);
-    const signUp = () => {
-        console.log('Sign up button is called');
-    }
+
     const handleUserNavbarInput = (event) => {
         console.log(event)
     }
@@ -36,6 +34,8 @@ const Navbar = () => {
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         setUserPhoto(localStorageUser?.photo);
     }, [user])
+
+    console.log(userPhoto); 
 
     return (
         <div>
@@ -91,7 +91,6 @@ const Navbar = () => {
 
 
                             <label onClick={() => { 
-                                
                                 setLogoutModal(true)
                                 }} htmlFor="my-modal-6" className="">
                                 <li><a className="flex items-end justify-between">
@@ -154,6 +153,8 @@ const Navbar = () => {
                                     className='btn btn-success btn-outline w-[140px]'>No</button>
                                 <button onClick={() => {
                                     localStorage.removeItem('user')
+                                    localStorage.removeItem('food')
+                                    setUserPhoto(''); 
                                     setUser(null)
                                     router.push('/')
                                     setLogoutModal(false)

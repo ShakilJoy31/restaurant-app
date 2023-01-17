@@ -27,7 +27,7 @@ const cart = () => {
             <h1 className='flex justify-center mb-8 text-4xl font-bold'>Food, you have added to the cart</h1>
             <div>
                 {
-                    product.length > 0 ? <div className="w-full overflow-x-auto">
+                    product?.length > 0 ? <div className="w-full overflow-x-auto">
                         <table className="table w-full">
                             <thead>
                                 <tr>

@@ -12,7 +12,7 @@ const CalculationCart = ({ product }) => {
     const router = useRouter();
     useEffect(() => {
         let totalPrice = 0;
-        product.map(food => {
+        product?.map(food => {
             totalPrice = totalPrice + food?.price;
             setTotalFoodPrice(totalPrice);
             name.push(food.name);
