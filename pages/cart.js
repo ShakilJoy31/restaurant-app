@@ -121,6 +121,7 @@ const cart = () => {
                                     <button onClick={() => {
                                         handleDeleteFoodFromCart()
                                         setIsCartFoodModal(false)
+                                        
                                     }} className='w-[140px] btn btn-error btn-outline'>Yes</button>
                                 </div>
                             </label>

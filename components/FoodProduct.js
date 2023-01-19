@@ -3,14 +3,14 @@ import { getProduct } from '../lib/healper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillStar } from 'react-icons/ai';
-import { BsStarHalf } from 'react-icons/bs'; 
-import { TbCurrencyTaka } from 'react-icons/tb'; 
+import { BsStarHalf } from 'react-icons/bs';
+import { TbCurrencyTaka } from 'react-icons/tb';
 // updateUserWithFeedBack
 import LoggedUserHome from './LoggedUserHome';
 import UpcomingNextFood from './UpcomingNextFood';
 import { getUser } from './../lib/healper';
 import { updateUserWithFeedBack } from './../lib/healper';
-import FoodProductStyle from './FoodProductStyle.module.css'; 
+import FoodProductStyle from './FoodProductStyle.module.css';
 import { useRouter } from 'next/router';
 import { OrderFoodStore } from '../userStore';
 
@@ -23,14 +23,14 @@ const FoodProduct = () => {
     const [signedInUser, setSignedInUser] = useState([]);
     const { product, setProduct } = OrderFoodStore.useContainer();
     // const { cart, setCart } = UserCart.useContainer();
-    const router = useRouter(); 
+    const router = useRouter();
     useEffect(() => {
         getProduct().then(res => setFoodProducts(res))
     }, [])
     const handleOrderNowButton = (id) => {
         const getFood = foodProducts.find(product => product._id === id);
         router.push('/payment')
-        setProduct(getFood); 
+        setProduct(getFood);
     }
     const handleRecipe = (id) => {
         const getFood = foodProducts.find(product => product._id === id);
@@ -74,12 +74,12 @@ const FoodProduct = () => {
                 setThankYou(null)
             }, 2500);
         }
-        
+
         const localStorageUser = JSON.parse(localStorage.getItem('user'));
         const databaseUser = signedInUser.find(getUser => getUser.email === localStorageUser.email);
 
-        if(localStorageUser && databaseUser){
-            const userWithFeedback = {name: databaseUser.name, phone: databaseUser.phone, email: databaseUser.email, password: databaseUser.password, photo: databaseUser.photo, feedback: feedBack, foodReviewedName: getFood.name, foodReviewedPhoto: getFood.photo}
+        if (localStorageUser && databaseUser) {
+            const userWithFeedback = { name: databaseUser.name, phone: databaseUser.phone, email: databaseUser.email, password: databaseUser.password, photo: databaseUser.photo, feedback: feedBack, foodReviewedName: getFood.name, foodReviewedPhoto: getFood.photo }
             updateUserWithFeedBack(databaseUser._id, userWithFeedback).then(res => console.log(res));
         }
     }
@@ -98,8 +98,63 @@ const FoodProduct = () => {
                     webkitTextFillColor: "transparent",
                     mozBackgroundClip: "text",
                     mozTextFillColor: "transparent"
-                }} className='flex justify-center mb-8 text-5xl'>Available Food</h1>
-                <div>
+                }} className='flex justify-center text-5xl'>Available Food</h1>
+                {/* Selection section */}
+
+
+
+                <div className=''>
+                    <div className={`${FoodProductStyle?.forSticky} my-8 md:mx-32 lg:mx-36 `}>
+                        <div className={`w-full h-16 text-primary-content ${FoodProductStyle?.selectionCart} rounded-lg`}>
+                            <div className="flex justify-between px-4">
+                                <button style={{
+                                    // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
+                                    // backgroundSize: "100%",
+                                    // backgroundRepeat: "repeat",
+
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+
+                                    
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Chicken</span>
+                                </button>
+
+                                <button style={{
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Fish</span>
+                                </button>
+                                <button style={{
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                </button>
+                                <button style={{
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                </button>
+                                <button style={{
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                </button>
+                                <button style={{
+                                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className="w-32 mt-2 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+
                     <div className='flex justify-center'>
                         <div className='grid grid-cols-1 gap-6 mx-4 lg:grid-cols-3 md:grid-cols-2'>
                             {
@@ -113,7 +168,7 @@ const FoodProduct = () => {
                                         <h2 className="text-2xl "> <span className='text-accent'>Name: </span> {food.name}</h2>
 
                                         <p className='flex items-center text-xl'> <span className='mr-2 text-accent'>Price: </span> {food.price} <TbCurrencyTaka size={25}></TbCurrencyTaka></p>
-                                        
+
                                         <p className=''> {food.description}</p>
                                         <div className="justify-end card-actions">
                                             <button onClick={() => handleOrderNowButton(food._id)} className="w-full text-xl normal-case btn btn-accent btn-outline">Order Now</button>
@@ -217,7 +272,7 @@ const FoodProduct = () => {
                                             backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                                             backgroundSize: "100%",
                                             backgroundRepeat: "repeat",
-                                        }} htmlFor="my-modal-5" className="w-32 btn"> <span className='text-xl text-red-600'>Close</span>
+                                        }} htmlFor="my-modal-5" className="w-32 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
                                         </label>
                                     </div>
 

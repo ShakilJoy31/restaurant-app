@@ -18,6 +18,7 @@ const Login = ({setLogin}) => {
     },[])
     const handleLoginButton = () =>{
         const foundDatabaseUser = loggedInUser.find(matchedGmail => matchedGmail?.email === email && matchedGmail?.password === password);
+        console.log(foundDatabaseUser); 
         if(foundDatabaseUser){
             const checkLocalStorage = localStorage.getItem('user');
                 if (!checkLocalStorage) {

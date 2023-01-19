@@ -17,6 +17,7 @@ const SignUp = ({ setSignUpModal }) => {
     const [hostedImage, setHostedImage] = useState('');
     const [isPasswordVasible, setIsPasswordVasible] = useState(true);
     const [signedInUser, setSignedInUser] = useState([]);
+    const [loading, setLoading] = useState(false);
     const { user, setUser } = UserStore.useContainer();
     const ImageStorageKey = '1f2e07ae412954d520f52351b07dee66';
     const formData = { 'name': name, 'phone': phone, 'email': email, 'password': password, 'photo': hostedImage };
@@ -27,6 +28,7 @@ const SignUp = ({ setSignUpModal }) => {
 
     const foundDatabaseUser = signedInUser.find(matchedGmail => matchedGmail?.email === email);
     const handleSignInButton = () => {
+        setLoading(true);
         // const checkLocalStorage = localStorage.getItem('user');
         const formDataImage = new FormData();
         formDataImage.append('image', image);
@@ -40,22 +42,23 @@ const SignUp = ({ setSignUpModal }) => {
                 .then(result => {
                     setHostedImage(result?.data?.display_url)
                 })
-                if(hostedImage){
-                    console.log('got hosted image'); 
-                }
+            if (hostedImage) {
+                console.log('got hosted image');
+            }
         }
         else {
             toast.error('UPPS! ' + foundDatabaseUser?.email + ' is exists. Try another else.')
         }
     }
-    
+
     if (hostedImage && !foundDatabaseUser) {
-        addUser(formData).then(res => { 
-            toast.success('Welcome '+name+' to Our Restaurant!')
+        addUser(formData).then(res => {
+            setLoading(false);
+            toast.success('Welcome ' + name + ' to Our Restaurant!')
+            localStorage.setItem('user', JSON.stringify(formData));
+            setUser(formData);
+            setSignUpModal(false);
         })
-        localStorage.setItem('user', JSON.stringify(formData));
-        setUser(formData);
-        setSignUpModal(false);
     }
     return (
         <div>
@@ -82,7 +85,10 @@ const SignUp = ({ setSignUpModal }) => {
                             <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" />
                         </div>
 
-                        <button onClick={handleSignInButton} className="block w-48 mx-auto btn btn-outline btn-accent">Sign up</button>
+                        {
+                            !loading ? <button onClick={handleSignInButton} className="block w-48 mx-auto btn btn-outline btn-accent">Sign up</button> : <button className="block w-48 mx-auto btn btn-outline btn-accent">Signing up...</button>
+                        }
+
 
                     </div>
                 </div>

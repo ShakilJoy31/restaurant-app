@@ -1,4 +1,4 @@
-.recipe{
+.recipe {
     background-image: linear-gradient(45deg, yellow, aliceblue);
     background-size: 100%;
     background-repeat: repeat;
@@ -8,12 +8,21 @@
     -moz-text-fill-color: transparent;
 }
 
-.foodCard:hover{
+.foodCard:hover {
     box-shadow: 2px 2px 15px 5px lightblue;
-    transition-duration: 400ms;
+    transition-duration: 200ms;
 }
 
+.selectionCart {
+    background-image: linear-gradient(45deg, #A75D5D, #0081B4);
+    background-size: 100%;
+    background-repeat: repeat;
+}
 
+.forSticky{
+    display: flex;
+    justify-content: center;
+}
 /* style={{
     backgroundImage: "linear-gradient(45deg, black, white)",
     backgroundSize: "100%",

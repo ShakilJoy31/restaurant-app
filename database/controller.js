@@ -33,7 +33,7 @@ export async function updateUserWithFeedBack (req, res) {
     try{
         const {userId} = req.query; 
         const formData = req.body; 
-        console.log(userId, formData);
+        console.log(formData);
         if(userId && formData){
             const user = await Users.findByIdAndUpdate(userId, formData)
             res.status(200).json(user); 
