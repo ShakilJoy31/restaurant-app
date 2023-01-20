@@ -5,6 +5,7 @@ const productSchema = new Schema({
     price: Number,
     description: String,
     photo: String,
+    catagory: String
 })
 
 const Products = models?.products || model('products', productSchema)
