@@ -22,6 +22,17 @@ const cart = () => {
         }
         setProduct(restFood);
     }
+    const [totalPriceQuantity, settotalPriceQuantity] = useState(1); 
+    const [quantityChangeableFood, setQuantityChangeableFood] = useState([]); 
+    const handleQuantity = (e, id) =>{
+        const priceChangeableFood = product.find(p => p._id === id); 
+        if(!e.target.value){
+            // settotalPriceQuantity(); 
+        }
+        settotalPriceQuantity(parseInt((priceChangeableFood.price)* (e?.target?.value)));
+        setQuantityChangeableFood(priceChangeableFood); 
+    }
+
     return (
         <div className='mx-12'>
             <h1 className='flex justify-center mb-8 text-4xl font-bold'>Food, you have added to the cart</h1>
@@ -55,9 +66,12 @@ const cart = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        <td><span className='flex justify-center'>{food.price}</span></td>
+                                        {
+                                            quantityChangeableFood === food ? <td><span className='flex justify-center'>{!totalPriceQuantity ? food?.price : totalPriceQuantity}</span></td> : <td><span className='flex justify-center'>{food.price}</span></td>
+                                        }
+                                        
                                         <td>
-                                            <input type="number" placeholder='' className="block w-20 mx-auto focus:outline-none input border-accent" />
+                                            <input onChange={(e)=>handleQuantity(e, food._id)} type="number" placeholder='' className="block w-20 mx-auto focus:outline-none input border-accent" />
 
                                         </td>
                                         <th>
@@ -129,7 +143,7 @@ const cart = () => {
                     </div>
                 }
                 <h1 className='flex justify-center my-4 text-4xl font-bold lg:my-12 md:my-8'>Payment Sumery</h1>
-                <CalculationCart product={product}></CalculationCart>
+                <CalculationCart product={product} totalPriceQuantity={totalPriceQuantity} quantityChangeableFood={quantityChangeableFood}></CalculationCart>
             </div>
         </div>
     );

@@ -16,19 +16,15 @@ const CalculationCart = ({ product }) => {
             totalPrice = totalPrice + food?.price;
             setTotalFoodPrice(totalPrice);
             name.push(food.name);
-            if (!moreFoodName) {
-                setAllName(name.slice(0, 3));
-                console.log(moreFoodName, 'in if')
-            }
-            else {
-                setAllName(name);
-                console.log(moreFoodName, 'in else')
+            setAllName(name);
 
-            }
             // const allFoodName = name.push(food?.name);
             // setAllName(allFoodName);
         })
-    }, [product])
+    }, [product, moreFoodName])
+
+    
+    console.log(allName);
 
     const handlePayment = () => {
         router.push("/payment")
@@ -38,7 +34,9 @@ const CalculationCart = ({ product }) => {
     return (
         <div>
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                <table style={{
+                    transitionDuration: '300ms'
+                }} className="table w-full">
 
                     <thead>
                         <tr>
@@ -54,15 +52,11 @@ const CalculationCart = ({ product }) => {
                             <td>
                                 <p className='text-xl'>
                                     {
-                                        allName.map((food, index) => <span className=''>{food}<span>{(allName.length - 1) === index ? '' : ', '}
+                                        allName.map((food, index) => <span className=''> <span className='mr-2'>{index+1}. </span> {food}<span>{(allName.length - 1) === index ? '' : ', '}
                                             {
                                                 (allName.length < 4) ? '' : <br />
                                             }
                                         </span></span>)
-                                    }
-
-                                    {
-                                        moreFoodName ? <span onClick={() => setMoreFoodName(!moreFoodName)} className='text-error hover:cursor-pointer'>See Less</span> : <span onClick={() => setMoreFoodName(!moreFoodName)} className='text-accent hover:cursor-pointer'> and More</span>
                                     }
                                 </p>
 
@@ -71,13 +65,13 @@ const CalculationCart = ({ product }) => {
                             <td><p className='flex justify-center text-xl'> <span className='mr-2 text-error'>{product?.length !== 0 ? totalFoodPrice : '0'}</span> Taka Only</p>
                             </td>
 
-                            <td><span className='flex justify-center text-xl'>{product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'  } taka </span> <span className='flex items-center justify-center text-error'>(included 7% tax)</span></td>
+                            <td><span className='flex justify-center text-xl'>{product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'} taka </span> <span className='flex items-center justify-center text-error'>(included 7% tax)</span></td>
 
                             <td><button style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} onClick={handlePayment} className='text-xl normal-case border-0 btn btn-primary'>Pay {product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'} <span> <TbCurrencyTaka size={25}></TbCurrencyTaka> </span></button></td>
+                                backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
+                                backgroundSize: "100%",
+                                backgroundRepeat: "repeat"
+                            }} onClick={handlePayment} className='text-xl normal-case border-0 btn btn-primary'>Pay {product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'} <span> <TbCurrencyTaka size={25}></TbCurrencyTaka> </span></button></td>
                         </tr>
                     </tbody>
                 </table>

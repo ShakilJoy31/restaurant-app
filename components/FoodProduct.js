@@ -174,7 +174,7 @@ const FoodProduct = () => {
                 <div className=''>
                     <div className={`${FoodProductStyle?.forSticky} my-8 md:mx-32 lg:mx-36 `}>
                         <div className={`w-full h-16 text-primary-content ${FoodProductStyle?.selectionCart} rounded-lg`}>
-                            <div className="flex justify-between px-4">
+                            <div className="flex justify-around px-4">
                                 <button onClick={()=>handleSelectionButton('chicken')} style={{
                                     // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
                                     // backgroundSize: "100%",
@@ -234,17 +234,41 @@ const FoodProduct = () => {
                                 }} className={`shadow-2xl card w-96 ${FoodProductStyle?.foodCard}`}>
                                     <figure><img className='h-[300px] w-full' src={food.photo} alt="Foods" /></figure>
                                     <div className="card-body">
-                                        <h2 className="text-2xl "> <span className='text-accent'>Name: </span> {food.name}</h2>
-
-                                        <p className='flex items-center text-xl'> <span className='mr-2 text-accent'>Price: </span> {food.price} <TbCurrencyTaka size={25}></TbCurrencyTaka></p>
-
-                                        <p className=''> {food.description}</p>
-                                        <div className="justify-end card-actions">
-                                            <button onClick={() => handleOrderNowButton(food._id)} className="w-full text-xl normal-case btn btn-accent btn-outline">Order Now</button>
-                                        </div>
                                         <div className='flex justify-between'>
+                                        <h2 className="text-2xl text-orange-300">{food.name}</h2>
 
-                                            <label onClick={() => handleRecipe(food._id)} htmlFor="my-modal-5" className="w-full normal-case btn btn-info btn-outline btn-sm">Recipe & Feedback</label>
+                                        <p style={{
+                                            color: '#D09CFA'
+                                        }} className='flex justify-end text-3xl'>{food.price} <TbCurrencyTaka size={35}></TbCurrencyTaka></p>
+                                        </div>
+
+                                        <p style={{
+                                            overflowY: 'scroll',
+                                            msOverflowStyle: 'none',
+                                            scrollbarWidth: 'none'
+                                        }} className='h-28'> <span className='flex items-center justify-center'>{food.description}</span></p>
+                                        
+                                        <label style={{
+                                            backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
+                                            backgroundSize: "100%",
+                                            backgroundRepeat: "repeat",
+
+                                            // backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                            // backgroundSize: "100%",
+                                            // backgroundRepeat: "repeat",
+                                        }} onClick={() => handleRecipe(food._id)} htmlFor="my-modal-5" className="w-full normal-case border-0 btn btn-sm"> <span className='text-black'>Recipe & Feedback</span> </label>
+
+                                        <div className='flex justify-between mt-4'>
+                                        <button style={{
+                                                position: 'absolute',
+                                                bottom: '0',
+                                                right:'0',
+                                                left: '0',
+                                                borderRadius:'15px',
+                                                backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
+                                                backgroundSize: "100%",
+                                                backgroundRepeat: "repeat"
+                                            }} onClick={() => handleOrderNowButton(food._id)} className="text-xl normal-case border-0 btn"> <span className='text-white'>Order Now</span> </button>
 
                                             <button onClick={() => handleAddToCart(food._id)} style={{
                                                 position: 'absolute',

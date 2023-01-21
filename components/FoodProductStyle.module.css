@@ -11,6 +11,7 @@
 .foodCard:hover {
     box-shadow: 2px 2px 15px 5px lightblue;
     transition-duration: 200ms;
+    /* color: #b23c89fd; */
 }
 
 .moreFoodButton:hover {
