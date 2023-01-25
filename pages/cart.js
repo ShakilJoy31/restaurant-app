@@ -7,13 +7,15 @@ import { BsPlusSquareFill } from 'react-icons/bs';
 import { BsFileMinusFill } from 'react-icons/bs';
 const cart = () => {
     const [product, setProduct] = useState([]);
+    const [productWithQuantity, setProductWithQuantity] = useState([]);
     const [isCartFoodModal, setIsCartFoodModal] = useState(false);
     const [id, setId] = useState('');
+    const [price, setPrice] = useState(0);
     const router = useRouter();
     useEffect(() => {
         const getSpecificFood = JSON.parse(localStorage.getItem('food'));
         setProduct(getSpecificFood);
-
+        setProductWithQuantity(getSpecificFood); 
     }, [cart])
     const handleDeleteFoodFromCart = () => {
         const restFood = product.filter(singleFood => singleFood._id !== id);
@@ -22,17 +24,7 @@ const cart = () => {
         }
         setProduct(restFood);
     }
-    const [totalPriceQuantity, settotalPriceQuantity] = useState(1); 
-    const [quantityChangeableFood, setQuantityChangeableFood] = useState([]); 
-    const handleQuantity = (e, id) =>{
-        const priceChangeableFood = product.find(p => p._id === id); 
-        if(!e.target.value){
-            // settotalPriceQuantity(); 
-        }
-        settotalPriceQuantity(parseInt((priceChangeableFood.price)* (e?.target?.value)));
-        setQuantityChangeableFood(priceChangeableFood); 
-    }
-
+    
     return (
         <div className='mx-12'>
             <h1 className='flex justify-center mb-8 text-4xl font-bold'>Food, you have added to the cart</h1>
@@ -46,7 +38,6 @@ const cart = () => {
                                     <th> <span className='flex justify-center'> Name</span></th>
                                     <th> <span className='flex justify-center'> Photo</span></th>
                                     <th> <span className='flex justify-center'> Price</span></th>
-                                    <th> <span className='flex justify-center '>Quantity</span> </th>
                                     <th> <span className='flex justify-center'> Action</span></th>
                                 </tr>
                             </thead>
@@ -66,13 +57,8 @@ const cart = () => {
                                                 </div>
                                             </div>
                                         </td>
-                                        {
-                                            quantityChangeableFood === food ? <td><span className='flex justify-center'>{!totalPriceQuantity ? food?.price : totalPriceQuantity}</span></td> : <td><span className='flex justify-center'>{food.price}</span></td>
-                                        }
-                                        
                                         <td>
-                                            <input onChange={(e)=>handleQuantity(e, food._id)} type="number" placeholder='' className="block w-20 mx-auto focus:outline-none input border-accent" />
-
+                                        <span className='flex justify-center'>{food.price}</span>
                                         </td>
                                         <th>
                                             <div className='flex justify-center'>
@@ -91,7 +77,6 @@ const cart = () => {
                                     <th> <span className='flex justify-center'> Name</span></th>
                                     <th> <span className='flex justify-center'> Photo</span></th>
                                     <th> <span className='flex justify-center'> Price</span></th>
-                                    <th> <span className='flex justify-center '>Quantity</span> </th>
                                     <th> <span className='flex justify-center'> Action</span></th>
                                 </tr>
                             </tfoot>
@@ -135,7 +120,7 @@ const cart = () => {
                                     <button onClick={() => {
                                         handleDeleteFoodFromCart()
                                         setIsCartFoodModal(false)
-                                        
+
                                     }} className='w-[140px] btn btn-error btn-outline'>Yes</button>
                                 </div>
                             </label>
@@ -143,7 +128,7 @@ const cart = () => {
                     </div>
                 }
                 <h1 className='flex justify-center my-4 text-4xl font-bold lg:my-12 md:my-8'>Payment Sumery</h1>
-                <CalculationCart product={product} totalPriceQuantity={totalPriceQuantity} quantityChangeableFood={quantityChangeableFood}></CalculationCart>
+                <CalculationCart product={product}></CalculationCart>
             </div>
         </div>
     );

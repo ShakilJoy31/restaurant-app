@@ -4,21 +4,23 @@ import { useEffect, useState } from "react";
 import Login from "./login";
 import SignUp from "./signUp";
 import { BiRestaurant } from "react-icons/bi";
-import { UserStore } from "../userStore";
+import { UserFoodSearch, UserStore } from "../userStore";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { AiFillCheckCircle } from "react-icons/ai";
 
 
-const Navbar = () => {
+const Navbar = ({ setColor }) => {
     const { user, setUser } = UserStore.useContainer();
+    const { foodName, setFoodName } = UserFoodSearch.useContainer();
     const [signUpModal, setSignUpModal] = useState(false);
     const [logIn, setLogin] = useState(false);
     const [userPhoto, setUserPhoto] = useState('');
     const [logoutModal, setLogoutModal] = useState(false);
 
     const handleUserNavbarInput = (event) => {
-        console.log(event)
+        setFoodName(event.toLowerCase());
     }
     const router = useRouter();
     const isActive = (route) => {
@@ -35,7 +37,15 @@ const Navbar = () => {
         setUserPhoto(localStorageUser?.photo);
     }, [user])
 
-    console.log(userPhoto); 
+
+    const [settingsModal, setSettingsModal] = useState(false);
+    const handleSettings = (firstColor, secondColor) => {
+        console.log(firstColor, secondColor);
+        setColor([firstColor, secondColor]);
+        localStorage.setItem('background', JSON.stringify([firstColor, secondColor]))
+        setSettingsModal(false);
+        toast.success('Applied Background Color.');
+    }
 
     return (
         <div>
@@ -44,8 +54,15 @@ const Navbar = () => {
                 backgroundRepeat: 'repeat',
                 backgroundSize: 'cover',
             }} className="navbar">
-                <div className="flex-1">
-                    <Link href='/' className={`text-xl normal-case ml-6 focus:cursor-pointer ${isActive('/')}`}> <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> </Link>
+                {/* {backgroundImage: `url('https://m.media-amazon.com/images/I/71O4eYqjYjL._SL1500_.jpg')`,
+                backgroundRepeat: 'repeat',
+                backgroundSize: 'cover',} */}
+                <div className="flex-1 ml-[-20px]">
+                    <Link href='/' className={`text-xl normal-case ml-6 focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
+                        <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
+                            color: '#FFE15D'
+                        }} className='mr-2 lg:ml-2 md:ml-2 lg:text-3xl md:text-2xl'>Ommrito</san>
+                    </span> </Link>
                 </div>
 
                 <div className="flex-none md:gap-4 lg:gap-6">
@@ -54,7 +71,9 @@ const Navbar = () => {
                         userPhoto && <Link className="hidden text-xl lg:block md:block" href='/cart'>My Cart</Link>
                     }
 
-                        <Link className="hidden text-xl lg:block md:block" href='/feedback'>Feedback</Link>
+                    <Link className="hidden text-xl lg:block md:block" href='/reservation'>Reservation</Link>
+
+                    <Link className="hidden text-xl lg:block md:block" href='/feedback'>Feedback</Link>
 
                     {
                         !userPhoto && <div onClick={() => setLogin(true)}>
@@ -70,29 +89,44 @@ const Navbar = () => {
 
 
                     <div className="form-control">
-                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type="text" placeholder="Search here" className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full" />
+                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type="text" placeholder="Search here" className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-48" />
                     </div>
 
                     <div className="dropdown dropdown-end mr-[10px] lg:mr-[0px] md:mr-[0px]">
-                        <label tabIndex={0} className="btn btn-circle avatar">
+                        <label tabIndex={0} className=" avatar">
                             {
                                 userPhoto ? <div className="w-10 rounded-full">
                                     <img src={userPhoto} />
-                                </div> : <div className="w-10 rounded-full">
+                                </div> : <div className="w-10 rounded-full btn btn-circle">
                                     <img src={user ? user?.photo : 'https://placeimg.com/80/80/people'} />
                                 </div>
                             }
                         </label>
                         <ul tabIndex={0} className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+
+                            <li>
+                            <Link className="block text-xl lg:hidden md:hidden" href='/reservation'>Reservation</Link>
+                            </li>
+
+                            <li>
+                                {
+                                    userPhoto && <Link className="block text-xl lg:hidden md:hidden" href='/cart'>My Cart</Link>
+                                }
+                            </li>
+
+                            <li>
+                            <Link className="block text-xl lg:hidden md:hidden" href='/feedback'>Feedback</Link>
+                            </li>
                             <li>
                                 <Link className="justify-between" href='/myProfile'>My Profile</Link>
                             </li>
-                            <li><a>Settings</a></li>
+
+                            <li onClick={() => setSettingsModal(true)}><label htmlFor="settingsModal"><a>Settings</a></label></li>
 
 
-                            <label onClick={() => { 
+                            <label onClick={() => {
                                 setLogoutModal(true)
-                                }} htmlFor="my-modal-6" className="">
+                            }} htmlFor="my-modal-6" className="">
                                 <li><a className="flex items-end justify-between">
                                     <span>Logout</span>
                                     <RiLogoutCircleRLine size={20} color={'red'}></RiLogoutCircleRLine>
@@ -154,7 +188,7 @@ const Navbar = () => {
                                 <button onClick={() => {
                                     localStorage.removeItem('user')
                                     localStorage.removeItem('food')
-                                    setUserPhoto(''); 
+                                    setUserPhoto('');
                                     setUser(null)
                                     router.push('/')
                                     setLogoutModal(false)
@@ -162,6 +196,45 @@ const Navbar = () => {
                             </div>
                         </label>
                     </label>
+                </div>
+            }
+
+            {
+                // for settings 
+                settingsModal && <div>
+                    <input type="checkbox" id="settingsModal" className="modal-toggle" />
+                    <div className="modal">
+                        <div className="relative modal-box">
+                            <label htmlFor="settingsModal" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
+                            <h1 className="flex justify-center text-2xl text-error">Choose a background,</h1>
+                            <p className="flex justify-center text-2xl text-accent">For your app</p>
+                            <div className='mt-2'>
+                                <div className="flex justify-center gap-x-4">
+
+                                    <button onClick={() => handleSettings('#A75D5D', '#0081B4')} style={{
+                                        backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
+                                        backgroundSize: "100%",
+                                        backgroundRepeat: "repeat"
+                                    }} className='btn'> <span className="text-accent">Gradient</span> </button>
+                                    <button onClick={() => handleSettings('black', '')} style={{
+                                        backgroundColor: "black",
+                                    }} className='border-0 btn'> <span className="text-accent">Black</span> </button>
+
+                                    <button onClick={() => handleSettings('white', '')} style={{
+                                        backgroundColor: "white",
+                                        // backgroundSize: "100%",
+                                        // backgroundRepeat: "repeat",
+
+                                        // backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                        // backgroundSize: "100%",
+                                        // backgroundRepeat: "repeat",
+                                    }} className='border-0 btn'> <span className="text-accent">White</span> </button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </div>
                 </div>
             }
             <ToastContainer></ToastContainer>

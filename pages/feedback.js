@@ -22,8 +22,8 @@ const feedback = () => {
     console.log(signedInUser);
 
     return (
-        <div className="mx-6 my-12 lg:mx-28 md:mx-16">
-            <h1 className='flex justify-center mb-6 text-4xl text-accent'>Food Review Corner</h1>
+        <div className="mx-6 lg:mx-28 md:mx-16">
+            <h1 className='flex justify-center py-8 text-4xl text-accent'>Food Review Corner</h1>
             {/* Review with card */}
             <div className="flex justify-center">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">

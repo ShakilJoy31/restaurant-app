@@ -1,9 +1,12 @@
 import Style from './CSSfile/StartingPage.module.css'
 import { TypeAnimation } from 'react-type-animation'
+import { UserFoodSearch } from '../userStore';
+import FoodProductStyle from './FoodProductStyle.module.css';
 
 const LoggedUserHome = () => {
+    const {foodName, setFoodName} = UserFoodSearch.useContainer();  
     return (
-        <div>
+        <div className={`${foodName ? FoodProductStyle.hiddenNavbar : FoodProductStyle.blockNavbar }`}>
             <div style={{
                 backgroundImage: `url('https://i.ibb.co/KVBdb3M/3692584.jpg')`,
                 backgroundRepeat: 'no-repeat',

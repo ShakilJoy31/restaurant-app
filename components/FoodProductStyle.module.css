@@ -51,3 +51,21 @@
     backgroundSize: "100%",
     backgroundRepeat: "repeat"
 }} */
+
+
+.hiddenNavbar{
+    display: none; 
+    transition: 1000ms;
+}
+.blockNavbar{
+    display: block;
+    transition: 1000ms;
+}
+
+.paymentAbleFood:hover {
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 280ms;
+    background-color: black;
+    background-size: 100%;
+    background-repeat: repeat;
+}

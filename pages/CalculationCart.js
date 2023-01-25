@@ -4,10 +4,12 @@ import CartFoodPhoto from './CartFoodPhoto';
 import movingPara from './CalculationCart.module.css'
 import { useRouter } from 'next/router';
 import { TbCurrencyTaka } from 'react-icons/tb';
+import { OrderFoodStore } from '../userStore';
 const CalculationCart = ({ product }) => {
     let [totalFoodPrice, setTotalFoodPrice] = useState(0);
     let [allName, setAllName] = useState([]);
     let [moreFoodName, setMoreFoodName] = useState(false);
+    const { setProduct } = OrderFoodStore.useContainer();
     let name = [];
     const router = useRouter();
     useEffect(() => {
@@ -17,17 +19,12 @@ const CalculationCart = ({ product }) => {
             setTotalFoodPrice(totalPrice);
             name.push(food.name);
             setAllName(name);
-
-            // const allFoodName = name.push(food?.name);
-            // setAllName(allFoodName);
         })
     }, [product, moreFoodName])
 
-    
-    console.log(allName);
-
     const handlePayment = () => {
         router.push("/payment")
+        setProduct(product)
         console.log('Button for payment is clicked');
     }
 
@@ -53,13 +50,10 @@ const CalculationCart = ({ product }) => {
                                 <p className='text-xl'>
                                     {
                                         allName.map((food, index) => <span className=''> <span className='mr-2'>{index+1}. </span> {food}<span>{(allName.length - 1) === index ? '' : ', '}
-                                            {
-                                                (allName.length < 4) ? '' : <br />
-                                            }
+                                        <br />
                                         </span></span>)
                                     }
                                 </p>
-
                             </td>
 
                             <td><p className='flex justify-center text-xl'> <span className='mr-2 text-error'>{product?.length !== 0 ? totalFoodPrice : '0'}</span> Taka Only</p>
@@ -67,7 +61,8 @@ const CalculationCart = ({ product }) => {
 
                             <td><span className='flex justify-center text-xl'>{product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'} taka </span> <span className='flex items-center justify-center text-error'>(included 7% tax)</span></td>
 
-                            <td><button style={{
+                            <td>
+                            <button style={{
                                 backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                 backgroundSize: "100%",
                                 backgroundRepeat: "repeat"

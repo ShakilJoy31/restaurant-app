@@ -13,6 +13,13 @@ function userOrderProduct () {
 }
 export const OrderFoodStore = createContainer(userOrderProduct);
 
+
+function userFoodSearch () {
+    const [foodName, setFoodName] = useState(''); 
+    return {foodName, setFoodName}; 
+}
+export const UserFoodSearch = createContainer(userFoodSearch);
+
 // function userCart () {
 //     const [cart, setCart] = useState(null); 
 //     return {cart, setCart}; 
