@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const connectMongo = async () =>{
     try{
         const {connection} = await mongoose.connect(process.env.MONGO_URI); 

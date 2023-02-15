@@ -3,12 +3,13 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Login from "./login";
 import SignUp from "./signUp";
-import { BiRestaurant } from "react-icons/bi";
+import { BiMessageSquareCheck, BiRestaurant } from "react-icons/bi";
 import { UserFoodSearch, UserStore } from "../userStore";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillCheckCircle } from "react-icons/ai";
+import { BsSearch } from "react-icons/bs";
 
 
 const Navbar = ({ setColor }) => {
@@ -54,9 +55,6 @@ const Navbar = ({ setColor }) => {
                 backgroundRepeat: 'repeat',
                 backgroundSize: 'cover',
             }} className="navbar">
-                {/* {backgroundImage: `url('https://m.media-amazon.com/images/I/71O4eYqjYjL._SL1500_.jpg')`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: 'cover',} */}
                 <div className="flex-1 ml-[-20px]">
                     <Link href='/' className={`text-xl normal-case ml-6 focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
                         <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
@@ -68,29 +66,50 @@ const Navbar = ({ setColor }) => {
                 <div className="flex-none md:gap-4 lg:gap-6">
 
                     {
-                        userPhoto && <Link className="hidden text-xl lg:block md:block" href='/cart'>My Cart</Link>
+                        userPhoto && <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/cart'>My Cart</Link>
                     }
 
-                    <Link className="hidden text-xl lg:block md:block" href='/reservation'>Reservation</Link>
+                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/reservation'>Reservation</Link>
 
-                    <Link className="hidden text-xl lg:block md:block" href='/feedback'>Feedback</Link>
+                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/feedback'>Feedback</Link>
 
                     {
                         !userPhoto && <div onClick={() => setLogin(true)}>
-                            <label htmlFor="my-modal-3" className="hidden text-xl lg:block md:block">Login</label>
+                            <label htmlFor="my-modal-3" className="hidden text-xl lg:block md:block hover:text-red-500">Login</label>
                         </div>
                     }
 
                     {
                         !userPhoto && <div onClick={() => setSignUpModal(true)}>
-                            <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block">Sign up</label>
+                            <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block hover:text-red-500">Sign up</label>
                         </div>
                     }
 
-
-                    <div className="form-control">
-                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type="text" placeholder="Search here" className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-48" />
+                    <div className='form-control'>
+                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type='text' placeholder='Search here' className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-52 pl-8" />
+                        {
+                            !foodName ? <span style={{
+                                position: 'absolute',
+                                top: '29px',
+                                marginLeft:'10px'
+                            }}><BsSearch></BsSearch></span> : <span style={{
+                                position: 'absolute',
+                                top: '29px',
+                                marginLeft:'10px'
+                            }}><BsSearch color={'#1F8A70'}></BsSearch></span>
+                        }
                     </div>
+
+
+                    {/* <div className="form-control">
+                        <span className="">
+                            <span style={{
+                                position: 'absolute',
+                                top: '29px'
+                            }}><BsSearch></BsSearch></span>
+                        </span>
+                        <input type="text" placeholder="Search here" className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-48" />
+                    </div> */}
 
                     <div className="dropdown dropdown-end mr-[10px] lg:mr-[0px] md:mr-[0px]">
                         <label tabIndex={0} className=" avatar">
@@ -105,7 +124,7 @@ const Navbar = ({ setColor }) => {
                         <ul tabIndex={0} className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
 
                             <li>
-                            <Link className="block text-xl lg:hidden md:hidden" href='/reservation'>Reservation</Link>
+                                <Link className="block text-xl lg:hidden md:hidden" href='/reservation'>Reservation</Link>
                             </li>
 
                             <li>
@@ -115,7 +134,7 @@ const Navbar = ({ setColor }) => {
                             </li>
 
                             <li>
-                            <Link className="block text-xl lg:hidden md:hidden" href='/feedback'>Feedback</Link>
+                                <Link className="block text-xl lg:hidden md:hidden" href='/feedback'>Feedback</Link>
                             </li>
                             <li>
                                 <Link className="justify-between" href='/myProfile'>My Profile</Link>
