@@ -1,11 +1,31 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { useState } from 'react';
+import { paymentOfUser } from "../lib/healper";
+import { useEffect } from 'react';
 
 const CheckoutForm = ({amountToPay}) => {
     const stripe = useStripe();
     const elements = useElements();
     const [errorMessage, setErrorMessage] = useState('');
+    const [key, setKey] = useState(''); 
+
+    useEffect(()=>{
+        fetch('http://localhost:3000/api/users/create-payment-intent', {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(amountToPay),
+      })
+        .then((res) => console.log(res))
+        .then((data) => {
+            setKey(data); 
+            console.log(data); 
+        });
+    },[])
+
+    console.log(key); 
+
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -23,14 +43,8 @@ const CheckoutForm = ({amountToPay}) => {
             type: 'card',
             card,
           });
-      
-          if (error) {
-            setErrorMessage(error?.message || ''); 
-            console.log('[error]', error.message);
-          } else {
-            console.log('[PaymentMethod]', paymentMethod);
-          }
-    }
+            setErrorMessage(error?.message || '');
+        }
     return (
         <form onSubmit={handleSubmit}>
             <CardElement
@@ -57,6 +71,6 @@ const CheckoutForm = ({amountToPay}) => {
             <p className="flex justify-center text-error">{errorMessage}</p>
         </form>
     );
-};
+    }
 
 export default CheckoutForm;
