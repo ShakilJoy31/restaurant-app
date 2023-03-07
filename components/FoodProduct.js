@@ -178,7 +178,7 @@ const FoodProduct = () => {
         }
         console.log(initFoodProduct); 
     }
-    
+    console.log(foodProducts);
     return (
         <div>
             <div className='mb-8'>
