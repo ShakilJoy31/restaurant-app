@@ -302,7 +302,7 @@ const FoodProduct = () => {
                     <div className='flex justify-center '>
                         <div className='grid grid-cols-1 gap-6 mx-4 lg:grid-cols-3 md:grid-cols-2'>
                             {
-                                foodProducts?.map(food => <div style={{
+                                foodProducts?.map((food, index) => <div key={index} style={{
                                     backgroundImage: "linear-gradient(45deg, black, white)",
                                     backgroundSize: "100%",
                                     backgroundRepeat: "repeat"

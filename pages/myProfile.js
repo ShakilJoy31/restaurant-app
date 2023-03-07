@@ -4,7 +4,7 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 import { ToastContainer, toast } from 'react-toastify';
 import { UserStore } from "./../userStore";
 import 'react-toastify/dist/ReactToastify.css';
-const myProfile = () => {
+const MyProfile = () => {
     const [updatedUser, setUpdatedUser] = useState([]);
     const [isPasswordVasible, setIsPasswordVasible] = useState(true);
     const [modalConfirmPassword, setModalConfirmPassword] = useState(true);
@@ -144,4 +144,4 @@ const myProfile = () => {
     )
 }
 
-export default myProfile; 
+export default MyProfile; 

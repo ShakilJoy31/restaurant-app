@@ -11,7 +11,7 @@ import CheckoutForm from './CheckoutForm';
 
 const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
 
-const payment = () => {
+const Payment = () => {
     const { product, setProduct } = OrderFoodStore.useContainer();
     const [amountToPay, setAmountToPay] = useState()
     const router = useRouter();
@@ -151,4 +151,4 @@ const payment = () => {
     );
 };
 
-export default payment;
+export default Payment;

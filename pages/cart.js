@@ -5,7 +5,7 @@ import CalculationCart from './CalculationCart';
 import { useRouter } from 'next/router';
 import { BsPlusSquareFill } from 'react-icons/bs';
 import { BsFileMinusFill } from 'react-icons/bs';
-const cart = () => {
+const Cart = () => {
     const [product, setProduct] = useState([]);
     const [productWithQuantity, setProductWithQuantity] = useState([]);
     const [isCartFoodModal, setIsCartFoodModal] = useState(false);
@@ -16,7 +16,7 @@ const cart = () => {
         const getSpecificFood = JSON.parse(localStorage.getItem('food'));
         setProduct(getSpecificFood);
         setProductWithQuantity(getSpecificFood); 
-    }, [cart])
+    }, [Cart])
     const handleDeleteFoodFromCart = () => {
         const restFood = product.filter(singleFood => singleFood._id !== id);
         if (restFood) {
@@ -134,4 +134,4 @@ const cart = () => {
     );
 };
 
-export default cart;
+export default Cart;

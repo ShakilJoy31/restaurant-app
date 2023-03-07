@@ -7,8 +7,6 @@ import { useEffect, useState } from 'react';
 import FoodProduct from '../components/FoodProduct';
 import { UserStore } from '../userStore';
 
-const inter = Inter({ subsets: ['latin'] })
-
 export default function Home() {
   const { user, setUser } = UserStore.useContainer();
   const [localStorageContent, setLocalStorageContent] = useState(false);
@@ -34,7 +32,6 @@ export default function Home() {
         {
           localStorageContent || user ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
         }
-        <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
       </main>
     </>
   )

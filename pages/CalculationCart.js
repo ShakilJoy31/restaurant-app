@@ -49,7 +49,7 @@ const CalculationCart = ({ product }) => {
                             <td>
                                 <p className='text-xl'>
                                     {
-                                        allName.map((food, index) => <span className=''> <span className='mr-2'>{index+1}. </span> {food}<span>{(allName.length - 1) === index ? '' : ', '}
+                                        allName.map((food, index) => <span key={index} className=''> <span className='mr-2'>{index+1}. </span> {food}<span>{(allName.length - 1) === index ? '' : ', '}
                                         <br />
                                         </span></span>)
                                     }

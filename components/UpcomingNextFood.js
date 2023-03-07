@@ -79,8 +79,8 @@ const UpcomingNextFood = () => {
                 className="mySwiper"
             >
                 {
-                    upComingFood.map(singleUpcomingFood => <SwiperSlide>
-                        <div>
+                    upComingFood.map((singleUpcomingFood, index) => <SwiperSlide>
+                        <div key={index}>
                             <div style={{
                                 backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                 backgroundSize: "100%",

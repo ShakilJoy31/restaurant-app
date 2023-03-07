@@ -3,7 +3,7 @@ import { VscFeedback } from "react-icons/vsc";
 import { getUser } from "../lib/healper";
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
 
-const feedback = () => {
+const Feedback = () => {
     const [signedInUser, setSignedInUser] = useState([]);
     const [feedbackUserNumber, setFeedbackUserNumber] = useState(false);
     useEffect(() => {
@@ -92,7 +92,7 @@ const feedback = () => {
     );
 };
 
-export default feedback;
+export default Feedback;
 
 
 {/* <Swiper
