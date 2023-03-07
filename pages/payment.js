@@ -53,7 +53,7 @@ const Payment = () => {
                         </div>
 
                         <div>
-                            <h1 className="text-4xl text-red-400">Let's have a look at the food.</h1>
+                            <h1 className="text-4xl text-red-400">Have a look at the food.</h1>
                             <TypeAnimation
                                 sequence={[
                                     "You're going to pay.",
@@ -82,8 +82,8 @@ const Payment = () => {
                                 <div>
                                     <div className='grid grid-cols-2 gap-2 lg:grid-cols-6 md:grid-cols-4'>
                                     {
-                                        product?.map(singleUpcomingFood =>
-                                            <div>
+                                        product?.map((singleUpcomingFood, index) =>
+                                            <div key={index}>
                                                 <div className={`h-32 shadow-2xl w-28 ${FoodProductStyle.paymentAbleFood}`}>
                                                     <figure><img className="w-full h-24" src={singleUpcomingFood.photo} alt="Shoes" /></figure>
                                                     <div>

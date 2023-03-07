@@ -466,7 +466,7 @@ const FoodProduct = () => {
             </div>
             {/* Upcoming Next.... */}
             <div>
-                <UpcomingNextFood></UpcomingNextFood>
+                {/* <UpcomingNextFood></UpcomingNextFood> */}
             </div>
         </div>
     );

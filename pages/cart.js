@@ -43,7 +43,7 @@ const Cart = () => {
                             </thead>
                             <tbody>
                                 {
-                                    product?.map((food, index) => <tr>
+                                    product?.map((food, index) => <tr key={index}>
                                         <th> <span className='flex justify-center'>{index + 1}</span> </th>
                                         <td><span className='flex justify-center'>{food.name}</span></td>
                                         <td>

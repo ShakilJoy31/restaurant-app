@@ -28,8 +28,8 @@ const Feedback = () => {
             <div className="flex justify-center">
                 <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
                     {
-                        signedInUser.map(userWithFeedback => userWithFeedback?.feedback &&
-                            <div>
+                        signedInUser.map((userWithFeedback, index) => userWithFeedback?.feedback &&
+                            <div key={index}>
                                 <div style={{
                                     backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                     backgroundSize: "100%",
