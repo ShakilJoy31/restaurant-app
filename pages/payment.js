@@ -4,12 +4,11 @@ import { useRouter } from 'next/router';
 import FoodProduct from '../components/FoodProduct';
 import { TypeAnimation } from 'react-type-animation'
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
-// const stripePromise = pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL
+// import { loadStripe } from '@stripe/stripe-js';
+// import { Elements } from '@stripe/react-stripe-js';
+// import CheckoutForm from './CheckoutForm';
 
-const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
+// const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
 
 const Payment = () => {
     const { product, setProduct } = OrderFoodStore.useContainer();
@@ -45,9 +44,7 @@ const Payment = () => {
                         <div>
                             <div className="shadow-xl card w-96 bg-base-100">
                                 <div className="card-body">
-                                    <Elements stripe={stripePromise}>
-                                        <CheckoutForm amountToPay={amountToPay}/>
-                                    </Elements>
+                                    <h1>Payment will be done here.</h1>
                                 </div>
                             </div>
                         </div>
@@ -122,26 +119,6 @@ const Payment = () => {
                                         </div>
                                     </div>
                                 </div>
-
-
-
-                                // <div style={{
-                                // }}>
-                                //     <div className="w-64 h-48 shadow-2xl">
-                                //         <figure><img className="w-full h-48" src={product[0].photo} alt="Shoes" /></figure>
-                                //         <div>
-                                //             <div className="">
-                                //                 <div className="flex items-center justify-center gap-x-4">
-
-                                //                     <div>
-                                //                         <small className=""> <span className=""> {product[0].name} </span></small>
-                                //                     </div>
-                                //                 </div>
-
-                                //             </div>
-                                //         </div>
-                                //     </div>
-                                // </div>
                             }
                         </div>
                     </div>
