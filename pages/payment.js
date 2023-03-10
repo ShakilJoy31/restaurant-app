@@ -5,8 +5,8 @@ import FoodProduct from '../components/FoodProduct';
 import { TypeAnimation } from 'react-type-animation'
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
 import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
+// import { Elements } from '@stripe/react-stripe-js';
+// import CheckoutForm from './CheckoutForm';
 // const stripePromise = pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL
 
 const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
