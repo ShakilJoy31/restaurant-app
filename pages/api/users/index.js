@@ -20,16 +20,4 @@ export default function handler(req, res) {
             res.status(405).end(`MEthod ${method} is not allowed`)
             break;
     }
-
-        // app.post('/create-payment-intent', async (req, res) => {
-        //     const { price } = req.body;
-        //     const amount = price * 100;
-        //     const paymentIntent = await stripe.paymentIntents.create({
-        //         amount: amount,
-        //         currency: 'usd',
-        //         payment_method_types: ['card']
-        //     });
-        //     console.log(paymentIntent);
-        //     return res.send({ clientSecret: paymentIntent.client_secret })
-        // })
 }

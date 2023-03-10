@@ -7,12 +7,12 @@ import { BsStarHalf } from 'react-icons/bs';
 import { TbCurrencyTaka } from 'react-icons/tb';
 // updateUserWithFeedBack
 import LoggedUserHome from './LoggedUserHome';
-import UpcomingNextFood from './UpcomingNextFood';
 import { getUser } from './../lib/healper';
 import { updateUserWithFeedBack } from './../lib/healper';
 import FoodProductStyle from './FoodProductStyle.module.css';
 import { useRouter } from 'next/router';
 import { OrderFoodStore, UserFoodSearch } from '../userStore';
+import Reservation from './Reservation';
 
 const FoodProduct = () => {
     const [foodProducts, setFoodProducts] = useState([]);
@@ -178,7 +178,6 @@ const FoodProduct = () => {
         }
         console.log(initFoodProduct); 
     }
-    console.log(foodProducts);
     return (
         <div>
             <div className='mb-8'>
@@ -466,7 +465,7 @@ const FoodProduct = () => {
             </div>
             {/* Upcoming Next.... */}
             <div>
-                {/* <UpcomingNextFood></UpcomingNextFood> */}
+                <Reservation></Reservation>
             </div>
         </div>
     );

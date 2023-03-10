@@ -4,7 +4,7 @@ import { BsFacebook, BsYoutube } from 'react-icons/bs';
 import { ImTwitter } from 'react-icons/im';
 const Footer = () => {
     return (
-        <div className="pt-2">
+        <div className="">
             <footer style={{ background: "linear-gradient(45deg, #FF8E9E, #C0DEFF)" }} class="footer p-10 Footer grid md:flex lg:flex justify-around text-base-content">
                 <div className=''>
                     <span style={{
