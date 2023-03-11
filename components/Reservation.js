@@ -1,6 +1,9 @@
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { useEffect } from 'react';
+import { BsCalendar2DateFill, BsClockFill } from 'react-icons/bs';
+import { FaUserAlt } from 'react-icons/fa';
+import { ImLocation } from 'react-icons/im';
 
 
 const Reservation = () => {
@@ -31,6 +34,22 @@ const Reservation = () => {
     const handleFindTableButton = () => {
         setReservationFirstStep(true);
         // setTimerOn(true);
+    }
+    const [readMore, setReadMore] = useState(false);
+    const [name, setName] = useState('');
+    const [email, setEmail] = useState('');
+    const [phone, setPhone] = useState('');
+    const [occasion, setOccasion] = useState('');
+    const [userRequest, setUserRequest] = useState('');
+
+    const [reminder, setReminder] = useState(false);
+    const [dining, setDining] = useState(false);
+    const [table, setTable] = useState(false);
+
+    const handleConfirmReservation = () =>{
+        setReservationFirstStep(false)
+        console.log(name, email, phone, occasion, userRequest);
+        console.log(reminder, dining, table);
     }
 
     return (
@@ -108,23 +127,25 @@ const Reservation = () => {
             </div>
 
             {
-                reservationFirstStep && <div>
+                 reservationFirstStep && people && time && date && <div>
                     <input type="checkbox" id="my-modal-4" className="modal-toggle" />
                     <label htmlFor="my-modal-4" className="cursor-pointer modal">
-                        <label className="relative w-11/12 max-w-5xl modal-box" htmlFor="">
-                            <h3 className="flex justify-center text-5xl font-bold">Reservation at Ommrito Restaurant</h3>
+                        <label style={{
+                            backgroundColor:'#247f9e'
+                        }} className="relative w-11/12 max-w-5xl modal-box" htmlFor="">
+                            <h3 className="flex justify-center text-4xl font-bold text-black">Reservation at Ommrito Restaurant</h3>
 
-                            <div className='flex justify-between my-6 gap-x-12'>
+                            <div className='flex justify-between mt-4'>
 
-                                <div className='w-full mt-4'>
-                                    <input type='text' placeholder='Name' className="w-full max-w-md focus:outline-none input border-error" />
+                                <div className='mt-4 '>
+                                    <input onChange={(e)=>setName(e.target.value)} type='text' placeholder='Name' className="w-full max-w-md text-white bg-black focus:outline-none input " />
                                     <br />
-                                    <input type='text' placeholder='Email' className="w-full max-w-md my-4 focus:outline-none input border-error" />
+                                    <input onChange={(e)=>setEmail(e.target.value)} type='text' placeholder='Email' className="w-full max-w-md my-4 text-white bg-black focus:outline-none input" />
                                     <br />
-                                    <input type='text' placeholder='Phone' className="w-full max-w-md mb-4 focus:outline-none input border-error" />
+                                    <input onChange={(e)=> setPhone(e.target.value)} type='text' placeholder='Phone' className="w-full max-w-md text-white bg-black focus:outline-none input " />
                                     <br />
-                                    <select className="w-full max-w-md text-black bg-white select hover:bg-black hover:text-white">
-                                        <option disabled selected> Select Occasion</option>
+                                    <select onChange={(e)=>setOccasion(e.target.value)} className="w-full max-w-md my-4 text-white bg-black focus:outline-none select ">
+                                        <option disabled selected> Select Occasion (Optional)</option>
                                         <option>None</option>
                                         <option>Birthday</option>
                                         <option>Anniversary</option>
@@ -132,27 +153,81 @@ const Reservation = () => {
                                         <option>Special Occasion</option>
                                         <option>Business mill</option>
                                     </select>
+
+                                    {/* <textarea className="w-full rounded-md focus:outline-none" placeholder='Add Special Request (Optional)'></textarea> */}
+
+                                    <textarea  onChange={(e)=>setUserRequest(e.target.value)} placeholder="Add Special Request (Optional)" className="w-full max-w-md text-white bg-black focus:outline-none textarea" ></textarea>
+
+                                    <div className="my-4 form-control">
+                                        <label className="flex items-center cursor-pointer gap-x-4">
+                                            <input onChange={(e)=>setReminder(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                            <span className="text-white cursor-pointer hover:underline label-text">Yes, I want to get text updates and reminders <br /> about my reservation</span>
+                                        </label>
+                                    </div>
+
+                                    <div className="form-control">
+                                        <label className="flex items-center cursor-pointer gap-x-4">
+                                            <input onChange={(e)=>setDining(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                            <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from this restaurant by email.</span>
+                                        </label>
+                                    </div>
+
+                                    <div className="my-4 form-control">
+                                        <label className="flex items-center cursor-pointer gap-x-4">
+                                            <input onChange={(e)=>setTable(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                            <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from OpenTable by email.</span>
+                                        </label>
+                                    </div>
+
+
                                 </div>
 
                                 <div>
-                                    <h1 className='text-3xl'>Omrrito Restaurant</h1>
-                                    <div>
+                                    <h1 className='mb-4 text-2xl'>Omrrito Restaurant</h1>
+                                    <div style={{
+                                        borderBottom:'1px solid aliceblue',
+                                        paddingBottom:'10px'
+                                    }}>
                                         <div>
-                                            <p><span></span></p>
+                                            <p className='flex items-center gap-x-4'>
+                                            <span><BsCalendar2DateFill size={25}></BsCalendar2DateFill></span>
+                                            <span className='text-xl'>{date}</span>
+                                            </p>
                                         </div>
-                                        <div>
 
+
+                                        <div className='my-2'>
+                                        <div>
+                                            <p className='flex items-center gap-x-4'>
+                                            <span><BsClockFill size={25}></BsClockFill></span>
+                                            <span className='text-xl'>{time}</span>
+                                            </p>
                                         </div>
-                                        <div>
-
                                         </div>
-                                        <div>
 
+
+                                        <div>
+                                        <div>
+                                            <p className='flex items-center gap-x-4'>
+                                            <span><FaUserAlt size={25}></FaUserAlt></span>
+                                            <span className='text-xl'>{people}</span>
+                                            </p>
+                                        </div>
+                                        </div>
+
+
+                                        <div className='my-2'>
+                                        <div>
+                                            <p className='flex items-center gap-x-4'>
+                                            <span><ImLocation size={30}></ImLocation></span>
+                                            <span className='text-xl'>2620 Regatta Dr, Ste 118 Las Vegas, NV, 89128</span>
+                                            </p>
+                                        </div>
                                         </div>
 
                                     </div>
 
-                                    <div className='w-80'>
+                                    <div className='w-96'>
                                         <p className='mt-2 text-2xl'>What to know before you go</p>
                                         <p className='my-2 text-xl'>A note from the restaurant</p>
                                         <p>Thank you for choosing to dine with us at
@@ -161,14 +236,24 @@ const Reservation = () => {
                                             Please call us at 702.331.5565 for
                                             inquiries or special events. We at
                                             american value your patronage and will
-                                            do our best to accommodate all request…</p>
-                                        <p>+ Read More</p>
+                                            do our best to accommodate all request {readMore ? '' : '...'} 
+                                            {
+                                                readMore && <span> ,All request for seating is not guaranteed, but we will try our very best to accommodate.</span>
+                                            }</p>
+                                            {
+                                                readMore ? <p onClick={()=>setReadMore(!readMore)} className='text-red-400 cursor-pointer'>+ Less</p> : <p onClick={()=>setReadMore(!readMore)} className='text-red-400 cursor-pointer'>+ More</p>
+                                            }
+                                        
                                     </div>
                                 </div>
 
                             </div>
 
-                            <button htmlFor="my-modal-4" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Confirm Reservation</button>
+                            <button onClick={handleConfirmReservation} className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Confirm Reservation</button>
+
+                            <p className='my-4'>*Standard text message rates may apply. You can opt out of receiving text messages at any time. By selecting “Confirm reservation” you are agreeing to the terms and conditions of the <span className='text-red-300 cursor-pointer'>Omrrito User Agreement</span> and <span className='text-red-300 cursor-pointer'>Privacy Policy</span>.</p>
+
+                            <p className=''>Certain U.S. consumers may have additional data rights, which can be exercised by clicking <span className='text-red-300 cursor-pointer'>Do Not Sell or Share My Personal Information</span>.</p>
 
 
 
