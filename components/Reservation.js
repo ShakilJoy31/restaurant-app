@@ -1,9 +1,12 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { BsCalendar2DateFill, BsClockFill } from 'react-icons/bs';
 import { FaUserAlt } from 'react-icons/fa';
 import { ImLocation } from 'react-icons/im';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { addReservation } from '../lib/healper';
+import ReservationSuccess from './ReservationSuccess';
 
 
 const Reservation = () => {
@@ -11,29 +14,18 @@ const Reservation = () => {
     const [people, setPeople] = useState('');
     const [date, setDate] = useState('');
     const [time, setTime] = useState('');
-    const [reservationFirstStep, setReservationFirstStep] = useState(false);
-    const [exp, setExp] = useState();
+    const [registerUser, setRegisterUser] = useState();
+    const [modalAfterConfirmation, setModalAfterConfirmation] = useState(false); 
 
-
-    // const [timer, setTimer] = useState(0);
-    // const [timerOn, setTimerOn] = useState(false);
-
-    // useEffect(() => {
-    //     let interval = null;
-    //     if (timerOn) {
-    //         interval = setInterval(() => {
-    //             setTimer((prevTime) => prevTime + 10);
-    //         }, 10);
-    //     } else if (!timerOn) {
-    //         clearInterval(interval);
-    //     }
-
-    //     return () => clearInterval(interval);
-    // }, [timerOn]);
+    useEffect(()=>{
+        const localStorageUser = JSON.parse(localStorage.getItem('user'));
+        setRegisterUser(localStorageUser);
+    },[])
 
     const handleFindTableButton = () => {
-        setReservationFirstStep(true);
-        // setTimerOn(true);
+        if(!people || !date || !time){
+            toast.error('OppS, Information for reservation is missing!');
+        }
     }
     const [readMore, setReadMore] = useState(false);
     const [name, setName] = useState('');
@@ -47,9 +39,26 @@ const Reservation = () => {
     const [table, setTable] = useState(false);
 
     const handleConfirmReservation = () =>{
-        setReservationFirstStep(false)
-        console.log(name, email, phone, occasion, userRequest);
-        console.log(reminder, dining, table);
+        const reservationFormData = {
+            requesterEmail: registerUser?.email,
+            name: name ? name : registerUser?.name,
+            email:email ? email : registerUser?.email,
+            phone:phone ? phone : registerUser?.phone,
+            people:people,
+            time:time,
+            date:date,
+            occasion:occasion,
+            userRequest:userRequest,
+            reminder: reminder,
+            dining:dining,
+            table:table,
+        }
+            addReservation(reservationFormData).then(res => {
+                if(res){
+                    toast.success('Reservation is confirmed');
+                }
+            })
+            setModalAfterConfirmation(true);
     }
 
     return (
@@ -60,7 +69,7 @@ const Reservation = () => {
 
             <p className='flex justify-center my-6 text-2xl'>Call us at <span className='mx-2 underline cursor-pointer'> +88-017 6104 3883 </span> or book a table through Open Table reservations:</p>
 
-            <div className='flex justify-center'>
+            <div className='flex justify-center mx-8'>
 
                 <select onChange={(e) => setPeople(e.target.value)} style={{
                     borderRight: '1px solid red',
@@ -122,28 +131,33 @@ const Reservation = () => {
 
                 <label onClick={handleFindTableButton} style={{
                     borderRadius: '0px 5px 5px 0'
-                }} htmlFor="my-modal-4" className="w-full max-w-xs text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Proceed for Reservation</label>
+                }} htmlFor="reservation-modal" className="w-full max-w-xs text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Proceed for Reservation</label>
 
             </div>
 
             {
-                 reservationFirstStep && people && time && date && <div>
-                    <input type="checkbox" id="my-modal-4" className="modal-toggle" />
-                    <label htmlFor="my-modal-4" className="cursor-pointer modal">
-                        <label style={{
+                 people && time && date && <div>
+                    <input type="checkbox" id="reservation-modal" className="modal-toggle" />
+                    <label className="cursor-pointer modal">
+                    {
+                        modalAfterConfirmation ? <ReservationSuccess setModalAfterConfirmation={setModalAfterConfirmation} registerUser={registerUser} people={people} date={date} time={time}></ReservationSuccess> : <label style={{
                             backgroundColor:'#247f9e'
-                        }} className="relative w-11/12 max-w-5xl modal-box" htmlFor="">
+                        }} className="relative w-11/12 max-w-5xl modal-box">
+                            <label htmlFor="reservation-modal" className="absolute text-white bg-red-700 border-0 btn btn-sm btn-circle right-2 top-2">✕</label>
                             <h3 className="flex justify-center text-4xl font-bold text-black">Reservation at Ommrito Restaurant</h3>
 
                             <div className='flex justify-between mt-4'>
 
                                 <div className='mt-4 '>
-                                    <input onChange={(e)=>setName(e.target.value)} type='text' placeholder='Name' className="w-full max-w-md text-white bg-black focus:outline-none input " />
+                                    <input onChange={(e)=> (e.target.value) ? setName(e.target.value) : setName(registerUser?.name)} type='text' placeholder={registerUser?.name ? registerUser?.name+' (Changeable)' : 'Type Your Name'} className="w-full max-w-md text-white bg-black focus:outline-none input " required/>
                                     <br />
-                                    <input onChange={(e)=>setEmail(e.target.value)} type='text' placeholder='Email' className="w-full max-w-md my-4 text-white bg-black focus:outline-none input" />
+
+                                    <input onChange={(e)=>(e.target.value) ? setEmail(e.target.value) : setEmail(registerUser?.email)} type='email' placeholder={registerUser?.email ? registerUser?.email+' (Changeable)' : 'Type Your Email'} className="w-full max-w-md my-4 text-white bg-black focus:outline-none input" required/>
                                     <br />
-                                    <input onChange={(e)=> setPhone(e.target.value)} type='text' placeholder='Phone' className="w-full max-w-md text-white bg-black focus:outline-none input " />
+
+                                    <input onChange={(e)=>(e.target.value) ? setPhone(e.target.value) : setPhone(registerUser?.phone)} type='number' placeholder={registerUser?.phone ? registerUser?.phone+' (Changeable)' : 'Type Your Phone Number'} className="w-full max-w-md text-white bg-black focus:outline-none input " />
                                     <br />
+
                                     <select onChange={(e)=>setOccasion(e.target.value)} className="w-full max-w-md my-4 text-white bg-black focus:outline-none select ">
                                         <option disabled selected> Select Occasion (Optional)</option>
                                         <option>None</option>
@@ -158,7 +172,7 @@ const Reservation = () => {
 
                                     <textarea  onChange={(e)=>setUserRequest(e.target.value)} placeholder="Add Special Request (Optional)" className="w-full max-w-md text-white bg-black focus:outline-none textarea" ></textarea>
 
-                                    <div className="my-4 form-control">
+                                    <div className="my-2 form-control">
                                         <label className="flex items-center cursor-pointer gap-x-4">
                                             <input onChange={(e)=>setReminder(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
                                             <span className="text-white cursor-pointer hover:underline label-text">Yes, I want to get text updates and reminders <br /> about my reservation</span>
@@ -172,7 +186,7 @@ const Reservation = () => {
                                         </label>
                                     </div>
 
-                                    <div className="my-4 form-control">
+                                    <div className="my-2 form-control">
                                         <label className="flex items-center cursor-pointer gap-x-4">
                                             <input onChange={(e)=>setTable(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
                                             <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from OpenTable by email.</span>
@@ -236,12 +250,13 @@ const Reservation = () => {
                                             Please call us at 702.331.5565 for
                                             inquiries or special events. We at
                                             american value your patronage and will
-                                            do our best to accommodate all request {readMore ? '' : '...'} 
+                                            do our best to accommodate all request 
+                                            {readMore ? '' : '...'} 
                                             {
                                                 readMore && <span> ,All request for seating is not guaranteed, but we will try our very best to accommodate.</span>
                                             }</p>
                                             {
-                                                readMore ? <p onClick={()=>setReadMore(!readMore)} className='text-red-400 cursor-pointer'>+ Less</p> : <p onClick={()=>setReadMore(!readMore)} className='text-red-400 cursor-pointer'>+ More</p>
+                                                readMore ? <p onClick={()=>setReadMore(!readMore)} className='text-red-300 cursor-pointer'>See Less</p> : <p onClick={()=>setReadMore(!readMore)} className='text-red-300 cursor-pointer'>+See More</p>
                                             }
                                         
                                     </div>
@@ -249,7 +264,9 @@ const Reservation = () => {
 
                             </div>
 
-                            <button onClick={handleConfirmReservation} className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Confirm Reservation</button>
+                            {
+                                registerUser ? <label onClick={handleConfirmReservation} htmlFor="reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Confirm Reservation</label> : <label onClick={handleConfirmReservation} htmlFor="reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white" disabled={(!name || !email || !phone)}>Confirm Reservation</label>
+                            }
 
                             <p className='my-4'>*Standard text message rates may apply. You can opt out of receiving text messages at any time. By selecting “Confirm reservation” you are agreeing to the terms and conditions of the <span className='text-red-300 cursor-pointer'>Omrrito User Agreement</span> and <span className='text-red-300 cursor-pointer'>Privacy Policy</span>.</p>
 
@@ -264,7 +281,10 @@ const Reservation = () => {
                                 <span>{("0" + Math.floor((timer / 1000) % 60)).slice(-2)}</span>
                             </span> minutes</p> */}
                         </label>
+                    }
+                        
                     </label>
+
                 </div>
             }
 
