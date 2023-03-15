@@ -37,8 +37,7 @@ const MyReservation = () => {
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
                     {
-                        reservations.map((reservation, index) => <div className='p-4 border-0'>
-
+                        reservations.map((reservation, index) => <div key={index} className='p-4 border-0'>
                             <div style={{
                                 backgroundColor: '#247f9e',
                                 borderRadius: '5px',
