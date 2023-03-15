@@ -69,7 +69,7 @@ const Navbar = ({ setColor }) => {
                         userPhoto && <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/cart'>My Cart</Link>
                     }
 
-                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/reservation'>Reservation</Link>
+                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/userReservation'>Reservation</Link>
 
                     <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/feedback'>Feedback</Link>
 

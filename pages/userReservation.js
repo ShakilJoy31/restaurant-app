@@ -1,4 +1,3 @@
-import 'swiper/css';
 import Reservation from '../components/Reservation';
 
 const Reservations = () => {

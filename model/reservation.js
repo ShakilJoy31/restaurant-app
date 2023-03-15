@@ -15,5 +15,5 @@ const reservationSchema = new Schema({
     requesterEmail: String
 })
 
-const Reservation = models.reservation || model('reservation', reservationSchema)
+const Reservation = models.reservations || model('reservations', reservationSchema)
 export default Reservation; 

@@ -72,18 +72,18 @@ const Feedback = () => {
                 </div>
             </div>
             
-                <div className="flex justify-end mt-8">
+                <div className="flex justify-end my-6">
                 {
                     !feedbackUserNumber ? <button onClick={() => setFeedbackUserNumber(true)} style={{
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
-                    }} className="normal-case btn"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>More Feedback</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
+                    }} className="normal-case btn btn-sm"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>More Feedback</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
                     </button> : <button onClick={() => setFeedbackUserNumber(false)} style={{
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
-                    }} className="normal-case btn"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>See Less</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
+                    }} className="normal-case btn btn-sm"> <span className='flex items-center justify-center text-xl text-red-700 hover:text-black'><span>See Less</span> <span className='ml-2'><VscFeedback size={30}></VscFeedback></span></span>
                     </button>
                 }
             </div>

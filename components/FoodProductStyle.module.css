@@ -25,7 +25,7 @@
     background-color: black;
     background-size: 100%;
     background-repeat: repeat;
-    /* color: deepskyblue; */
+
 }
 
 .selectionCart:hover {
@@ -45,6 +45,12 @@
 .activeButton{
     box-shadow: 2px 2px 15px 5px lightblue;
     transition-duration: 300ms;
+}
+
+.reservationCardForIndv:hover{
+    box-shadow: 2px 2px 15px 5px lightblue;
+    transition-duration: 100ms;
+    border-radius: 5px;
 }
 /* style={{
     backgroundImage: "linear-gradient(45deg, black, white)",

@@ -20,9 +20,22 @@ export async function getReservationAccordingToUser(req, res){
         if(!users){
             return res.status(404).json({error: 'Data is not found'})
         }
-        // console.log(users); 
         res.status(200).json(users)
     }catch(errors){
         res.status(404).json({errors: 'Got error while fetching the data'})
+    }
+}
+
+
+export async function deleteReservation(req, res){
+    try{
+        const {userId} = req.query; 
+        if(userId){
+            const user = await Reservation.findByIdAndDelete(userId); 
+            return res.status(200).json({deleted: user}); 
+        }
+        res.status(404).json({error:'User id is not selected'}); 
+    }catch(error){
+        res.status(404).json({error: 'Operation failed to delete the data....!'})
     }
 }

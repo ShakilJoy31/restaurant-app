@@ -4,7 +4,7 @@ import { AiTwotoneDelete } from 'react-icons/ai';
 import CalculationCart from './CalculationCart';
 import { useRouter } from 'next/router';
 import { BsPlusSquareFill } from 'react-icons/bs';
-import { BsFileMinusFill } from 'react-icons/bs';
+import { HiEmojiSad } from 'react-icons/hi';
 const Cart = () => {
     const [product, setProduct] = useState([]);
     const [productWithQuantity, setProductWithQuantity] = useState([]);
@@ -84,13 +84,12 @@ const Cart = () => {
                         </table>
                     </div> : <div>
                         <div className='flex items-center justify-center gap-x-4'>
-                            <p className='flex justify-center text-2xl text-error'>Waiting for you to add some food to the cart---{'>'}</p>
-                            <button className='text-red-500 btn btn-square loading'></button>
+                            <p className='justify-center text-2xl '><span className='flex items-center text-red-600'><span className='mr-2'>Empty Cart!</span> <HiEmojiSad color={'white'}></HiEmojiSad></span> <span className='text-red-400'>Waiting for you to add some food to the cart...</span></p>
                             <button style={{
-                                backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                backgroundImage: "linear-gradient(45deg, white, green)",
                                 backgroundSize: "100%",
                                 backgroundRepeat: "repeat",
-                            }} onClick={() => router.push('/')} className="btn btn-error btn-outline hover:cursor-pointer"> <span className='text-black normal-case border-0'>Let Me Add</span> </button>
+                            }} onClick={() => router.push('/')} className="btn btn-error hover:cursor-pointer"> <span className='text-black normal-case border-0'>Let Me Add</span> </button>
                         </div>
                     </div>
                 }

@@ -8,7 +8,6 @@ import { OrderFoodStore } from '../userStore';
 const CalculationCart = ({ product }) => {
     let [totalFoodPrice, setTotalFoodPrice] = useState(0);
     let [allName, setAllName] = useState([]);
-    let [moreFoodName, setMoreFoodName] = useState(false);
     const { setProduct } = OrderFoodStore.useContainer();
     let name = [];
     const router = useRouter();
@@ -20,17 +19,16 @@ const CalculationCart = ({ product }) => {
             name.push(food.name);
             setAllName(name);
         })
-    }, [product, moreFoodName])
+    }, [product])
 
     const handlePayment = () => {
         router.push("/payment")
         setProduct(product)
-        console.log('Button for payment is clicked');
     }
 
     return (
         <div>
-            <div className="overflow-x-auto">
+            <div className="mb-2 overflow-x-auto">
                 <table style={{
                     transitionDuration: '300ms'
                 }} className="table w-full">

@@ -295,24 +295,26 @@ const FoodProduct = () => {
                     <div>
                         <div>
                             {
-                                foodProducts.length == 0 && <h1 className='flex justify-center text-2xl text-red-500'>No food found with {foodName}</h1>
+                                foodProducts.length == 0  && <h1 className='flex justify-center text-2xl text-red-500'>No food found with {foodName}</h1>
                             }
                         </div>
                     <div className='flex justify-center '>
-                        <div className='grid grid-cols-1 gap-6 mx-4 lg:grid-cols-3 md:grid-cols-2'>
+                        {
+                            foodProducts ? <div className='grid grid-cols-1 gap-6 mx-4 md:mx-12 lg:mx-24 lg:grid-cols-3 md:grid-cols-2'>
                             {
                                 foodProducts?.map((food, index) => <div key={index} style={{
                                     backgroundImage: "linear-gradient(45deg, black, white)",
                                     backgroundSize: "100%",
                                     backgroundRepeat: "repeat"
-                                }} className={`shadow-2xl card w-96 ${FoodProductStyle?.foodCard}`}>
-                                    <figure><img className='h-[300px] w-full' src={food?.photo} alt="Foods" /></figure>
+                                }} className={`shadow-2xl card ${FoodProductStyle?.foodCard}`}>
+                                    <figure><img className='h-[285px] w-full' src={food?.photo} alt="Foods" /></figure>
+
                                     <div className="card-body">
                                         <div className='flex justify-between'>
-                                        <h2 className="text-2xl text-orange-300">{food?.name}</h2>
+                                        <h2 className="text-2xl text-orange-500">{food?.name}</h2>
 
                                         <p style={{
-                                            color: '#D09CFA'
+                                            color: 'blue'
                                         }} className='flex justify-end text-3xl'>{food?.price} <TbCurrencyTaka size={35}></TbCurrencyTaka></p>
                                         </div>
 
@@ -366,19 +368,24 @@ const FoodProduct = () => {
                                     </div>
                                 </div>)
                             }
+                        </div> : <div>
+                            <h1>Loading Data...</h1>
                         </div>
+                        }
+                        
 
                     </div>
-                    <div className='flex justify-center mt-8'>
+                    <div className='flex justify-end mt-8 mr-'>
                     <button onClick={handleInitFoodProduct} style={{
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
-                    }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} w-96 hover:text-2xl`}> 
+                    }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} btn-sm border-0 mr-4 md:mr-12 lg:mr-24`}>
                     {
-                        !initFoodProduct ? <span className={`flex items-center justify-center text-xl text-red-700`}> <span className='mr-2'>Explore All Items</span> <span className=''><AiOutlineArrowRight size={30} color={'black'}></AiOutlineArrowRight></span></span> : <span className={`flex items-center justify-center text-xl text-red-700`}> <span className='mr-2'>See Less Items</span></span>
+                        !initFoodProduct ? <span className={`flex items-center justify-center text-xl text-red-700 `}> <span className='mr-2'>Explore All Items</span> <span className=''><AiOutlineArrowRight size={30} color={'black'}></AiOutlineArrowRight></span></span> : <span className={`flex items-center justify-center text-xl text-red-700`}> <span className='mr-2'>See Less Items</span></span>
                     }
                     </button>
+                    
                     </div>
                     </div>
                 </div>
@@ -387,7 +394,9 @@ const FoodProduct = () => {
                         isRecipeModal && <div>
                             <input type="checkbox" id="my-modal-5" className="modal-toggle" />
                             <div className="modal">
-                                <div className="w-11/12 max-w-5xl modal-box">
+                                <div style={{
+            background: '#247f9e'
+        }} className="w-11/12 max-w-5xl modal-box"> 
                                     <h3 style={{
                                         backgroundImage: "linear-gradient(45deg, yellow, aliceblue)",
                                         backgroundSize: "100%",
@@ -399,34 +408,29 @@ const FoodProduct = () => {
                                     }} className={`flex justify-center text-3xl font-bold text-accent`}>Recipe for {isRecipeModal[0]}</h3>
                                     <div className='flex justify-center mt-6'>
                                         <div className='grid grid-cols-3 gap-4 lg:gap-x-10 md:gap-x-6'>
-                                            <img className='w-20 p-2 border rounded-md lg:h-32 md:h-32 lg:w-36 md:w-32 border-accent' src={isRecipeModal[2]} alt="Recipe Image" />
-                                            <img className='w-20 p-2 border rounded-md lg:h-32 md:h-32 lg:w-36 md:w-32 border-accent' src={isRecipeModal[2]} alt="Recipe Image" />
-                                            <img className='w-20 p-2 border rounded-md lg:h-32 md:h-32 lg:w-36 md:w-32 border-accent' src={isRecipeModal[2]} alt="Recipe Image" />
+
+                                            <img style={{
+                                                width:'250px'
+                                            }} className='h-32 p-2 border border-white rounded-md' src='https://norwalk.edu/wp-content/uploads/2018/09/Chief-image-2.jpg' alt="Recipe Image" />
+                                            
+                                            <img style={{
+                                                width:'250px'
+                                            }} className='h-32 p-2 border border-white rounded-md' src={isRecipeModal[2]} alt="Recipe Image" />
+
+                                            <img style={{
+                                                width:'250px'
+                                            }} className='h-32 p-2 border border-white rounded-md' src='https://mcfinder.in/wp-content/uploads/2022/03/hotel-management-studies@2x-768x432-1.jpg' alt="Recipe Image" />
+
                                         </div>
                                     </div>
-                                    <p style={{
-                                        backgroundImage: "linear-gradient(45deg, #FEA1BF, #BFEAF5)",
-                                        backgroundSize: "100%",
-                                        backgroundRepeat: "repeat",
-                                        webkitBackgroundClip: "text",
-                                        webkitTextFillColor: "transparent",
-                                        mozBackgroundClip: "text",
-                                        mozTextFillColor: "transparent"
-                                    }} className="flex justify-center px-4 py-4 text-xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni aut odio corporis, sapiente praesentium officiis, vel tenetur tempora recusandae dolorum saepe possimus enim at! Doloribus velit dolores quae Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni aut odio corporis, sapiente praesentium officiis, vel tenetur tempora recusandae dolorum saepe possimus enim at! Doloribus velit dolores quae</p>
-                                    <div className='flex items-end justify-between modal-action'>
-                                        <div className='w-80'>
-                                            <div className="w-full max-w-xs form-control">
+                                    <p className="flex justify-center p-4 text-xl">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni aut odio corporis, sapiente praesentium officiis, vel tenetur tempora recusandae dolorum saepe possimus enim at! Doloribus velit dolores quae Lorem ipsum dolor, sit amet consectetur adipisicing elit. Magni aut odio corporis, sapiente praesentium officiis, vel tenetur tempora recusandae dolorum saepe possimus enim at! Doloribus velit dolores quae</p>
+
+                                    <div className='flex items-end justify-between modal-action gap-x-12'>
+
+                                        <div className='w-full'>
+                                            <div className="w-full form-control">
                                                 <label className="label">
-                                                    <span style={{
-                                                        // backgroundImage: "linear-gradient(45deg, yellow, aliceblue)",
-                                                        backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
-                                                        backgroundSize: "100%",
-                                                        backgroundRepeat: "repeat",
-                                                        webkitBackgroundClip: "text",
-                                                        webkitTextFillColor: "transparent",
-                                                        mozBackgroundClip: "text",
-                                                        mozTextFillColor: "transparent"
-                                                    }} className="hidden text-xl label-text lg:block md:block">Some Feedback if any...</span>
+                                                    <span className="hidden text-xl text-white label-text lg:block md:block">Some Feedback if any...</span>
                                                     {
                                                         thankYou?._id === isRecipeModal[3] ? <span style={{
                                                             backgroundImage: "linear-gradient(45deg, aliceblue, yellow)",
@@ -440,10 +444,12 @@ const FoodProduct = () => {
                                                     }
                                                 </label>
 
-                                                <input onChange={(e) => setFeedback(e.target.value)} type="text" placeholder='Type your precious review' className="w-full focus:outline-none input border-accent" />
+                                                <textarea onChange={(e) => setFeedback(e.target.value)} type="text" placeholder='Type your precious review' className="w-full h-20 pt-2 mr-12 focus:outline-none input" />
 
                                             </div>
                                         </div>
+
+                                        <div>
                                         <label style={{
                                             // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
                                             // backgroundSize: "100%",
@@ -452,8 +458,22 @@ const FoodProduct = () => {
                                             backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                                             backgroundSize: "100%",
                                             backgroundRepeat: "repeat",
-                                        }} htmlFor="my-modal-5" className="w-32 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                        }} htmlFor="my-modal-5" className="w-32 border-0 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
                                         </label>
+
+                                        <label style={{
+                                            // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
+                                            // backgroundSize: "100%",
+                                            // backgroundRepeat: "repeat",
+
+                                            backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
+                                            backgroundSize: "100%",
+                                            backgroundRepeat: "repeat",
+                                        }} htmlFor="my-modal-5" className="w-32 border-0 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
+                                        </label>
+                                        </div>
+                                        
+
                                     </div>
 
                                 </div>

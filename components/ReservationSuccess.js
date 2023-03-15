@@ -3,9 +3,6 @@ import { RiCheckboxCircleFill } from 'react-icons/ri';
 import { FcDownload } from 'react-icons/fc';
 import { BsArrowLeft, BsCalendar2DateFill, BsClockFill } from 'react-icons/bs';
 import { FaUserAlt } from 'react-icons/fa';
-import { AiFillDelete } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
-import { getReservationAccordingToUser } from '../lib/healper';
 import { useReactToPrint } from 'react-to-print';
 
 const ReservationSuccess = ({ setModalAfterConfirmation, registerUser, people, date, time }) => {

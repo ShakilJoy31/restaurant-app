@@ -1,5 +1,5 @@
 import connectMongo from "../../../database/connection";
-import { postReservations, getReservationAccordingToUser } from "../../../database/reservationController";
+import { postReservations, getReservationAccordingToUser, deleteReservation } from "../../../database/reservationController";
 
 export default function handler(req, res) {
     connectMongo().catch(() => res.status(405).json({ error: 'Error in the connection' }));
@@ -11,6 +11,9 @@ export default function handler(req, res) {
             break;
         case 'POST':
             postReservations(req, res)
+            break;
+        case 'DELETE':
+            deleteReservation(req, res); 
             break;
         case 'PUT':
             // updateUserWithFeedBack(req, res)
