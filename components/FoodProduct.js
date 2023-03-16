@@ -48,7 +48,7 @@ const FoodProduct = () => {
     const handleOrderNowButton = (id) => {
         const getFood = foodProducts.find(product => product._id === id);
         setProduct([getFood]);
-        router.push('/payment')
+        router.push('/order')
     }
     const handleRecipe = (id) => {
         const getFood = foodProducts.find(product => product._id === id);

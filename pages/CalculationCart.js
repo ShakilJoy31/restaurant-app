@@ -22,7 +22,7 @@ const CalculationCart = ({ product }) => {
     }, [product])
 
     const handlePayment = () => {
-        router.push("/payment")
+        router.push("/order")
         setProduct(product)
     }
 
@@ -64,7 +64,7 @@ const CalculationCart = ({ product }) => {
                                 backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                 backgroundSize: "100%",
                                 backgroundRepeat: "repeat"
-                            }} onClick={handlePayment} className='text-xl normal-case border-0 btn btn-primary'>Pay {product?.length !== 0 ? (totalFoodPrice + (totalFoodPrice * (7 / 100))).toFixed(2) : '0'} <span> <TbCurrencyTaka size={25}></TbCurrencyTaka> </span></button></td>
+                            }} onClick={handlePayment} className='text-xl normal-case border-0 btn btn-primary'>Order Now<span></span></button></td>
                         </tr>
                     </tbody>
                 </table>

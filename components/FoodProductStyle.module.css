@@ -78,6 +78,21 @@
     background-repeat: repeat;
 }
 
+
+.confirmOrder{
+    transition-duration: 200ms;
+    background-color: black;
+    color: white;
+}
+
+
+.confirmOrder:hover{
+    box-shadow: 2px 2px 15px 5px black;
+    transition-duration: 200ms;
+    background-color: white;
+    color: black;
+}
+
 .spinner {
     width: 100px;
     height: 100px;

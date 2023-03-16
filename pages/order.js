@@ -4,13 +4,10 @@ import { useRouter } from 'next/router';
 import FoodProduct from '../components/FoodProduct';
 import { TypeAnimation } from 'react-type-animation'
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
-import { loadStripe } from '@stripe/stripe-js';
-import { Elements } from '@stripe/react-stripe-js';
-import CheckoutForm from './CheckoutForm';
-const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
+import FoodCheckout from './FoodCheckout';
 
 
-const Payment = () => {
+const Order = () => {
     const { product, setProduct } = OrderFoodStore.useContainer();
     const [amountToPay, setAmountToPay] = useState()
     const router = useRouter();
@@ -33,27 +30,22 @@ const Payment = () => {
             backgroundRepeat: "repeat"
         }} className=''>
             <div>
-                <h1 className='flex justify-center text-5xl text-error'>Payment Section</h1>
-                <div className="min-h-screen hero">
+                <h1 className='flex justify-center py-4 text-5xl text-error'>Food Order Section</h1>
+                <div className="flex justify-center py-4">
                     <div className="flex-col hero-content lg:flex-row-reverse gap-x-16">
-
                         <div className='ml-6'>
-                            <div className="shadow-xl card w-96 bg-base-100">
-                                <div className="card-body">
-                                <Elements stripe={stripePromise}>
-                                        <CheckoutForm amountToPay={amountToPay}/>
-                                </Elements>
-                                </div>
-                            </div>
+                            <FoodCheckout></FoodCheckout>
                         </div>
 
                         <div>
                             <h1 className="text-4xl text-red-400">Have a look at the food.</h1>
                             <TypeAnimation
                                 sequence={[
-                                    "You're going to pay.",
+                                    "Order the food.",
                                     1000,
-                                    'You are going to eat.',
+                                    "We'll handle the rest.",
+                                    1000,
+                                    'Enjoy the food! Good luck...',
                                     1000,
                                     () => {
                                     }
@@ -61,19 +53,13 @@ const Payment = () => {
                                 wrapper="div"
                                 cursor={true}
                                 repeat={Infinity}
-                                style={{ fontSize: '2rem', color: '#1A120B' }}
+                                style={{ fontSize: '1.5rem', color: 'black' }}
                             />
                             <br></br>
-                            {/* style={{
-                                                backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                                backgroundSize: "100%",
-                                                backgroundRepeat: "repeat"
-                                            }} */}
-
                             {
                                 product?.length > 1 &&
                                 <div>
-                                    <div className='grid grid-cols-2 gap-2 lg:grid-cols-6 md:grid-cols-4'>
+                                    <div className='grid grid-cols-2 gap-2 lg:grid-cols-4 md:grid-cols-3'>
                                     {
                                         product?.map((singleUpcomingFood, index) =>
                                             <div key={index}>
@@ -124,4 +110,4 @@ const Payment = () => {
     );
 };
 
-export default Payment;
+export default Order;
