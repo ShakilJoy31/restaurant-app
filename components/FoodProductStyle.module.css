@@ -83,7 +83,7 @@
     height: 100px;
     border-radius: 50%;
     border: 5px solid #247f9e;
-    border-top-color: red;
+    border-top-color: white;
     animation: spin 1s ease-in-out infinite;
 }
 

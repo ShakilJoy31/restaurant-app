@@ -13,6 +13,7 @@ import FoodProductStyle from './FoodProductStyle.module.css';
 import { useRouter } from 'next/router';
 import { OrderFoodStore, UserFoodSearch } from '../userStore';
 import Reservation from './Reservation';
+import Spinner from './Spinner';
 
 const FoodProduct = () => {
     const [foodProducts, setFoodProducts] = useState([]);
@@ -301,7 +302,7 @@ const FoodProduct = () => {
 
                         <div className='flex justify-center'>
                             {
-                                ( foodProducts.length == 0 && !foodName) ? <div class={`${FoodProductStyle.spinner}`}></div> : <div className='flex justify-center '>
+                                ( foodProducts.length == 0 && !foodName) ? <Spinner></Spinner> : <div className='flex justify-center '>
                                 
                                     <div className='grid grid-cols-1 gap-6 mx-4 md:mx-12 lg:mx-24 lg:grid-cols-3 md:grid-cols-2'>
                                     {
@@ -312,8 +313,8 @@ const FoodProduct = () => {
                                         }} className={`shadow-2xl card ${FoodProductStyle?.foodCard}`}>
                                             <figure><img className='h-[285px] w-full' src={food?.photo} alt="Foods" /></figure>
         
-                                            <div className="card-body">
-                                                <div className='flex justify-between'>
+                                            <div className="card-body mx-[-15px]">
+                                                <div className='flex justify-between mt-[-25px]'>
                                                 <h2 className="text-2xl text-orange-500">{food?.name}</h2>
         
                                                 <p style={{
@@ -325,7 +326,7 @@ const FoodProduct = () => {
                                                     overflowY: 'scroll',
                                                     msOverflowStyle: 'none',
                                                     scrollbarWidth: 'none'
-                                                }} className='h-28'> <span className='flex items-center justify-center'>{food?.description}</span></p>
+                                                }} className='mb-2 h-28'> <span className='flex items-center justify-center'>{food?.description}</span></p>
                                                 
                                                 <label style={{
                                                     backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
@@ -462,16 +463,7 @@ const FoodProduct = () => {
                                         }} htmlFor="my-modal-5" className="w-32 border-0 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
                                         </label>
 
-                                        <label style={{
-                                            // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
-                                            // backgroundSize: "100%",
-                                            // backgroundRepeat: "repeat",
-
-                                            backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
-                                            backgroundSize: "100%",
-                                            backgroundRepeat: "repeat",
-                                        }} htmlFor="my-modal-5" className="w-32 border-0 btn"> <span className='text-xl text-red-600 normal-case'>Close</span>
-                                        </label>
+                                        
                                         </div>
                                         
 

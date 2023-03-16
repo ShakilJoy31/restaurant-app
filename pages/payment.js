@@ -5,11 +5,10 @@ import FoodProduct from '../components/FoodProduct';
 import { TypeAnimation } from 'react-type-animation'
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
 import { loadStripe } from '@stripe/stripe-js';
-// import { Elements } from '@stripe/react-stripe-js';
-// import CheckoutForm from './CheckoutForm';
-// const stripePromise = pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL
-
+import { Elements } from '@stripe/react-stripe-js';
+import CheckoutForm from './CheckoutForm';
 const stripePromise = loadStripe('pk_test_51L183oGvk3EOuY0mCvwv4Q99sX08KsLiOHlvQU09QRHe0UGqRZpUBRNMoCD6xirbdwHZnfHHvYmr2II8zPMqq28t00AAseWdFL');
+
 
 const Payment = () => {
     const { product, setProduct } = OrderFoodStore.useContainer();
@@ -27,7 +26,6 @@ const Payment = () => {
             setAmountToPay(totalPrice); 
         }
     }, [])
-    console.log(product);
     return (
         <div style={{
             backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
@@ -37,15 +35,14 @@ const Payment = () => {
             <div>
                 <h1 className='flex justify-center text-5xl text-error'>Payment Section</h1>
                 <div className="min-h-screen hero">
+                    <div className="flex-col hero-content lg:flex-row-reverse gap-x-16">
 
-                    <div className="flex-col hero-content lg:flex-row-reverse gap-x-6">
-
-                        {/* <img src="https://placeimg.com/260/400/arch" className="max-w-sm rounded-lg shadow-2xl" /> */}
-
-                        <div>
+                        <div className='ml-6'>
                             <div className="shadow-xl card w-96 bg-base-100">
                                 <div className="card-body">
-                                    <h1>Payment will be done here.</h1>
+                                <Elements stripe={stripePromise}>
+                                        <CheckoutForm amountToPay={amountToPay}/>
+                                </Elements>
                                 </div>
                             </div>
                         </div>
@@ -57,8 +54,6 @@ const Payment = () => {
                                     "You're going to pay.",
                                     1000,
                                     'You are going to eat.',
-                                    500,
-                                    'You are going to be satisfied',
                                     1000,
                                     () => {
                                     }

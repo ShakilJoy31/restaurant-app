@@ -91,25 +91,15 @@ const Navbar = ({ setColor }) => {
                             !foodName ? <span style={{
                                 position: 'absolute',
                                 top: '29px',
-                                marginLeft:'10px'
+                                marginLeft: '10px'
                             }}><BsSearch></BsSearch></span> : <span style={{
                                 position: 'absolute',
                                 top: '29px',
-                                marginLeft:'10px'
+                                marginLeft: '10px'
                             }}><BsSearch color={'#1F8A70'}></BsSearch></span>
                         }
                     </div>
 
-
-                    {/* <div className="form-control">
-                        <span className="">
-                            <span style={{
-                                position: 'absolute',
-                                top: '29px'
-                            }}><BsSearch></BsSearch></span>
-                        </span>
-                        <input type="text" placeholder="Search here" className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-48" />
-                    </div> */}
 
                     <div className="dropdown dropdown-end mr-[10px] lg:mr-[0px] md:mr-[0px]">
                         <label tabIndex={0} className=" avatar">
