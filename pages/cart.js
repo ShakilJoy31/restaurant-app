@@ -28,7 +28,7 @@ const Cart = () => {
     
     return (
         <div className='mx-12'>
-            <h1 className='flex justify-center mb-8 text-4xl font-bold'>Food, you have added to the cart</h1>
+            <h1 className='flex justify-center py-6 text-4xl font-bold'>Food, you have added to the cart</h1>
             <div>
                 {
                     product?.length > 0 ? <div className="w-full overflow-x-auto">
@@ -130,7 +130,7 @@ const Cart = () => {
                         </label>
                     </div>
                 }
-                <h1 className='flex justify-center my-4 text-4xl font-bold lg:my-12 md:my-8'>Payment Sumery</h1>
+                <h1 className='flex justify-center py-4 text-4xl font-bold lg:py-6 md:py-6'>Payment Sumery</h1>
                 <CalculationCart product={product}></CalculationCart>
             </div>
         </div>

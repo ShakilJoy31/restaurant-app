@@ -32,14 +32,14 @@ const MyReservation = () => {
         setReservations(remainingReservation);
     }
     return (
-        <div>
-            <h1 className='flex justify-center text-5xl'>Your Reservations</h1>
+        <div className='min-h-screen'>
+            <h1 className='flex justify-center pt-6 text-5xl'>Your Reservations</h1>
             <div className='flex justify-center'>
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
                     {
                         reservations.map((reservation, index) => <div key={index} className='p-4 border-0'>
                             <div style={{
-                                backgroundColor: '#247f9e',
+                                backgroundColor: '#19A7CE',
                                 borderRadius: '5px',
                                 width: '600px'
                             }}>

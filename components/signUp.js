@@ -6,6 +6,8 @@ import { addUser } from "../lib/healper";
 import { getUser } from './../lib/healper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FoodProductStyle from './FoodProductStyle.module.css'; 
+import Spinner from "./Spinner";
 
 const SignUp = ({ setSignUpModal }) => {
     // All states
@@ -63,30 +65,31 @@ const SignUp = ({ setSignUpModal }) => {
     return (
         <div>
             <div>
-                <h1 className="flex justify-center text-4xl text-accent">Sign up here</h1>
+                <h1 className="flex justify-center text-4xl text-white">Sign up here</h1>
                 <div className="flex justify-center mt-6">
                     <div>
                         <div className='mb-8'>
-                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Type your name here' className="max-w-xs border w-80 input focus:outline-none border-accent" />
+                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Type your name here' className="bg-black border-0 w-96 input focus:outline-none" />
                             <br />
-                            <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder='Type your Phone number' className="max-w-xs my-6 border w-80 input focus:outline-none border-accent" />
+                            <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder='Type your Phone number' className="my-6 bg-black border-0 w-96 input focus:outline-none" />
                             <br />
-                            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Type your email here' className="max-w-xs border w-80 input focus:outline-none border-accent" required />
+                            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Type your email here' className="bg-black border-0 w-96 input focus:outline-none" required />
                             <br />
-                            <div className="flex items-center justify-center my-6 border rounded-lg gap-x-2 border-accent">
-                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your password' className="w-64 max-w-xs mr-6 input focus:outline-none " />
+                            <div className="flex items-center justify-between my-6 bg-black border-0 rounded-lg">
+
+                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your passwor' className="mr-4 bg-black border-0 w-72 input focus:outline-none" />
                                 {
-                                    isPasswordVasible ? <span onClick={() => setIsPasswordVasible(!isPasswordVasible)} className="pr-2"><AiFillEyeInvisible size={25}></AiFillEyeInvisible></span> : <span onClick={() => setIsPasswordVasible(!isPasswordVasible)} className="pr-2"><AiFillEye size={25}></AiFillEye></span>
+                                    isPasswordVasible ? <span onClick={() => setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEyeInvisible size={25}></AiFillEyeInvisible></span> : <span onClick={() => setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEye size={25}></AiFillEye></span>
                                 }
                             </div>
 
-                            {/* <input onChange={(e) => setImage(URL.createObjectURL(e?.target?.files[0]))} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" /> */}
+                            {/* <input onChange={(e) => setImage(URL.createObjectURL(e?.target?.files[0]))} type="file" className=" w-96 file-input file-input-accent focus:outline-none" /> */}
 
-                            <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="max-w-xs w-80 file-input file-input-accent focus:outline-none" />
+                            <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="bg-black w-96 file-input file-input-error focus:outline-none " />
                         </div>
 
                         {
-                            !loading ? <button onClick={handleSignInButton} className="block w-48 mx-auto btn btn-outline btn-accent">Sign up</button> : <button className="block w-48 mx-auto btn btn-outline btn-accent">Signing up...</button>
+                            !loading ? <button onClick={handleSignInButton} className={`block w-full mx-auto text-xl normal-case border-0 btn ${FoodProductStyle.confirmOrder} mb-4`}>Sign up</button> : <Spinner></Spinner>
                         }
 
 

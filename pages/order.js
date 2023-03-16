@@ -30,7 +30,7 @@ const Order = () => {
             backgroundRepeat: "repeat"
         }} className=''>
             <div>
-                <h1 className='flex justify-center py-4 text-5xl text-error'>Food Order Section</h1>
+                <h1 className='flex justify-center py-4 text-5xl text-white'>Food Order Section</h1>
                 <div className="flex justify-center py-4">
                     <div className="flex-col hero-content lg:flex-row-reverse gap-x-16">
                         <div className='ml-6'>
@@ -45,7 +45,9 @@ const Order = () => {
                                     1000,
                                     "We'll handle the rest.",
                                     1000,
-                                    'Enjoy the food! Good luck...',
+                                    'Enjoy the food!',
+                                    1000,
+                                    'Thank you...',
                                     1000,
                                     () => {
                                     }

@@ -5,6 +5,8 @@ import { getUser } from "../lib/healper";
 import { UserStore } from "../userStore";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import FoodProductStyle from '../components/FoodProductStyle.module.css'; 
+import Spinner from "./Spinner";
 
 const Login = ({setLogin}) => {
     const [email, setEmail] = useState(''); 
@@ -12,11 +14,13 @@ const Login = ({setLogin}) => {
     const [isPasswordVasible, setIsPasswordVasible] = useState(true); 
     const [loggedInUser, setLoggedInUser] = useState([]);
     const { user, setUser } = UserStore.useContainer();
+    const [loading, setLoading] = useState(false);
 
     useEffect(()=>{
         getUser().then(res => setLoggedInUser(res));
     },[])
     const handleLoginButton = () =>{
+        setLoading(true); 
         const foundDatabaseUser = loggedInUser.find(matchedGmail => matchedGmail?.email === email && matchedGmail?.password === password);
         console.log(foundDatabaseUser); 
         if(foundDatabaseUser){
@@ -34,21 +38,25 @@ const Login = ({setLogin}) => {
     }
     return (
         <div>
-            <h1 className="flex justify-center text-4xl text-accent">Login here</h1>
+            <h1 className="flex justify-center text-4xl text-white">Login here</h1>
             <div className="flex justify-center mt-12">
                 <div>
                     <div className='gap-8 mb-8'>
-                        <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Type your email here' className="max-w-xs border w-80 input focus:outline-none border-accent" required />
+
+                        <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Type your email here' className="bg-black border-0 w-96 input focus:outline-none" required />
                         <br />
-                        <div className="flex items-center justify-center my-6 border rounded-lg gap-x-2 border-accent">
-                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your password' className="w-64 max-w-xs mr-6 input focus:outline-none " />
+
+                        <div className="flex items-center justify-between my-10 bg-black border-0 rounded-lg">
+                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your password' className="mr-4 bg-black border-0 w-72 input focus:outline-none" />
                                 {
-                                    isPasswordVasible ? <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="pr-2"><AiFillEyeInvisible size={25}></AiFillEyeInvisible></span> : <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="pr-2"><AiFillEye size={25}></AiFillEye></span>
+                                    isPasswordVasible ? <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEyeInvisible size={25}></AiFillEyeInvisible></span> : <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEye size={25}></AiFillEye></span>
                                 }
-                            </div>
+                        </div>
                     </div>
 
-                    <button onClick={handleLoginButton} className="block w-48 mx-auto mb-8 btn btn-outline btn-accent">Log in</button>
+                    {
+                        !loading ? <button onClick={handleLoginButton} className={`block w-full mx-auto text-xl normal-case border-0 btn ${FoodProductStyle.confirmOrder} mb-4`}>Log in</button> : <div onClick={()=>setLoading(false)}><Spinner></Spinner></div>
+                    }
                     
                 </div>
             </div>

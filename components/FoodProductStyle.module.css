@@ -19,6 +19,11 @@
     transition-duration: 200ms;
 }
 
+.logOut:hover{
+    box-shadow: 2px 2px 15px 5px red;
+    transition-duration: 200ms;
+}
+
 .selectionCart {
     /* background-image: linear-gradient(45deg, #A75D5D, #0081B4); */
     /* background-image: linear-gradient(45deg, white, blue); */
@@ -76,6 +81,11 @@
     background-color: black;
     background-size: 100%;
     background-repeat: repeat;
+}
+
+.overWriteSpinner{
+    width: 20px !important;
+    height: 20px !important;
 }
 
 

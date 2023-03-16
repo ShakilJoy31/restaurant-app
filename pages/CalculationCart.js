@@ -5,6 +5,7 @@ import movingPara from './CalculationCart.module.css'
 import { useRouter } from 'next/router';
 import { TbCurrencyTaka } from 'react-icons/tb';
 import { OrderFoodStore } from '../userStore';
+
 const CalculationCart = ({ product }) => {
     let [totalFoodPrice, setTotalFoodPrice] = useState(0);
     let [allName, setAllName] = useState([]);
@@ -28,7 +29,7 @@ const CalculationCart = ({ product }) => {
 
     return (
         <div>
-            <div className="mb-2 overflow-x-auto">
+            <div className="pb-4 overflow-x-auto">
                 <table style={{
                     transitionDuration: '300ms'
                 }} className="table w-full">

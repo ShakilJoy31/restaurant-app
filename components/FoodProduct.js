@@ -181,20 +181,12 @@ const FoodProduct = () => {
     }
     return (
         <div>
-            <div className='mb-8'>
+            <div className='pb-6'>
                 <LoggedUserHome></LoggedUserHome>
             </div>
 
             <div id='#availableFood'>
-                <h1 style={{
-                    backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
-                    backgroundSize: "100%",
-                    backgroundRepeat: "repeat",
-                    webkitBackgroundClip: "text",
-                    webkitTextFillColor: "transparent",
-                    mozBackgroundClip: "text",
-                    mozTextFillColor: "transparent"
-                }} className='flex justify-center text-5xl'>Available Food</h1>
+                <h1 className='flex justify-center text-5xl text-white'>Available Food</h1>
                 {/* Selection section */}
 
 
@@ -442,7 +434,12 @@ const FoodProduct = () => {
                                                             webkitTextFillColor: "transparent",
                                                             mozBackgroundClip: "text",
                                                             mozTextFillColor: "transparent"
-                                                        }} className="text-xl cursor-pointer label-text-alt">Thank You</span> : <span onClick={() => handleSubmitFeedBack(isRecipeModal[3])} className="text-2xl text-red-500 cursor-pointer label-text-alt hover:text-accent">{feedBack ? 'Submit' : ''}</span>
+                                                        }} className="text-xl cursor-pointer label-text-alt">Thank You</span> : 
+                                                        <label htmlFor="my-modal-5">
+                                                            <span onClick={() => handleSubmitFeedBack(isRecipeModal[3])} className="text-2xl text-red-500 cursor-pointer label-text-alt hover:text-accent">
+                                                        {feedBack ? 'Submit' : ''}
+                                                        </span>
+                                                        </label>
                                                     }
                                                 </label>
 

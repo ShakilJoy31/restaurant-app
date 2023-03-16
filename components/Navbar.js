@@ -10,6 +10,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { AiFillCheckCircle } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import FoodProductStyle from '../components/FoodProductStyle.module.css';
 
 
 const Navbar = ({ setColor }) => {
@@ -51,7 +52,7 @@ const Navbar = ({ setColor }) => {
     return (
         <div>
             <div style={{
-                backgroundImage: `url('https://m.media-amazon.com/images/I/71O4eYqjYjL._SL1500_.jpg')`,
+                backgroundImage: `url('https://www.teahub.io/photos/full/171-1719159_food-hd-blurred-background.jpg')`,
                 backgroundRepeat: 'repeat',
                 backgroundSize: 'cover',
             }} className="navbar">
@@ -86,7 +87,7 @@ const Navbar = ({ setColor }) => {
                     }
 
                     <div className='form-control'>
-                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type='text' placeholder='Search here' className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-52 pl-8" />
+                        <input onChange={(e) => handleUserNavbarInput(e.target.value)} type='text' placeholder='Search food' className="mr-[10px] lg:mr-[0px] md:mr-[0px] focus:outline-none input lg:w-full w-52 pl-8" />
                         {
                             !foodName ? <span style={{
                                 position: 'absolute',
@@ -135,7 +136,7 @@ const Navbar = ({ setColor }) => {
 
                             <label onClick={() => {
                                 setLogoutModal(true)
-                            }} htmlFor="my-modal-6" className="">
+                            }} htmlFor="logOutModal" className="">
                                 <li><a className="flex items-end justify-between">
                                     <span>Logout</span>
                                     <RiLogoutCircleRLine size={20} color={'red'}></RiLogoutCircleRLine>
@@ -152,7 +153,11 @@ const Navbar = ({ setColor }) => {
                 logIn && <div>
                     <input type="checkbox" id="my-modal-3" className="modal-toggle" />
                     <div className="modal">
-                        <div className="relative modal-box">
+                        <div style={{
+                                backgroundColor: '#19A7CE',
+                                borderRadius: '5px',
+                                width: '650px'
+                            }} className="relative modal-box">
                             <label htmlFor="my-modal-3" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <Login setLogin={setLogin}></Login>
                         </div>
@@ -166,7 +171,11 @@ const Navbar = ({ setColor }) => {
                 signUpModal && <div>
                     <input type="checkbox" id="my-modal-4" className="modal-toggle" />
                     <div className="modal">
-                        <div className="relative modal-box">
+                        <div style={{
+                                backgroundColor: '#19A7CE',
+                                borderRadius: '5px',
+                                width: '650px'
+                            }} className="relative modal-box">
                             <label htmlFor="my-modal-4" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <SignUp setSignUpModal={setSignUpModal}></SignUp>
                         </div>
@@ -178,30 +187,48 @@ const Navbar = ({ setColor }) => {
             {/* Log out modal */}
             {
                 logoutModal && <div>
-                    <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-                    <label htmlFor="my-modal-4" className="cursor-pointer modal">
+                    <input type="checkbox" id="logOutModal" className="modal-toggle" />
+                    <label htmlFor="logOutModal" className="cursor-pointer modal">
                         <label className="relative modal-box" htmlFor="">
-                            <h3 style={{
-                                backgroundImage: "linear-gradient(45deg, #FEA1BF, #BFEAF5)",
-                                backgroundSize: "100%",
-                                backgroundRepeat: "repeat",
-                                webkitBackgroundClip: "text",
-                                webkitTextFillColor: "transparent",
-                                mozBackgroundClip: "text",
-                                mozTextFillColor: "transparent"
-                            }} className="flex justify-center mb-6 text-3xl font-bold">Are you sure to log out?</h3>
-                            <div className='flex justify-center gap-x-8'>
-                                <button
+                            <h3 className="flex justify-center py-4 text-3xl text-red-300">Are you sure to log out?</h3>
+
+                            <div className='flex justify-end gap-x-6'>
+
+                                <label htmlFor="logOutModal" style={{
+                                    backgroundImage: "linear-gradient(45deg ,#FEA1BF, #BFEAF5)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} btn-sm border-0 text-xl text-black mt-2 w-32`}>No
+                                </label>
+
+                                {/* <button
                                     onClick={() => setLogoutModal(false)}
-                                    className='btn btn-success btn-outline w-[140px]'>No</button>
-                                <button onClick={() => {
+                                    className='btn btn-success btn-outline w-[140px]'>No
+                                </button> */}
+
+                                <label onClick={() => {
+                                    localStorage.removeItem('user')
+                                    localStorage.removeItem('food')
+                                    setUserPhoto('');
+                                    setUser(null)
+                                    router.push('/')
+                                    
+                                }} htmlFor="logOutModal" style={{
+                                    backgroundImage: "linear-gradient(45deg ,green ,white)",
+                                    backgroundSize: "100%",
+                                    backgroundRepeat: "repeat",
+                                }} className={`normal-case btn ${FoodProductStyle.logOut} btn-sm border-0 text-xl text-black mt-2 w-32`}>Yes
+                                </label>
+
+                                {/* <button onClick={() => {
                                     localStorage.removeItem('user')
                                     localStorage.removeItem('food')
                                     setUserPhoto('');
                                     setUser(null)
                                     router.push('/')
                                     setLogoutModal(false)
-                                }} className='w-[140px] btn btn-error btn-outline'>Yes</button>
+                                }} className='w-[140px] btn btn-error btn-outline'>Yes</button> */}
+                                
                             </div>
                         </label>
                     </label>
