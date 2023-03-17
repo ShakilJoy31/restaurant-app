@@ -82,7 +82,7 @@ const Navbar = ({ setColor }) => {
                     }
 
                     {
-                        userPhoto && <div onClick={() => setSignUpModal(true)}>
+                        !userPhoto && <div onClick={() => setSignUpModal(true)}>
                             <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block hover:text-red-500">Sign up</label>
                         </div>
                     }
