@@ -23,7 +23,7 @@ const StartingPage = () => {
                 <label htmlFor="getStartedBySignUp" style={{
                     position: 'absolute',
                     top: '50%' 
-                }} onClick={handleGetStartedButton} className="text-xl text-black normal-case bg-white border-0 btn btn-error hover:text-white hover:bg-black ">Get Started with signing in<span className='ml-2'><ImSwitch size={30} color={'red'}></ImSwitch></span></label>
+                }} onClick={handleGetStartedButton} className="text-xl text-black normal-case bg-white border-0 btn btn-error hover:text-white hover:bg-black ">Get Started with signing up<span className='ml-2'><ImSwitch size={30} color={'red'}></ImSwitch></span></label>
 
             </div>
 

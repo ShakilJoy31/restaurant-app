@@ -8,8 +8,9 @@ import { UserFoodSearch, UserStore } from "../userStore";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AiFillCheckCircle } from "react-icons/ai";
+import { AiFillCheckCircle, AiFillSetting } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import { CgProfile } from "react-icons/cg";
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
 
 
@@ -81,7 +82,7 @@ const Navbar = ({ setColor }) => {
                     }
 
                     {
-                        !userPhoto && <div onClick={() => setSignUpModal(true)}>
+                        userPhoto && <div onClick={() => setSignUpModal(true)}>
                             <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block hover:text-red-500">Sign up</label>
                         </div>
                     }
@@ -107,12 +108,15 @@ const Navbar = ({ setColor }) => {
                             {
                                 userPhoto ? <div className="w-10 rounded-full">
                                     <img src={userPhoto} />
-                                </div> : <div className="w-10 rounded-full btn btn-circle">
-                                    <img src={user ? user?.photo : 'https://placeimg.com/80/80/people'} />
+                                </div> : <div className="w-10 rounded-full">
+                                    <img src={user ? user?.photo : 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTPyGNr2qL63Sfugk2Z1-KBEwMGOfycBribew&usqp=CAU'} />
                                 </div>
                             }
                         </label>
-                        <ul tabIndex={0} className="p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <ul style={{
+                                backgroundColor: '#19A7CE',
+                                borderRadius: '5px'
+                            }} tabIndex={0} className="w-64 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box">
 
                             <li>
                                 <Link className="block text-xl lg:hidden md:hidden" href='/reservation'>Reservation</Link>
@@ -124,20 +128,22 @@ const Navbar = ({ setColor }) => {
                                 }
                             </li>
 
-                            <li>
+                            {/* <li>
                                 <Link className="block text-xl lg:hidden md:hidden" href='/feedback'>Feedback</Link>
-                            </li>
+                            </li> */}
+
                             <li>
-                                <Link className="justify-between" href='/myProfile'>My Profile</Link>
+                                <Link className="justify-between text-white hover:bg-white hover:text-black" href='/myProfile'>My Profile <span><CgProfile  size={20} color={'black'}></CgProfile></span></Link>
                             </li>
 
-                            <li onClick={() => setSettingsModal(true)}><label htmlFor="settingsModal"><a>Settings</a></label></li>
+                            <li className="text-white rounded-lg hover:bg-white hover:text-black" onClick={() => setSettingsModal(true)}><label className="flex items-center justify-between" htmlFor="settingsModal"><a>Settings</a> <span><AiFillSetting size={20} color={'black'}></AiFillSetting></span></label> 
+                            </li>
 
 
                             <label onClick={() => {
                                 setLogoutModal(true)
                             }} htmlFor="logOutModal" className="">
-                                <li><a className="flex items-end justify-between">
+                                <li><a className="flex items-end justify-between text-white hover:bg-white hover:text-black">
                                     <span>Logout</span>
                                     <RiLogoutCircleRLine size={20} color={'red'}></RiLogoutCircleRLine>
                                 </a></li>
