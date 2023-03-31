@@ -12,11 +12,11 @@ const Footer = () => {
                         fontSize: "22px",
                         lineHeight: "41px",
                         color: "Black"
-                    }} class="footer-heading block mb-[20px]">Office Address</span>
-                    <p class="link link-hover lg:ml-20 md:ml-20 text-black">Level-4, 34, Awal Centre, Banani, Dhaka</p>
-                    <p class="link link-hover lg:ml-20 md:ml-20 text-black">Support: Web@Programming-Hero.Com</p>
-                    <p class="link link-hover lg:ml-20 md:ml-20 text-black">Helpline: 01322810867, 01322810873 <br />
-                    (Available: 9:00am To 10:00pm)</p>
+                    }} class=" block mb-[20px]">Our Address</span>
+                    <p class="link link-hover  text-black">Level-4, 34, Awal Centre, Banani, Dhaka</p>
+                    <p class="link link-hover  text-black">Support: omrrito.restaurant@gmail.com</p>
+                    <p class="link link-hover  text-black">Helpline: +8801761043883, +8801521712092 <br />
+                    (Available: 6:00am To 12:00pm)</p>
                 </div>
 
                 {/* Useful Links */}
@@ -27,16 +27,13 @@ const Footer = () => {
                         fontSize: "22px",
                         lineHeight: "41px",
                         color: "Black"
-                    }} class="footer-heading mb-[20px]">Useful Links</span>
-                    <a class="link link-hover lg:ml-20 md:ml-20 text-black">Home</a>
-
-                    <Link href='/' class="link link-hover lg:ml-20 md:ml-20 text-black">Available Food</Link>
-
-                    <a class="link link-hover flex justify-center items-center lg:ml-20 md:ml-20 text-black">
-                        <p className=''>Upcoming Next...</p>
+                    }} class=" mb-[20px]">Useful Links</span>
+                    <a class="link link-hover  text-black">Home</a>
+                    <Link href='/' class="link link-hover  text-black">Available Food</Link>
+                    <a class="link link-hover flex justify-center items-center  text-black">
+                        <p className=''>Reservations</p>
                     </a>
-
-                    <a class="link link-hover lg:ml-20 md:ml-20 text-black">About Us</a>
+                    <a class="link link-hover  text-black">About Us</a>
                 </div>
 
                 {/* ml-2 md:ml-10 lg:ml-2 */}
@@ -47,8 +44,8 @@ const Footer = () => {
                         fontSize: "22px",
                         lineHeight: "41px",
                         color: "Black"
-                    }} class="footer-heading mb-[20px]">Follow Us</span>
-                    <div className='lg:ml-20 md:ml-20'>
+                    }} class=" mb-[20px]">Follow Us</span>
+                    <div className=''>
                         <div className='flex gap-x-8'>
                             
                             <Link href='https://www.facebook.com/shakil.ahammedjoy.39/' class="link link-hover flex justify-center items-center text-black">

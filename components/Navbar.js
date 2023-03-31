@@ -207,11 +207,6 @@ const Navbar = ({ setColor }) => {
                                 }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} btn-sm border-0 text-xl text-black mt-2 w-32`}>No
                                 </label>
 
-                                {/* <button
-                                    onClick={() => setLogoutModal(false)}
-                                    className='btn btn-success btn-outline w-[140px]'>No
-                                </button> */}
-
                                 <label onClick={() => {
                                     localStorage.removeItem('user')
                                     localStorage.removeItem('food')
@@ -225,15 +220,6 @@ const Navbar = ({ setColor }) => {
                                     backgroundRepeat: "repeat",
                                 }} className={`normal-case btn ${FoodProductStyle.logOut} btn-sm border-0 text-xl text-black mt-2 w-32`}>Yes
                                 </label>
-
-                                {/* <button onClick={() => {
-                                    localStorage.removeItem('user')
-                                    localStorage.removeItem('food')
-                                    setUserPhoto('');
-                                    setUser(null)
-                                    router.push('/')
-                                    setLogoutModal(false)
-                                }} className='w-[140px] btn btn-error btn-outline'>Yes</button> */}
                                 
                             </div>
                         </label>
