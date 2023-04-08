@@ -91,7 +91,7 @@ const Order = () => {
                                 product?.length == 1 &&
                                 <div>
                                     <div className={`h-48 shadow-2xl w-48 ${FoodProductStyle.paymentAbleFood}`}>
-                                        <figure><img className="w-full h-[160px]" src={product[0].photo} alt="Shoes" /></figure>
+                                        <figure><img className="w-full h-[160px]" src={product[0].photo} alt="" /></figure>
                                         <div>
                                             <div className="">
                                                 <div className="flex items-center justify-center">
