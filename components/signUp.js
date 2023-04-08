@@ -72,11 +72,11 @@ const SignUp = ({ setSignUpModal }) => {
                 <div className="flex justify-center mt-6">
                     <div>
                         <div className='mb-8'>
-                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Type your name here' className="w-[300px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" />
+                            <input onChange={(e) => setName(e.target.value)} type="text" placeholder='Type your name here' className="w-[290px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" />
                             <br />
-                            <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder='Type your Phone number' className="w-[300px] my-6 bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" />
+                            <input onChange={(e) => setPhone(e.target.value)} type="number" placeholder='Type your Phone number' className="w-[290px] my-6 bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" />
                             <br />
-                            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Type your email here' className="w-[300px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" required />
+                            <input onChange={(e) => setEmail(e.target.value)} type="email" placeholder='Type your email here' className="w-[290px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" required />
                             <br />
                             <div className="flex items-center justify-between my-6 bg-black border-0 rounded-lg">
 
@@ -88,7 +88,7 @@ const SignUp = ({ setSignUpModal }) => {
 
                             {/* <input onChange={(e) => setImage(URL.createObjectURL(e?.target?.files[0]))} type="file" className="w-64 lg:w-96 md:w-96 file-input file-input-accent focus:outline-none" /> */}
 
-                            <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="w-[300px] bg-black lg:w-96 md:w-96 file-input file-input-error focus:outline-none " />
+                            <input onChange={(e) => setImage(e?.target?.files[0])} type="file" className="w-[290px] bg-black lg:w-96 md:w-96 file-input file-input-error focus:outline-none " />
                         </div>
 
                         {

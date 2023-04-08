@@ -34,7 +34,7 @@ const StartingPage = () => {
                         <div style={{
                                 backgroundColor: '#19A7CE',
                                 borderRadius: '5px'
-                            }} className="relative modal-box lg:w-[650px] md:w-[650px] w-[320px]">
+                            }} className="relative modal-box lg:w-[650px] md:w-[650px] w-[300px]">
                             <label htmlFor="getStartedBySignUp" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <SignUp setSignUpModal={setSignUpModal}></SignUp>
                         </div>
