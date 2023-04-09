@@ -86,7 +86,7 @@ const Reservation = () => {
 
                 <input onChange={(e) => setDate(e.target.value)} style={{
                     borderRight: '1px solid red'
-                }} className='w-[300px] p-2 text-black bg-white lg:max-w-xs md:max-w-xs hover:bg-black hover:text-white' type="date" name="" id="" />
+                }} className='w-[300px] p-2 text-red-600 bg-black lg:max-w-xs md:max-w-xs hover:bg-black hover:text-white' type="date" name="" id="" />
 
                 <select onChange={(e) => setTime(e.target.value)} style={{
                     borderRight: '1px solid red',
@@ -137,7 +137,7 @@ const Reservation = () => {
             </div>
 
             {
-                registerUser ? <button onClick={()=>router.push('/myReservation')} style={{
+                registerUser ? <button onClick={() => router.push('/myReservation')} style={{
                     backgroundImage: "linear-gradient(45deg ,#FEA1BF, #BFEAF5)",
                     backgroundSize: "100%",
                     backgroundRepeat: "repeat",
@@ -150,110 +150,74 @@ const Reservation = () => {
                     <input type="checkbox" id="reservation-modal" className="modal-toggle" />
                     <label className="cursor-pointer modal">
                         {
-                            modalAfterConfirmation ? <ReservationSuccess setModalAfterConfirmation={setModalAfterConfirmation} registerUser={registerUser} people={people} date={date} time={time}></ReservationSuccess> : <label style={{
-                                backgroundColor: '#247f9e'
-                            }} className="relative w-11/12 max-w-5xl modal-box">
-                                <label htmlFor="reservation-modal" className="absolute text-white bg-red-700 border-0 btn btn-sm btn-circle right-2 top-2">✕</label>
-                                <h3 className="flex justify-center text-4xl font-bold text-black">Reservation at Ommrito Restaurant</h3>
+                            modalAfterConfirmation ?
+                                <div>
 
-                                <div className='flex justify-between mt-4'>
+                                    <ReservationSuccess setModalAfterConfirmation={setModalAfterConfirmation} registerUser={registerUser} people={people} date={date} time={time} ></ReservationSuccess>
 
-                                    <div className='mt-4 '>
-                                        <input onChange={(e) => (e.target.value) ? setName(e.target.value) : setName(registerUser?.name)} type='text' placeholder={registerUser?.name ? registerUser?.name + ' (Changeable)' : 'Type Your Name'} className="w-full max-w-md text-white bg-black focus:outline-none input " required />
-                                        <br />
-
-                                        <input onChange={(e) => (e.target.value) ? setEmail(e.target.value) : setEmail(registerUser?.email)} type='email' placeholder={registerUser?.email ? registerUser?.email + ' (Changeable)' : 'Type Your Email'} className="w-full max-w-md my-4 text-white bg-black focus:outline-none input" required />
-                                        <br />
-
-                                        <input onChange={(e) => (e.target.value) ? setPhone(e.target.value) : setPhone(registerUser?.phone)} type='number' placeholder={registerUser?.phone ? registerUser?.phone + ' (Changeable)' : 'Type Your Phone Number'} className="w-full max-w-md text-white bg-black focus:outline-none input " />
-                                        <br />
-
-                                        <select onChange={(e) => setOccasion(e.target.value)} className="w-full max-w-md my-4 text-white bg-black focus:outline-none select ">
-                                            <option disabled selected> Select Occasion (Optional)</option>
-                                            <option>None</option>
-                                            <option>Birthday</option>
-                                            <option>Anniversary</option>
-                                            <option>Date</option>
-                                            <option>Special Occasion</option>
-                                            <option>Business mill</option>
-                                        </select>
-
-                                        {/* <textarea className="w-full rounded-md focus:outline-none" placeholder='Add Special Request (Optional)'></textarea> */}
-
-                                        <textarea onChange={(e) => setUserRequest(e.target.value)} placeholder="Add Special Request (Optional)" className="w-full max-w-md text-white bg-black focus:outline-none textarea" ></textarea>
-
-                                        <div className="my-2 form-control">
-                                            <label className="flex items-center cursor-pointer gap-x-4">
-                                                <input onChange={(e) => setReminder(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
-                                                <span className="text-white cursor-pointer hover:underline label-text">Yes, I want to get text updates and reminders <br /> about my reservation</span>
-                                            </label>
-                                        </div>
-
-                                        <div className="form-control">
-                                            <label className="flex items-center cursor-pointer gap-x-4">
-                                                <input onChange={(e) => setDining(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
-                                                <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from this restaurant by email.</span>
-                                            </label>
-                                        </div>
-
-                                        <div className="my-2 form-control">
-                                            <label className="flex items-center cursor-pointer gap-x-4">
-                                                <input onChange={(e) => setTable(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
-                                                <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from OpenTable by email.</span>
-                                            </label>
-                                        </div>
-
-                                    </div>
-
-                                    <div>
-                                        <h1 className='mb-4 text-2xl'>Omrrito Restaurant</h1>
-                                        <div style={{
-                                            borderBottom: '1px solid aliceblue',
-                                            paddingBottom: '10px'
-                                        }}>
-                                            <div>
-                                                <p className='flex items-center gap-x-4'>
-                                                    <span><BsCalendar2DateFill size={25}></BsCalendar2DateFill></span>
-                                                    <span className='text-xl'>{date}</span>
-                                                </p>
-                                            </div>
+                                </div> : <label style={{
+                                    backgroundColor: '#247f9e',
+                                    borderRadius: '5px'
+                                }} className="relative w-11/12 max-w-5xl modal-box">
+                                    <label htmlFor="reservation-modal" className="absolute text-white bg-red-700 border-0 btn btn-sm btn-circle right-2 top-2">✕</label>
 
 
-                                            <div className='my-2'>
+                                    <h3 className="flex justify-center text-3xl text-black lg:text-4xl lg:font-bold md:font-bold">Reservation at Ommrito Restaurant</h3>
+
+                                    <div className='justify-between mt-4 lg:flex lg:flex-row-reverse md:flex-row-reverse'>
+
+                                        <div>
+                                            <h1 className='mb-4 text-2xl'>Omrrito Restaurant</h1>
+                                            <div style={{
+                                                borderBottom: '1px solid aliceblue',
+                                                paddingBottom: '10px'
+                                            }}>
                                                 <div>
                                                     <p className='flex items-center gap-x-4'>
-                                                        <span><BsClockFill size={25}></BsClockFill></span>
-                                                        <span className='text-xl'>{time}</span>
+                                                        <span><BsCalendar2DateFill size={25}></BsCalendar2DateFill></span>
+                                                        <span className='text-xl'>{date}</span>
                                                     </p>
                                                 </div>
-                                            </div>
 
 
-                                            <div>
+                                                <div className='my-2'>
+                                                    <div>
+                                                        <p className='flex items-center gap-x-4'>
+                                                            <span><BsClockFill size={25}></BsClockFill></span>
+                                                            <span className='text-xl'>{time}</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
+
                                                 <div>
-                                                    <p className='flex items-center gap-x-4'>
-                                                        <span><FaUserAlt size={25}></FaUserAlt></span>
-                                                        <span className='text-xl'>{people}</span>
-                                                    </p>
+                                                    <div>
+                                                        <p className='flex items-center gap-x-4'>
+                                                            <span><FaUserAlt size={25}></FaUserAlt></span>
+                                                            <span className='text-xl'>{people}</span>
+                                                        </p>
+                                                    </div>
                                                 </div>
+
+
+                                                <div className='my-2'>
+                                                    <div>
+                                                        <p className='flex items-center gap-x-4'>
+                                                            <span><ImLocation size={30}></ImLocation></span>
+                                                            <span className='text-xl'>2620 Regatta Dr, Ste 118 Las Vegas, NV, 89128</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+
                                             </div>
 
+                                            <div className='w-96'>
+                                                <p className='mt-2 text-2xl'>What to know before you go</p>
+                                                <p className='my-2 text-xl'>A note from the restaurant</p>
 
-                                            <div className='my-2'>
-                                                <div>
-                                                    <p className='flex items-center gap-x-4'>
-                                                        <span><ImLocation size={30}></ImLocation></span>
-                                                        <span className='text-xl'>2620 Regatta Dr, Ste 118 Las Vegas, NV, 89128</span>
-                                                    </p>
-                                                </div>
+
                                             </div>
-
-                                        </div>
-
-                                        <div className='w-96'>
-                                            <p className='mt-2 text-2xl'>What to know before you go</p>
-                                            <p className='my-2 text-xl'>A note from the restaurant</p>
-                                            <p>Thank you for choosing to dine with us at
+                                            <p className='w-auto lg:w-96 md:w-96'>Thank you for choosing to dine with us at
                                                 Americana Las Vegas. Should your plans
                                                 change, please let us know in advance.
                                                 Please call us at 702.331.5565 for
@@ -264,32 +228,82 @@ const Reservation = () => {
                                                 {
                                                     readMore && <span> ,All request for seating is not guaranteed, but we will try our very best to accommodate.</span>
                                                 }</p>
+
                                             {
                                                 readMore ? <p onClick={() => setReadMore(!readMore)} className='text-red-300 cursor-pointer'>See Less</p> : <p onClick={() => setReadMore(!readMore)} className='text-red-300 cursor-pointer'>+See More</p>
                                             }
 
+
                                         </div>
+
+                                        <div className='mt-4 '>
+                                            <input onChange={(e) => (e.target.value) ? setName(e.target.value) : setName(registerUser?.name)} type='text' placeholder={registerUser?.name ? registerUser?.name + ' (Changeable)' : 'Type Your Name'} className="w-full max-w-md text-white bg-black focus:outline-none input " required />
+                                            <br />
+
+                                            <input onChange={(e) => (e.target.value) ? setEmail(e.target.value) : setEmail(registerUser?.email)} type='email' placeholder={registerUser?.email ? registerUser?.email + ' (Changeable)' : 'Type Your Email'} className="w-full max-w-md my-4 text-white bg-black focus:outline-none input" required />
+                                            <br />
+
+                                            <input onChange={(e) => (e.target.value) ? setPhone(e.target.value) : setPhone(registerUser?.phone)} type='number' placeholder={registerUser?.phone ? registerUser?.phone + ' (Changeable)' : 'Type Your Phone Number'} className="w-full max-w-md text-white bg-black focus:outline-none input " />
+                                            <br />
+
+                                            <select onChange={(e) => setOccasion(e.target.value)} className="w-full max-w-md my-4 text-white bg-black focus:outline-none select ">
+                                                <option disabled selected> Select Occasion (Optional)</option>
+                                                <option>None</option>
+                                                <option>Birthday</option>
+                                                <option>Anniversary</option>
+                                                <option>Date</option>
+                                                <option>Special Occasion</option>
+                                                <option>Business mill</option>
+                                            </select>
+
+                                            {/* <textarea className="w-full rounded-md focus:outline-none" placeholder='Add Special Request (Optional)'></textarea> */}
+
+                                            <textarea onChange={(e) => setUserRequest(e.target.value)} placeholder="Add Special Request (Optional)" className="w-full max-w-md text-white bg-black focus:outline-none textarea" ></textarea>
+
+                                            <div className="my-2 form-control">
+                                                <label className="flex items-center cursor-pointer gap-x-4">
+                                                    <input onChange={(e) => setReminder(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                                    <span className="text-white cursor-pointer hover:underline label-text">Yes, I want to get text updates and reminders <br /> about my reservation</span>
+                                                </label>
+                                            </div>
+
+                                            <div className="form-control">
+                                                <label className="flex items-center cursor-pointer gap-x-4">
+                                                    <input onChange={(e) => setDining(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                                    <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from this restaurant by email.</span>
+                                                </label>
+                                            </div>
+
+                                            <div className="my-2 form-control">
+                                                <label className="flex items-center cursor-pointer gap-x-4">
+                                                    <input onChange={(e) => setTable(e.target.checked)} type="checkbox" className="checkbox checkbox-accent" />
+                                                    <span className="text-white cursor-pointer hover:underline label-text">Sign me up to receive dining offers and news <br /> from OpenTable by email.</span>
+                                                </label>
+                                            </div>
+
+                                        </div>
+
+
+
                                     </div>
+                                    {/* second-reservation-modal */}
+                                    {
+                                        registerUser ? <label onClick={handleConfirmReservation} htmlFor="second-reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white" disabled={(!name || !email || !phone)}>Confirm Reservation</label> : <label onClick={handleConfirmReservation} htmlFor="second-reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white" disabled={(!name || !email || !phone)}>Confirm Reservation</label>
+                                    }
 
-                                </div>
+                                    <p className='my-4'>*Standard text message rates may apply. You can opt out of receiving text messages at any time. By selecting “Confirm reservation” you are agreeing to the terms and conditions of the <span className='text-red-300 cursor-pointer'>Omrrito User Agreement</span> and <span className='text-red-300 cursor-pointer'>Privacy Policy</span>.</p>
 
-                                {
-                                    registerUser ? <label onClick={handleConfirmReservation} htmlFor="reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Confirm Reservation</label> : <label onClick={handleConfirmReservation} htmlFor="reservation-modal" className="w-full text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white" disabled={(!name || !email || !phone)}>Confirm Reservation</label>
-                                }
-
-                                <p className='my-4'>*Standard text message rates may apply. You can opt out of receiving text messages at any time. By selecting “Confirm reservation” you are agreeing to the terms and conditions of the <span className='text-red-300 cursor-pointer'>Omrrito User Agreement</span> and <span className='text-red-300 cursor-pointer'>Privacy Policy</span>.</p>
-
-                                <p className=''>Certain U.S. consumers may have additional data rights, which can be exercised by clicking <span className='text-red-300 cursor-pointer'>Do Not Sell or Share My Personal Information</span>.</p>
+                                    <p className=''>Certain U.S. consumers may have additional data rights, which can be exercised by clicking <span className='text-red-300 cursor-pointer'>Do Not Sell or Share My Personal Information</span>.</p>
 
 
 
-                                {/* <p>Due to limited availability, we can hold this table for you for <span>
+                                    {/* <p>Due to limited availability, we can hold this table for you for <span>
 
                                 <span>{("0" + Math.floor((timer / 60000) % 60)).slice(-2)}:</span>
 
                                 <span>{("0" + Math.floor((timer / 1000) % 60)).slice(-2)}</span>
                             </span> minutes</p> */}
-                            </label>
+                                </label>
                         }
 
                     </label>

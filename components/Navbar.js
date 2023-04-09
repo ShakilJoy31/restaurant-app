@@ -56,14 +56,13 @@ const Navbar = ({ setColor }) => {
                 backgroundImage: `url('https://www.teahub.io/photos/full/171-1719159_food-hd-blurred-background.jpg')`,
                 backgroundRepeat: 'repeat',
                 backgroundSize: 'cover',
-            }} className="navbar">
-                <div className="flex-1 ml-[-20px]">
-                    <Link href='/' className={`text-xl normal-case ml-6 focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
-                        <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
-                            color: '#FFE15D'
-                        }} className='hidden mr-2 lg:ml-2 md:ml-2 lg:text-3xl md:text-2xl lg:block md:block'>Ommrito</san>
-                    </span> </Link>
-                </div>
+            }} className="flex items-center justify-between navbar">
+                <Link href='/' className={`text-xl normal-case focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
+                    <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
+                        color: '#FFE15D'
+                    }} className='hidden mr-2 lg:ml-2 md:ml-2 lg:text-3xl md:text-2xl lg:block md:block'>Ommrito</san>
+                </span> </Link>
+
 
                 <div className="flex-none md:gap-4 lg:gap-6">
 
@@ -114,18 +113,23 @@ const Navbar = ({ setColor }) => {
                             }
                         </label>
                         <ul style={{
-                                backgroundColor: '#19A7CE',
-                                borderRadius: '5px'
-                            }} tabIndex={0} className="w-64 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box">
+                            backgroundColor: '#19A7CE',
+                            borderRadius: '5px'
+                        }} tabIndex={0} className="w-64 p-2 mt-3 shadow menu menu-compact dropdown-content bg-base-100 rounded-box">
 
                             <li>
-                                <Link className="block text-xl lg:hidden md:hidden" href='/reservation'>Reservation</Link>
+                                <Link className="block lg:hidden md:hidden" href='/userReservation'>Reservation</Link>
                             </li>
 
+                            {
+                                userPhoto && <li>
+                                <Link className="block lg:hidden md:hidden hover:text-red-500" href='/cart'>My Cart</Link>
+                        </li>
+                            }
+                            
+
                             <li>
-                                {
-                                    userPhoto && <Link className="block text-xl lg:hidden md:hidden" href='/cart'>My Cart</Link>
-                                }
+                            <Link className="block lg:hidden md:hidden hover:text-red-500" href='/feedback'>Feedback</Link>
                             </li>
 
                             {/* <li>
@@ -133,10 +137,10 @@ const Navbar = ({ setColor }) => {
                             </li> */}
 
                             <li>
-                                <Link className="justify-between text-white hover:bg-white hover:text-black" href='/myProfile'>My Profile <span><CgProfile  size={20} color={'black'}></CgProfile></span></Link>
+                                <Link className="justify-between text-white hover:bg-white hover:text-black" href='/myProfile'>My Profile <span><CgProfile size={20} color={'black'}></CgProfile></span></Link>
                             </li>
 
-                            <li className="text-white rounded-lg hover:bg-white hover:text-black" onClick={() => setSettingsModal(true)}><label className="flex items-center justify-between" htmlFor="settingsModal"><a>Settings</a> <span><AiFillSetting size={20} color={'black'}></AiFillSetting></span></label> 
+                            <li className="text-white rounded-lg hover:bg-white hover:text-black" onClick={() => setSettingsModal(true)}><label className="flex items-center justify-between" htmlFor="settingsModal"><a>Settings</a> <span><AiFillSetting size={20} color={'black'}></AiFillSetting></span></label>
                             </li>
 
 
@@ -160,10 +164,10 @@ const Navbar = ({ setColor }) => {
                     <input type="checkbox" id="my-modal-3" className="modal-toggle" />
                     <div className="modal">
                         <div style={{
-                                backgroundColor: '#19A7CE',
-                                borderRadius: '5px',
-                                width: '650px'
-                            }} className="relative modal-box">
+                            backgroundColor: '#19A7CE',
+                            borderRadius: '5px',
+                            width: '650px'
+                        }} className="relative modal-box">
                             <label htmlFor="my-modal-3" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <Login setLogin={setLogin}></Login>
                         </div>
@@ -178,9 +182,9 @@ const Navbar = ({ setColor }) => {
                     <input type="checkbox" id="my-modal-4" className="modal-toggle" />
                     <div className="modal">
                         <div style={{
-                                backgroundColor: '#19A7CE',
-                                borderRadius: '5px'
-                            }} className="relative modal-box lg:w-[650px] md:w-[650px] w-[300px]">
+                            backgroundColor: '#19A7CE',
+                            borderRadius: '5px'
+                        }} className="relative modal-box lg:w-[650px] md:w-[650px] w-[300px]">
                             <label htmlFor="my-modal-4" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <SignUp setSignUpModal={setSignUpModal}></SignUp>
                         </div>
@@ -212,14 +216,14 @@ const Navbar = ({ setColor }) => {
                                     setUserPhoto('');
                                     setUser(null)
                                     router.push('/')
-                                    
+
                                 }} htmlFor="logOutModal" style={{
                                     backgroundImage: "linear-gradient(45deg ,green ,white)",
                                     backgroundSize: "100%",
                                     backgroundRepeat: "repeat",
                                 }} className={`normal-case btn ${FoodProductStyle.logOut} btn-sm border-0 text-xl text-black mt-2 w-32`}>Yes
                                 </label>
-                                
+
                             </div>
                         </label>
                     </label>
