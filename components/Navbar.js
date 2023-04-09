@@ -61,7 +61,7 @@ const Navbar = ({ setColor }) => {
                     <Link href='/' className={`text-xl normal-case ml-6 focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
                         <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
                             color: '#FFE15D'
-                        }} className='mr-2 lg:ml-2 md:ml-2 lg:text-3xl md:text-2xl'>Ommrito</san>
+                        }} className='hidden mr-2 lg:ml-2 md:ml-2 lg:text-3xl md:text-2xl lg:block md:block'>Ommrito</san>
                     </span> </Link>
                 </div>
 
@@ -179,9 +179,8 @@ const Navbar = ({ setColor }) => {
                     <div className="modal">
                         <div style={{
                                 backgroundColor: '#19A7CE',
-                                borderRadius: '5px',
-                                width: '650px'
-                            }} className="relative modal-box">
+                                borderRadius: '5px'
+                            }} className="relative modal-box lg:w-[650px] md:w-[650px] w-[300px]">
                             <label htmlFor="my-modal-4" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
                             <SignUp setSignUpModal={setSignUpModal}></SignUp>
                         </div>

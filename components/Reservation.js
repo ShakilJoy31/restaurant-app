@@ -65,17 +65,17 @@ const Reservation = () => {
     return (
         <div style={{
             background: '#247f9e'
-        }} className={`py-32 ${router?.asPath == '/' ? 'mt-4' : ''}`}>
-            <h1 className='flex justify-center text-7xl'>Reservations </h1>
+        }} className={`py-32 ${router?.asPath == '/' ? 'pt-4' : ''}`}>
+            <h1 className='flex justify-center text-4xl lg:text-7xl md:text-5xl'>Reservations </h1>
 
-            <p className='flex justify-center my-6 text-2xl'>Call us at <span className='mx-2 underline cursor-pointer'> +88-017 6104 3883 </span> or book a table through Open Table reservations:</p>
+            <p className='justify-center mx-[5px] my-4 text-xl lg:flex md:text-2xl lg:text-2xl'>Call us at <span className='mx-2 underline cursor-pointer'> +88-017 6104 3883 </span> or book a table through Table reservations</p>
 
-            <div className='flex justify-center mx-8'>
+            <div className='grid justify-center mx-8 lg:flex md:flex'>
 
                 <select onChange={(e) => setPeople(e.target.value)} style={{
                     borderRight: '1px solid red',
                     borderRadius: '5px 0 0px 5px'
-                }} className="w-full max-w-xs text-black bg-white select hover:bg-black hover:text-white">
+                }} className="w-[300px] text-black bg-white lg:max-w-xs md:max-w-xs select hover:bg-black hover:text-white">
                     <option disabled selected> 1 People</option>
                     <option>2 People</option>
                     <option>3 People</option>
@@ -86,12 +86,12 @@ const Reservation = () => {
 
                 <input onChange={(e) => setDate(e.target.value)} style={{
                     borderRight: '1px solid red'
-                }} className='w-full max-w-xs p-2 text-black bg-white hover:bg-black hover:text-white' type="date" name="" id="" />
+                }} className='w-[300px] p-2 text-black bg-white lg:max-w-xs md:max-w-xs hover:bg-black hover:text-white' type="date" name="" id="" />
 
                 <select onChange={(e) => setTime(e.target.value)} style={{
                     borderRight: '1px solid red',
                     borderRadius: '0'
-                }} className="w-full max-w-xs text-black bg-white select hover:bg-black hover:text-white">
+                }} className="w-[300px] text-black bg-white lg:max-w-xs md:max-w-xs select hover:bg-black hover:text-white">
                     <option disabled selected>7:00 PM</option>
                     <option>7:00 PM</option>
                     <option>7:30 PM</option>
@@ -132,7 +132,7 @@ const Reservation = () => {
 
                 <label onClick={handleFindTableButton} style={{
                     borderRadius: '0px 5px 5px 0'
-                }} htmlFor="reservation-modal" className="w-full max-w-xs text-xl text-white normal-case bg-black border-0 btn hover:text-black hover:bg-white">Proceed for Reservation</label>
+                }} htmlFor="reservation-modal" className="w-[300px] text-xl text-white normal-case bg-black border-0 lg:max-w-xs md:max-w-xs btn hover:text-black hover:bg-white">Proceed for Reservation</label>
 
             </div>
 
