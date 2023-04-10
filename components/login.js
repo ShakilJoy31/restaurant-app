@@ -39,15 +39,15 @@ const Login = ({setLogin}) => {
     return (
         <div>
             <h1 className="flex justify-center text-4xl text-white">Login here</h1>
-            <div className="flex justify-center mt-12">
+            <div className="flex justify-center">
                 <div>
-                    <div className='gap-8 mb-8'>
+                    <div className='my-6'>
 
-                        <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Type your email here' className="bg-black border-0 w-96 input focus:outline-none" required />
-                        <br />
+                        <input onChange={(e)=>setEmail(e.target.value)} type="email" placeholder='Type your email here' className="w-[290px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none block mx-auto mb-4" required />
+                        
 
-                        <div className="flex items-center justify-between my-10 bg-black border-0 rounded-lg">
-                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your password' className="mr-4 bg-black border-0 w-72 input focus:outline-none" />
+                        <div className="flex items-center justify-between bg-black border-0 rounded-lg w-[290px] lg:w-96 md:w-96">
+                                <input onChange={(e) => setPassword(e.target.value)} type={isPasswordVasible ? 'password' : 'text'} placeholder='Type your password' className="mr-4 w-[270px] bg-black border-0 lg:w-96 md:w-96 input focus:outline-none" />
                                 {
                                     isPasswordVasible ? <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEyeInvisible size={25}></AiFillEyeInvisible></span> : <span onClick={()=>setIsPasswordVasible(!isPasswordVasible)} className="mr-2"><AiFillEye size={25}></AiFillEye></span>
                                 }
