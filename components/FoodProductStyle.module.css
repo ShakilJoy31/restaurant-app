@@ -103,6 +103,21 @@
     color: black;
 }
 
+
+.userUpdateButton{
+    transition-duration: 200ms;
+    background-color: white;
+    color: black;
+}
+
+
+.userUpdateButton:hover{
+    box-shadow: 2px 2px 15px 5px white;
+    transition-duration: 200ms;
+    background-color: black;
+    color: white;
+}
+
 .spinner {
     width: 40px;
     height: 40px;

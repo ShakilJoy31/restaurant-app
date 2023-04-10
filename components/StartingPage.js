@@ -25,8 +25,10 @@ const StartingPage = () => {
             <div className=" hero">
                 <div className="flex-col hero-content lg:flex-row">
                     <div>
-                        <h1 className="text-3xl font-bold lg:text-5xl md:text-4xl">Box Office News!</h1>
-                        <p className="py-6">Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi.</p>
+                        <h1 className="font-serif text-2xl font-bold lg:text-5xl md:text-4xl">Come Hungry, Leave Happy!</h1>
+                        
+                        <p className="py-4">Nestled in the heart of downtown, Omrrito Restaurant is a charming bistro that offers a warm and inviting ambiance for diners and others facilities. The walls are adorned with elegant paintings and soft lighting illuminates the cozy dining area, creating an intimate atmosphere for guests.</p>
+
                         <div className='flex justify-between md:justify-start md:gap-x-4 lg:justify-start lg:gap-x-6'>
                             <label htmlFor="getStartedBySignUp" onClick={handleGetStartedButton} className="text-xl text-black normal-case bg-white border-0 btn btn-sm hover:text-white hover:bg-black ">Sign up<span className='ml-2'></span></label>
 
