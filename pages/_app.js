@@ -37,9 +37,9 @@ export default function MyApp({ Component, pageProps }) {
             </div>
             }
             {
-              (bgColor[0] == 'white' && bgColor[1] == '') && <div
+              (bgColor[0] == 'blue' && bgColor[1] == '') && <div
               style={{
-                  backgroundColor: "white",
+                  backgroundColor: "#1D267D",
                   backgroundSize: "100%",
                   backgroundRepeat: "repeat",
               }}
@@ -48,7 +48,11 @@ export default function MyApp({ Component, pageProps }) {
             </div>
             }
             {
-              (bgColor.length==0) && <div>
+              (bgColor.length==0) && <div style={{
+                backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
+                backgroundSize: "100%",
+                backgroundRepeat: "repeat",
+            }}>
               <Component {...pageProps} />
             </div>
             }

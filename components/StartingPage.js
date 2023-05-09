@@ -1,8 +1,6 @@
 import Style from './CSSfile/StartingPage.module.css'
-import { ImSwitch } from "react-icons/im";
 import { useState } from 'react';
 import SignUp from './signUp';
-import Reservation from './Reservation';
 import Login from './login';
 
 const StartingPage = () => {
@@ -13,22 +11,24 @@ const StartingPage = () => {
         setSignUpModal(true);
         // https://images.unsplash.com/photo-1504674900247-0877df9cc836?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80
     }
+
+    // style={{
+    //     backgroundImage: `url('https://i.ibb.co/Y8JwszZ/3014596.webp')`,
+    //     width: '100vw',
+    //     backgroundRepeat: 'no-repeat',
+    //     backgroundSize: 'cover'
+    // }}
     return (
         <div>
 
-            <div style={{
-                backgroundImage: `url('https://i.ibb.co/Y8JwszZ/3014596.webp')`,
-                width: '100vw',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover'
-            }} className={Style.home}>
+            <div className={Style.home}>
 
                 <div className="hero">
                     <div className="flex-col hero-content lg:flex-row">
                         <div>
                             <h1 className="font-serif text-2xl font-bold lg:text-5xl md:text-4xl">Come Hungry, Leave Happy!</h1>
 
-                            <p className="py-4">Nestled in the heart of downtown, Omrrito Restaurant is a charming bistro that offers a warm and inviting ambiance for diners and others facilities. The walls are adorned with elegant paintings and soft lighting illuminates the cozy dining area, creating an intimate atmosphere for guests.</p>
+                            <p style={{color:'#D25380'}} className="py-4">Nestled in the heart of downtown, Omrrito Restaurant is a charming bistro that offers a warm and inviting ambiance for diners and others facilities. The walls are adorned with elegant paintings and soft lighting illuminates the cozy dining area, creating an intimate atmosphere for guests.</p>
 
                             <div className='flex justify-between md:justify-start md:gap-x-4 lg:justify-start lg:gap-x-6'>
                                 <label htmlFor="getStartedBySignUp" onClick={handleGetStartedButton} className="text-xl text-black normal-case bg-white border-0 btn btn-sm hover:text-white hover:bg-black ">Sign up<span className='ml-2'></span></label>
@@ -111,26 +111,9 @@ const StartingPage = () => {
                         </div>
                     </div>
                 }
-
-
-
-            </div>
-            <div className='pt-44 lg:pt-0 md:pt-0'>
-            <Reservation></Reservation>
             </div>
         </div>
     )
 }
 
 export default StartingPage;
-
-
-{/* <label style={{
-    backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
-    backgroundSize: "100%",
-    backgroundRepeat: "repeat",
-    // position:'absolute',
-    // bottom:'20px',
-    // right: '20px'
-}} htmlFor="my-modal-5" className="w-32 btn"> <span className='text-xl text-red-600'>Close</span>
-</label> */}

@@ -18,7 +18,7 @@ const Order = () => {
         else{
             let totalPrice = 0; 
             product.map(singleProduct => {
-                totalPrice = totalPrice + singleProduct.price; 
+                totalPrice = totalPrice + singleProduct.price;
             })
             setAmountToPay(totalPrice); 
         }

@@ -2,78 +2,25 @@ import Style from './CSSfile/StartingPage.module.css'
 import { TypeAnimation } from 'react-type-animation'
 import { UserFoodSearch } from '../userStore';
 import FoodProductStyle from './FoodProductStyle.module.css';
+import StartingPage from './StartingPage';
 
 const LoggedUserHome = () => {
     const {foodName, setFoodName} = UserFoodSearch.useContainer();  
     return (
         <div className={`${foodName ? FoodProductStyle.hiddenNavbar : FoodProductStyle.blockNavbar }`}>
             <div style={{
-                backgroundImage: `url('https://i.ibb.co/KVBdb3M/3692584.jpg')`,
+                backgroundImage: `url('https://everydaypower.com/wp-content/uploads/2021/05/50-Star-Quotes-About-the-Beauty-of-the-Night-Sky.jpg')`,
                 backgroundRepeat: 'no-repeat',
                 backgroundSize: 'cover'
-            }} className={`${Style.bannerHome} hidden lg:block md:block`}>
-                <div className='flex justify-center'>
-                    <div style={{
-                        position: 'absolute',
-                        top: '30%',
-                        backgroundImage: "linear-gradient(45deg, yellow, aliceblue)",
-                        backgroundSize: "100%",
-                        backgroundRepeat: "repeat",
-                        webkitBackgroundClip: "text",
-                        webkitTextFillColor: "transparent",
-                        mozBackgroundClip: "text",
-                        mozTextFillColor: "transparent"
-
-                        // backgroundImage: "linear-gradient(45deg, aliceblue, yellow )",
-                        //     backgroundSize: "100%",
-                        //     backgroundRepeat: "repeat",
-                    }}>
-                        <p className='text-5xl'>Order The Food You Like...</p>
-
-                        <TypeAnimation
-                            sequence={[
-                                'We will handle the rest.',
-                                1000,
-                                'We will cook the food for you.',
-                                500,
-                                'We will reach the food to you in time.',
-                                1000,
-                                () => {
-                                }
-                            ]}
-                            wrapper="div"
-                            cursor={true}
-                            repeat={Infinity}
-                            style={{ fontSize: '2rem' }}
-                        />
-
-                        <p className='text-5xl'></p>
-                    </div>
+            }} className={`${Style.bannerHome} `}>
+                <div className=''>
+                <StartingPage></StartingPage>
                 </div>
             </div>
 
-
-
-            {/* For Mobile device */}
-            <div>
-                <div style={{
-                    backgroundImage: `url('https://i.ibb.co/KVBdb3M/3692584.jpg')`,
-                    backgroundRepeat: 'no-repeat',
-                    backgroundSize: 'contain'
-                }} className={`${Style.bannerHomeForMobile} block lg:hidden md:hidden`}>
-                    <div className='flex justify-center'>
-
-                    </div>
-                </div>
-            </div>
+            {/* url('https://i.ibb.co/Y8JwszZ/3014596.webp */}
+            {/* https://i.ibb.co/KVBdb3M/3692584.jpg */}
         </div>
-
-
-        // <div style={{
-
-        // }}>
-        //     <img className="w-full" src="https://i.ibb.co/KVBdb3M/3692584.jpg" alt="" />
-        // </div>
     );
 };
 

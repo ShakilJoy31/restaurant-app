@@ -181,18 +181,15 @@ const FoodProduct = () => {
     }
     return (
         <div>
-            <div className='pb-6'>
+            <div className='mb-96 lg:mb-0 md:mb-0'>
                 <LoggedUserHome></LoggedUserHome>
             </div>
 
             <div id='#availableFood'>
-                <h1 className='flex justify-center text-5xl text-white'>Available Food</h1>
+                <h1 className='flex justify-center mt-2 text-5xl text-white'>Available Food</h1>
                 {/* Selection section */}
 
-
-
                 <div className=''>
-
                     <div className={`${FoodProductStyle?.forSticky} my-8 md:mx-32 lg:mx-36 mx-4`}>
                         <div className={`w-full lg:h-16 md:h-16 h-full text-primary-content ${FoodProductStyle?.selectionCart} rounded-lg`}>
                             <div className="grid justify-around px-4 lg:flex">
@@ -236,53 +233,6 @@ const FoodProduct = () => {
                             </div>
                         </div>
                     </div>
-
-
-                    {/* For mobile section */}
-                    {/* <div className={`${FoodProductStyle?.forSticky} my-8 md:mx-32 lg:mx-36 lg:hidden block`}>
-                        <div className={`w-full h-16 text-primary-content ${FoodProductStyle?.selectionCart} rounded-lg`}>
-                            <div className="flex justify-around px-4">
-                                <button onClick={()=>handleSelectionButton('chicken')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isChickenActive ? FoodProductStyle?.activeButton : ''}`}> <span className={` ${isChickenActive ? 'text-black text-xl' : 'text-white'}`}>Chicken</span>
-                                </button>
-
-                                <button onClick={()=>handleSelectionButton('fish')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isFishActive ? FoodProductStyle?.activeButton : ''}`}> <span className={` ${isFishActive ? 'text-black text-xl' : 'text-white'}`}>Fish</span>
-                                </button>
-                                <button onClick={()=>handleSelectionButton('breakfast')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isBreakfast ? FoodProductStyle?.activeButton : ''}`}> <span className={` ${isBreakfast ? 'text-black text-xl' : 'text-white'}`}>Breakfast</span>
-                                </button>
-                                <button onClick={()=>handleSelectionButton('lunch')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isLunch ? FoodProductStyle?.activeButton : ''}`}> <span  className={` ${isLunch ? 'text-black text-xl' : 'text-white'}`}>Lunch</span>
-                                </button>
-                                <button onClick={()=>handleSelectionButton('dinner')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isDinner ? FoodProductStyle.activeButton : ''}`}> <span className={` ${isDinner ? 'text-black text-xl' : 'text-white'}`}>Dinner</span>
-                                </button>
-                                <button onClick={()=>handleSelectionButton('drink')} style={{
-                                    backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
-                                    backgroundSize: "100%",
-                                    backgroundRepeat: "repeat"
-                                }} className={`lg:w-32 md:w-32 w-80 mt-2 border-0 btn normal-case ${isDrink ? FoodProductStyle.activeButton : ''}`}> <span className={` ${isDrink ? 'text-black' : 'text-white'}`}>Drinks & Beverage</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
-
 
                     {/* Food section */}
                     <div>
@@ -374,7 +324,7 @@ const FoodProduct = () => {
                         backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                         backgroundSize: "100%",
                         backgroundRepeat: "repeat",
-                    }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} btn-sm border-0 mr-4 md:mr-12 lg:mr-24`}>
+                    }} className={`normal-case btn ${FoodProductStyle.moreFoodButton} btn-sm border-0 mr-4 md:mr-12 lg:mr-24 mb-4`}>
                     {
                         !initFoodProduct ? <span className={`flex items-center justify-center text-xl text-red-700 `}> <span className='mr-2'>Explore All Items</span> <span className=''><AiOutlineArrowRight size={30} color={'black'}></AiOutlineArrowRight></span></span> : <span className={`flex items-center justify-center text-xl text-red-700`}> <span className='mr-2'>See Less Items</span></span>
                     }

@@ -3,12 +3,12 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import Login from "./login";
 import SignUp from "./signUp";
-import { BiMessageSquareCheck, BiRestaurant } from "react-icons/bi";
+import { BiRestaurant } from "react-icons/bi";
 import { UserFoodSearch, UserStore } from "../userStore";
 import { RiLogoutCircleRLine } from "react-icons/ri";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { AiFillCheckCircle, AiFillSetting } from "react-icons/ai";
+import { AiFillSetting } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
 import { CgProfile } from "react-icons/cg";
 import FoodProductStyle from '../components/FoodProductStyle.module.css';
@@ -53,9 +53,7 @@ const Navbar = ({ setColor }) => {
     return (
         <div>
             <div style={{
-                backgroundImage: `url('https://www.teahub.io/photos/full/171-1719159_food-hd-blurred-background.jpg')`,
-                backgroundRepeat: 'repeat',
-                backgroundSize: 'cover',
+                backgroundColor: '#247f9e',
             }} className="flex items-center justify-between navbar">
                 <Link href='/' className={`text-xl normal-case focus:cursor-pointer ${isActive('/')}`}> <span className="flex items-center">
                     <span><BiRestaurant size={55} color={'rgba(0, 170, 255, 0.672)'}></BiRestaurant></span> <san style={{
@@ -67,22 +65,22 @@ const Navbar = ({ setColor }) => {
                 <div className="flex-none md:gap-4 lg:gap-6">
 
                     {
-                        userPhoto && <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/cart'>My Cart</Link>
+                        userPhoto && <Link className="hidden text-xl lg:block md:block hover:text-black" href='/cart'>My Cart</Link>
                     }
 
-                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/userReservation'>Reservation</Link>
+                    <Link className="hidden text-xl lg:block md:block hover:text-black" href='/userReservation'>Reservation</Link>
 
-                    <Link className="hidden text-xl lg:block md:block hover:text-red-500" href='/feedback'>Feedback</Link>
+                    <Link className="hidden text-xl lg:block md:block hover:text-black" href='/feedback'>Feedback</Link>
 
                     {
                         !userPhoto && <div onClick={() => setLogin(true)}>
-                            <label htmlFor="my-modal-3" className="hidden text-xl lg:block md:block hover:text-red-500">Login</label>
+                            <label htmlFor="my-modal-3" className="hidden text-xl cursor-pointer lg:block md:block hover:text-black">Login</label>
                         </div>
                     }
 
                     {
                         !userPhoto && <div onClick={() => setSignUpModal(true)}>
-                            <label htmlFor="my-modal-4" className="hidden text-xl lg:block md:block hover:text-red-500">Sign up</label>
+                            <label htmlFor="my-modal-4" className="hidden text-xl cursor-pointer lg:block md:block hover:text-black">Sign up</label>
                         </div>
                     }
 
@@ -123,13 +121,13 @@ const Navbar = ({ setColor }) => {
 
                             {
                                 userPhoto && <li>
-                                <Link className="block lg:hidden md:hidden hover:text-red-500" href='/cart'>My Cart</Link>
+                                <Link className="block lg:hidden md:hidden hover:text-black" href='/cart'>My Cart</Link>
                         </li>
                             }
                             
 
                             <li>
-                            <Link className="block lg:hidden md:hidden hover:text-red-500" href='/feedback'>Feedback</Link>
+                            <Link className="block lg:hidden md:hidden hover:text-black" href='/feedback'>Feedback</Link>
                             </li>
 
                             {/* <li>
@@ -237,29 +235,29 @@ const Navbar = ({ setColor }) => {
                     <div className="modal">
                         <div className="relative modal-box">
                             <label htmlFor="settingsModal" className="absolute btn btn-sm btn-circle right-2 top-2">✕</label>
-                            <h1 className="flex justify-center text-2xl text-error">Choose a background,</h1>
-                            <p className="flex justify-center text-2xl text-accent">For your app</p>
+                            <h1 className="flex justify-center text-2xl text-error">Choose a background from below.</h1>
+                            
                             <div className='mt-2'>
-                                <div className="flex justify-center gap-x-4">
+                                <div className="flex justify-around gap-x-4">
 
                                     <button onClick={() => handleSettings('#A75D5D', '#0081B4')} style={{
                                         backgroundImage: "linear-gradient(45deg, #A75D5D, #0081B4)",
                                         backgroundSize: "100%",
                                         backgroundRepeat: "repeat"
-                                    }} className='btn'> <span className="text-accent">Gradient</span> </button>
+                                    }} className='btn'> <span className="text-white normal-case">Gradient</span> </button>
                                     <button onClick={() => handleSettings('black', '')} style={{
                                         backgroundColor: "black",
-                                    }} className='border-0 btn'> <span className="text-accent">Black</span> </button>
+                                    }} className='border-0 btn'> <span className="text-white normal-case">Black</span> </button>
 
-                                    <button onClick={() => handleSettings('white', '')} style={{
-                                        backgroundColor: "white",
+                                    <button onClick={() => handleSettings('blue', '')} style={{
+                                        backgroundColor: "#1D267D",
                                         // backgroundSize: "100%",
                                         // backgroundRepeat: "repeat",
 
                                         // backgroundImage: "linear-gradient(45deg, #BFEAF5, #FEA1BF)",
                                         // backgroundSize: "100%",
                                         // backgroundRepeat: "repeat",
-                                    }} className='border-0 btn'> <span className="text-accent">White</span> </button>
+                                    }} className='border-0 btn'> <span className="text-white normal-case">Blue</span> </button>
                                 </div>
                             </div>
 

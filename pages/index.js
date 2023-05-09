@@ -29,9 +29,7 @@ export default function Home() {
 />
       </Head>
       <main className=''>
-        {
-          localStorageContent || user ? <FoodProduct></FoodProduct> : <StartingPage></StartingPage>
-        }
+        <FoodProduct></FoodProduct>
       </main>
     </>
   )
